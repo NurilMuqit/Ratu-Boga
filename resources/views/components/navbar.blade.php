@@ -1,6 +1,6 @@
 <nav class="border-gray-200 bg-[#2A635C]">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" class="flex items-center">
+        <a href="#" class="flex items-center">
             <img src="{{ asset("images/logo-white.png") }}" alt="" class="w-12 me-3">
             <span class="self-center PlayfairDisplay text-2xl font-semibold whitespace-nowrap dark:text-white">Ratu
                 Boga</span>
