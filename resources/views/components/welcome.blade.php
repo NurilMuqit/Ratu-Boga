@@ -2,7 +2,7 @@
         <x-application-logo class="block h-12 w-auto" />
 
         <h1 class="mt-8 text-2xl font-medium text-gray-900">
-            Ini Dashboard Admin sementara
+            Ini Dashboard User Sementara
         </h1>
     </div>
 

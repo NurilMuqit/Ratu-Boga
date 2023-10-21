@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,3 +32,5 @@ Route::middleware([
 Route::get('/home', function() {
     return view('home');
 })->name('home');
+
+Route::get('/redirect',[HomeController::class,'redirect']);
