@@ -33,4 +33,10 @@ Route::get('/home', function() {
     return view('home');
 })->name('home');
 
+Route::get('/menu', function() {
+    return view('menu');
+})->name('menu');
+
+
 Route::get('/redirect',[HomeController::class,'redirect']);
+

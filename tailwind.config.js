@@ -15,6 +15,16 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                PlayfairDisplay: ['Playfair Display', 'serif'],
+                PlusJakartaSans: ['Plus Jakarta Sans', 'serif'],
+            },
+            colors: {
+                almond: "#EEE1D1",
+                flame: "#E8512A",
+                junggleGreen: "#163A35",
+                metalicSilver: "#9DB1AE",
+                slateGreen: "#2A635C",
+                gainsBoro: "#DADADA",
             },
         },
     },
