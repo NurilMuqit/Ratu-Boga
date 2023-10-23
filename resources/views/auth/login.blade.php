@@ -16,7 +16,7 @@
         <x-validation-errors class="mb-4" />
 
         @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+            <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
             </div>
         @endif
@@ -45,11 +45,10 @@
             <div class="flex mt-6 justify-between">
                 <label for="remember_me" class="flex items-center ">
                     <x-checkbox id="remember_me" name="remember" />
-                    <span
-                        class="ml-2 hover:text-gray-900 text-sm font-bold text-flame dark:text-gray-400">{{ __('Remember me') }}</span>
+                    <span class="ml-2 hover:text-gray-900 text-sm font-bold text-flame">{{ __('Remember me') }}</span>
                 </label>
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm font-bold text-flame dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+                    <a class="underline text-sm font-bold text-flame  hover:text-gray-900"
                         href="{{ route('password.request') }}">
                         {{ __('Lupa password?') }}
                     </a>
