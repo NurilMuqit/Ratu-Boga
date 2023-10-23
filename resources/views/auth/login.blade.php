@@ -1,13 +1,22 @@
 <x-guest-layout>
+
     <x-authentication-card>
-        <x-slot name="logo">
+        <x-slot name="logo" class="mb-0 pb-0">
             <x-authentication-card-logo />
         </x-slot>
+        <div class="text-center mt-0 mb-8 pt-0 text-junggleGreen">
+            <h1 class="font-bold text-3xl">Hai, Selamat Datang</h1>
+            <p class="text-base mt-2">Belum punya akun?
+                <a class="underline hover:text-gray-900 text-flame font-bold" href="{{ route('register') }}">
+                    {{ __('Buat Akun') }}
+                </a>
+            </p>
+        </div>
 
         <x-validation-errors class="mb-4" />
 
         @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
+            <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
                 {{ session('status') }}
             </div>
         @endif
@@ -16,33 +25,44 @@
             @csrf
 
             <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                {{-- <x-label for="email" value="{{ __('Email') }}" /> --}}
+                <x-input id="email"
+                    class="block text-left mt-1 w-full placeholder-metalicSilver focus:placeholder-junggleGreen"
+                    type="email" name="email" :value="old('email')" required autofocus autocomplete="username"
+                    placeholder="Masukkan alamat email" />
             </div>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            <div class="py-2">
+                <div class="relative">
+                    <x-input id="password"
+                        class="block mt-1 w-full placeholder-metalicSilver focus:placeholder-junggleGreen"
+                        type="password" name="password" required autocomplete="current-password"
+                        placeholder="Masukkan password disini" />
+                    <x-toggle-password />
+                </div>
             </div>
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
+            <div class="flex mt-6 justify-between">
+                <label for="remember_me" class="flex items-center ">
                     <x-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span
+                        class="ml-2 hover:text-gray-900 text-sm font-bold text-flame dark:text-gray-400">{{ __('Remember me') }}</span>
                 </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                    <a class="underline text-sm font-bold text-flame dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+                        href="{{ route('password.request') }}">
+                        {{ __('Lupa password?') }}
                     </a>
                 @endif
+            </div>
 
-                <x-button class="ml-4">
-                    {{ __('Log in') }}
+            <div class="flex justify-center items-center mt-6">
+
+                <x-button class="w-full justify-center items-center">
+                    {{ __('Masuk') }}
                 </x-button>
             </div>
+
         </form>
     </x-authentication-card>
 </x-guest-layout>
