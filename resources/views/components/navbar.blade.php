@@ -16,6 +16,11 @@
             <button type="button"
                 class="text-white bg-flame font-medium rounded-lg text-sm px-6 py-2 text-center me-3 md:me-0">
                 SIGNUP</button>
+            <div class="flex">
+                <a href="#">
+                    
+                </a>
+            </div>
         </div>
     </div>
 </nav>

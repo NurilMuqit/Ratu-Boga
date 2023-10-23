@@ -37,6 +37,9 @@ Route::get('/menu', function() {
     return view('menu');
 })->name('menu');
 
+Route::get('/cart', function() {
+    return view('cart');
+})->name('cart');
 
 Route::get('/redirect',[HomeController::class,'redirect']);
 
