@@ -30,7 +30,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-<<<<<<< HEAD
 // route only for Admin
 Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -64,23 +63,9 @@ Route::get('/cart', function () {
 Route::get('/home', function () {
     return view('home');
 })->name('home');
-=======
-// Route::get('/home', function() {
-//     return view('home');
-// })->name('home');
->>>>>>> ec204c6 (refactor: :ambulance: Move login & register logic from welcome.blade.php to home.blade.php)
 
 Route::get('/menu', function () {
     return view('menu');
 })->name('menu');
 
-<<<<<<< HEAD
-Route::get('/redirect', [HomeController::class, 'redirect']);
-=======
-Route::get('/cart', function() {
-    return view('cart');
-})->name('cart');
-
 Route::get('/redirect',[HomeController::class,'redirect'])->name('redirect');
-
->>>>>>> ec204c6 (refactor: :ambulance: Move login & register logic from welcome.blade.php to home.blade.php)

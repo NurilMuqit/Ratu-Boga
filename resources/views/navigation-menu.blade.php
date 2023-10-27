@@ -17,12 +17,6 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-=======
-    <div class="">
-        <div class="">
-            <div class="flex">
->>>>>>> ec204c6 (refactor: :ambulance: Move login & register logic from welcome.blade.php to home.blade.php)
-            </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
@@ -87,12 +81,7 @@
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <button
                                     class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-<<<<<<< HEAD
-                                    <img class="h-8 w-8 rounded-full object-cover"
-=======
-                                    <img class="h-10 w-10 rounded-full object-cover"
->>>>>>> ec204c6 (refactor: :ambulance: Move login & register logic from welcome.blade.php to home.blade.php)
-                                        src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                    <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
