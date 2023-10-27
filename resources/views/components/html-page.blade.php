@@ -15,26 +15,26 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite('resources/css/app.css')
+    {{-- Menyembunyikan Scrollbar --}}
+    <style>
+        .hide-scroll-y::-webkit-scrollbar {
+            width: 0rem;
+        }
 
+        .hide-scroll-y::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
+    </style>
     <!-- Styles -->
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased">
-    <x-banner />
+<body class="bg-almond m-0 p-0 hide-scroll-y overflow-y-scroll font-PlusJakartaSans antialiased">
+    {{-- <x-banner /> --}}
 
-    <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
 
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
+    <div class="min-h-screen bg-gray-100 ">
         <!-- Page Content -->
         <main>
             {{ $slot }}
