@@ -29,7 +29,6 @@ Route::middleware([
     })->name('dashboard');
 });
 
-<<<<<<< HEAD
 // route only for Admin
 Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(function () {
     Route::get('/admin/dashboard', function () {
@@ -60,23 +59,22 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
-=======
+
 Route::get('/home', function() {
     return view('home');
 })->name('home');
->>>>>>> f45015a2c934accfe0808118bfcffa0019a33379
+
 
 Route::get('/menu', function() {
     return view('menu');
 })->name('menu');
 
-<<<<<<< HEAD
 Route::get('/redirect',[HomeController::class,'redirect'])->name('redirect');
-=======
+
 Route::get('/cart', function() {
     return view('cart');
 })->name('cart');
 
 Route::get('/redirect',[HomeController::class,'redirect']);
 
->>>>>>> f45015a2c934accfe0808118bfcffa0019a33379
+

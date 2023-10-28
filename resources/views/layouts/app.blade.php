@@ -33,16 +33,12 @@
                 </header>
             @endif
 
-<<<<<<< HEAD
-    <div>
-        @livewire('navigation-menu')
-=======
             <!-- Page Content -->
             <main>
                 {{ $slot }}
             </main>
         </div>
->>>>>>> f45015a2c934accfe0808118bfcffa0019a33379
+
 
         @stack('modals')
 
