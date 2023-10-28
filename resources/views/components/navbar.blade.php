@@ -19,7 +19,7 @@
                 @auth
                     <div class="flex items-center">
                         <a href="{{ route('cart') }}">
-                            <img src="{{ asset('images/cart.png') }}" alt="" class="w-8 py-2 me-10">
+                            <img src="{{ asset('images/cart.png') }}" alt="" class="w-7 py-2 me-2">
                         </a>
                         <x-app-layout />
 

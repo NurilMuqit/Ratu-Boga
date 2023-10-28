@@ -60,9 +60,6 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
 
 Route::get('/menu', function () {
     return view('menu');
