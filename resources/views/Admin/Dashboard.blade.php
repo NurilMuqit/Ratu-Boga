@@ -1,31 +1,32 @@
-{{-- <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
-                    <x-application-logo class="block h-12 w-auto" />
 
-                    <h1 class="mt-8 text-2xl font-medium text-gray-900">
-                        Ini Dashboard Admin Sementara
-                    </h1>
-                </div>
-
-                <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
-                    <div></div>
-
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin-Dashboard</title>
+</head>
+<body>
+    <div class="container min-h-screen ">
+  
+      <div class="sidebar mt-5 bg-teal-800 w-72 h-96 rounded-lg">
+  
+        <div class="profile d-flex justify-content-center">
+            <div class="list-item">
+              <img class="adm-profile" src="assets/images/Profile.jpg" alt="">
             </div>
         </div>
-
+  
         <div class="name ">
-          <div class="list-item">
+          <div class="list-item">           
               <x-app-layout>
             </x-app-layout>
           </div>
         </div>
-
+  
         <div class="position m-2">
-          <div class="list-item">
+          <div class="list-item">           
               <span class="admin-position flex justify-center text-white text-base font-normal" id="admin_position" >Admin Restaurant</span>
           </div>
         </div>
@@ -38,58 +39,11 @@
             <li class=""><a href="#" class="text-decoration-none"><i class="bi bi-gear"></i>Settings</a></li>
           </ul>
       </div>
-
+  
       <div class="main-content">
-
+        
       </div>
     </div>
-</x-app-layout> --}}
-<x-HtmlPage>
-    <div class="p-2 w-screen h-screen ">
-        <div class="h-full w-full">
-            <div class="h-full overflow-hidden  shadow-xl sm:rounded-lg">
-                <!-- resources/views/components/AdminLayout.blade.php -->
-                <div class="flex h-full w-full">
-                    <div class="w-2/12 h-full ">
-                        <x-AdminNavbar />
+  </body>
+</html>
 
-                    </div>
-
-                    <div class="w-10/12 px-8 ml-2 bg-white rounded-lg text-junggleGreen">
-                        <header class=" py-10  place-items-center grid grid-cols-2  rounded-lg">
-                            {{-- header-title --}}
-                            <div class="h-full w-full ">
-                                <h1 class="font-PlayfairDisplay  text-4xl text-gray-900">
-                                    Dashboard
-                                </h1>
-                                <p>Hi, {{ explode(' ', Auth::user()->name)[0] }} Welcome back to Ratu Boga Admin!</p>
-
-                            </div>
-
-                            <div class="flex justify-end items-center h-full w-full ">
-                                <img src="{{ asset('images/logo.png') }}" alt="" class="w-10 ">
-                                <span
-                                    class="self-center ml-2 PlayfairDisplay text-xl font-semibold whitespace-nowrap text-jungglegreen font-PlayfairDisplay">Ratu
-                                    Boga</span>
-                            </div>
-
-
-                        </header>
-                        <main>
-                            {{-- head main --}}
-                            <div class="grid items-center  grid-cols-2 ">
-                                <h3 class="font-bold text-flame">Sales Summary</h3>
-                                <div class="flex justify-end">
-                                    <img src="{{ asset('images/logo.png') }}" alt="" class="w-10">
-                                </div>
-                            </div>
-
-                        </main>
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</x-HtmlPage>
