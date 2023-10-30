@@ -36,7 +36,7 @@
 
     <!-- Bagian Kanan (Form) -->
     <div
-        class="order-2 sm:order-1 rounded-t-3xl sm:rounded-none sm:w-1/2 w-full sm:h-screen h-4/5 sm:h-full  flex flex-col justify-center items-center pt-6 sm:pt-0 bg-almond ">
+        class="order-2 sm:order-1 rounded-t-3xl sm:rounded-none sm:w-1/2 w-full sm:h-screen h-4/5 flex flex-col justify-center items-center pt-6 sm:pt-0 bg-almond ">
         <div>
             {{ $logo }}
         </div>
