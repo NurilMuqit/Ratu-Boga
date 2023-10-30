@@ -60,21 +60,8 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
-Route::get('/home', function() {
-    return view('home');
-})->name('home');
-
-
 Route::get('/menu', function() {
     return view('menu');
 })->name('menu');
 
 Route::get('/redirect',[HomeController::class,'redirect'])->name('redirect');
-
-Route::get('/cart', function() {
-    return view('cart');
-})->name('cart');
-
-Route::get('/redirect',[HomeController::class,'redirect']);
-
-
