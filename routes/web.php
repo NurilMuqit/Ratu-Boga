@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\AdminMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,8 +61,8 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
-Route::get('/menu', function() {
+Route::get('/menu', function () {
     return view('menu');
 })->name('menu');
 
-Route::get('/redirect',[HomeController::class,'redirect'])->name('redirect');
+Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
