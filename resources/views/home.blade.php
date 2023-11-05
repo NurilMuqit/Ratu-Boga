@@ -1,43 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.general')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
-    <title>Ratu Boga</title>
-
-    {{-- Menyembunyikan Scrollbar --}}
-    <style>
-        .hide-scroll-y::-webkit-scrollbar {
-            width: 0rem;
-        }
-
-        .hide-scroll-y::-webkit-scrollbar-thumb {
-            background-color: transparent;
-        }
-    </style>
-
-</head>
-
-<body class="bg-almond m-0 p-0 hide-scroll-y overflow-y-scroll font-PlusJakartaSans">
-    <header>
-        <x-navbar />
-    </header>
-
+@section('content')
     <section>
-        <div
-            class="container min-w-full h-auto px-24 pt-16 pb-8 mx-auto flex justify-between items-center bg-slateGreen">
+        <div class="container min-w-full h-auto px-24 pt-16 pb-8 mx-auto flex justify-between items-center bg-slateGreen">
             <div class="ms-7 mt-8">
                 <h1 class="text-white text-7xl font-bold font-pl">HARGA KAKI LIMA <br>RASA BINTANG LIMA</h1>
                 <p class="text-gainsBoro mt-5 text-xl">Kami menyajikan makanan dari bahan berkualitas yang memanjakan
                     dompet anda. Kami berkomitmen untuk menjaga harga yang bersaing tanpa mengorbankan kualitas makanan.
                 </p>
-                <button type="button"
-                    class="text-white bg-flame font-medium rounded-lg text-sm px-6 py-4 text-center mt-16 flex">
-                    Pesan Sekarang <img src="{{ asset('images/arrow-right.svg') }}" alt=""
-                        class="w-5 ms-3"></button>
+                <a href="{{ route('menu') }}">
+                    <button type="button"
+                        class="text-white bg-flame font-medium rounded-lg text-sm px-6 py-4 text-center mt-16 flex items-center">
+                        Pesan Sekarang <span><i
+                                class="fa-solid fa-arrow-right text-white text-base ms-3"></i></span></button>
+                </a>
             </div>
             <img src="{{ asset('images/homeTop-nasgor.png') }}" alt="" class="mt-36 h-96 self-end -me-24">
         </div>
@@ -58,8 +34,8 @@
 
     <section class="mx-28 mb-32">
         <img src="{{ asset('images/quotes-sign.svg') }}" alt="" class="mt-44">
-        <h2 class="text-5xl ms-32 -mt-20">Kami menggunakan bahan yang <span
-                class="text-flame font-bold">segar & sehat</span>. Pada saat yang sama, kami menghindari penggunaan
+        <h2 class="text-5xl ms-32 -mt-20">Kami menggunakan bahan yang <span class="text-flame font-bold">segar &
+                sehat</span>. Pada saat yang sama, kami menghindari penggunaan
             bahan-bahan yang <span class="text-flame font-bold">mengganggu kesehatan anda</span>.</h2>
     </section>
 
@@ -154,8 +130,7 @@
     </section>
 
     <section>
-        <svg id="wave" class="rotate-0" viewBox="0 0 1440 188" version="1.1"
-            xmlns="http://www.w3.org/2000/svg">
+        <svg id="wave" class="rotate-0" viewBox="0 0 1440 188" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="sw-gradient-0" x1="0" x2="0" y1="1" y2="0">
                     <stop stop-color="rgba(42, 99, 92, 1)" offset="0%"></stop>
@@ -177,8 +152,4 @@
             <div id="line" class="bg-white min-w-screen h-1 ms-28 mt-28"></div>
         </div>
     </section>
-
-    <x-footer />
-</body>
-
-</html>
+@endsection

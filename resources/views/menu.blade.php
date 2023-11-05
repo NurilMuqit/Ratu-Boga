@@ -1,31 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.general')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
-    <title>Menu - Ratu Boga</title>
-
-    {{-- Menyembunyikan Scrollbar --}}
-    <style>
-        .hide-scroll-y::-webkit-scrollbar {
-            width: 0rem;
-        }
-
-        .hide-scroll-y::-webkit-scrollbar-thumb {
-            background-color: transparent;
-        }
-    </style>
-
-</head>
-
-<body class="bg-almond m-0 p-0 hide-scroll-y overflow-y-scroll font-PlusJakartaSans">
-    <header>
-        <x-navbar />
-    </header>
-
+@section('content')
     <section class="mt-16 mb-24 ms-20">
         <h1 class="text-junggleGreen font-bold text-4xl">Menu Favorit</h1>
         <div class="w-min-screen bg-slateGreen mt-12 rounded-l-full py-12">
@@ -44,8 +19,4 @@
             </div>
         </div>
     </section>
-
-    <x-footer />
-</body>
-
-</html>
+@endsection

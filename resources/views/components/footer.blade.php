@@ -9,14 +9,14 @@
                     </div>
                     <h6 class="text-sm text-white font-medium">Harga Kaki Lima, Rasa Bintang Lima</h6>
                     <div class="flex mt-7">
-                        <a href="#" class="pe-3">
-                            <img src="{{ asset('images/ig-ico.png') }}" alt="" class="w-7">
+                        <a href="#" class="me-6">
+                            <i class="fa-brands fa-instagram text-white text-3xl"></i>
                         </a>
-                        <a href="#" class="pe-3">
-                            <img src="{{ asset('images/fb-ico.png') }}" alt="" class="w-7">
+                        <a href="#" class="me-6">
+                            <i class="fa-brands fa-facebook text-white text-3xl"></i>
                         </a>
-                        <a href="#" class="pe-3">
-                            <img src="{{ asset('images/wa-ico.png') }}" alt="" class="w-7">
+                        <a href="#">
+                            <i class="fa-brands fa-whatsapp text-white text-3xl"></i>
                         </a>
                     </div>
                 </div>
@@ -24,28 +24,33 @@
             {{-- Footbar Menu --}}
             <div class="flex ms-20">
                 <div class="flex flex-col">
-                    <a href="#" class="border-l-4 rounded-sm text-white font-medium text-base px-5 mb-10">FITUR</a>
-                    <a href="#" class="border-l-4 rounded-sm text-white font-medium text-base px-5">HUBUNGI
+                    <a href="#"
+                        class="border-l-4 rounded-sm text-white font-medium text-base px-5 mb-10 hover:border-flame hover:text-flame hover:ease-in hover:transition hover:duration-200">FITUR</a>
+                    <a href="#"
+                        class="border-l-4 rounded-sm text-white font-medium text-base px-5 hover:border-flame hover:text-flame hover:ease-in hover:transition hover:duration-200">HUBUNGI
                         KAMI</a>
                 </div>
                 <div class="flex flex-col ms-12">
-                    <a href="#" class="border-l-4 rounded-sm text-white font-medium text-base px-5 mb-10">MENU
+                    <a href="#"
+                        class="border-l-4 rounded-sm text-white font-medium text-base px-5 mb-10 hover:border-flame hover:text-flame hover:ease-in hover:transition hover:duration-200">MENU
                         KAMI</a>
-                    <a href="#" class="border-l-4 rounded-sm text-white font-medium text-base px-5">HARGA</a>
+                    <a href="#"
+                        class="border-l-4 rounded-sm text-white font-medium text-base px-5 hover:border-flame hover:text-flame hover:ease-in hover:transition hover:duration-200">HARGA</a>
                 </div>
             </div>
             {{-- Footbar Info --}}
             <div class="flex flex-col ms-12">
                 <div class="flex mb-6">
-                    <img src="{{ asset('images/loc-ico.png') }}" alt="" class="w-7 h-7 me-4">
+                    <i class="fa-solid fa-location-dot text-white text-2xl me-3"></i>
                     <h6 class="text-white">Jl. Poros Bira, Kel. Tanah Lemo, Kec. Bonto <br>Bahari, Kab. Bulukumba</h6>
                 </div>
                 <div class="flex">
-                    <img src="{{ asset('images/telp-ico.png') }}" alt="" class="w-7 h-7 me-4">
+                    <i class="fa-solid fa-phone text-white text-xl me-3"></i>
                     <h6 class="text-white">+62 821 9341 5656</h6>
                 </div>
             </div>
         </div>
-        <h6 class="text-gainsBoro text-sm font-light self-end mt-12">Copyright © 2023 RM Ratu Boga. All right reserved </h6>
+        <h6 class="text-gainsBoro text-sm font-light self-end mt-12">Copyright © 2023 RM Ratu Boga. All right reserved
+        </h6>
     </div>
 </footer>

@@ -1,7 +1,7 @@
 <nav class="bg-slateGreen">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-6">
         <a href="#" class="flex items-center">
-            <img src="{{ asset('images/logo-white.png') }}" alt="" class="w-12 me-3">
+            <img src="{{ asset('images/logo-white.png') }}" alt="" class="w-10 me-3">
             <span
                 class="self-center PlayfairDisplay text-2xl font-semibold whitespace-nowrap text-white font-PlayfairDisplay">Ratu
                 Boga</span>
@@ -19,9 +19,9 @@
                 @auth
                     <div class="flex items-center">
                         <a href="{{ route('cart') }}">
-                            <img src="{{ asset('images/cart.png') }}" alt="" class="w-7 py-2 me-2">
+                            <i class="fa-solid fa-cart-shopping text-white text-xl"></i>
                         </a>
-                        <x-app-layout />
+                        @livewire('navigation-menu')
 
                     </div>
                 @else
