@@ -13,12 +13,32 @@
                             <h1 class=" mt-8 text-4xl text-gray-900">
                                 Product
                             </h1>
+                            <div class="route">
+                                <a class="product" href="">
+                                    Products
+                                </a>
+                                <a class="product text-flame" href="">
+                                    Category
+                                </a>
+                                {{-- category --}}
+                                <div class="add_category mt-5">
+                                    <h1>add Category</h1>
+
+                                    <form action="{{ url('/store') }}" method="POST">
+
+                                        @csrf
+                                        <input type="text" name="category" placeholder="Write Category Name">
+                                        <button type="submit" class="px-4 py-2 bg-flame text-white rounded-full ml-3" value="Add">
+                                            Add
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
     </div>
 </x-HtmlPage>
