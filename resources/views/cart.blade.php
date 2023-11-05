@@ -1,32 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.general')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
-    <title>Keranjang - Ratu Boga</title>
-
-    {{-- Menyembunyikan Scrollbar --}}
-    <style>
-        .hide-scroll-y::-webkit-scrollbar {
-            width: 0rem;
-        }
-
-        .hide-scroll-y::-webkit-scrollbar-thumb {
-            background-color: transparent;
-        }
-    </style>
-
-</head>
-
-<body class="bg-almond m-0 p-0 hide-scroll-y overflow-y-scroll font-PlusJakartaSans">
-    <header>
-        <x-navbar />
-    </header>
-
-    <main class="flex flex-col">
+@section('content')
+    <div class="flex flex-col">
         <section class="mt-16 mb-20 mx-32">
             <h1 class="text-junggleGreen font-bold text-4xl">Keranjang</h1>
             <div class="cart-container">
@@ -89,9 +64,5 @@
                     Buat Pesanan</button>
             </div>
         </section>
-    </main>
-
-    <x-footer />
-</body>
-
-</html>
+    </div>
+@endsection
