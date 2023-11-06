@@ -68,4 +68,6 @@ Route::get('/menu', function () {
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
 
+Route::get('/category', [CategoriesController::class, 'category']);
 Route::post('/store', [CategoriesController::class, 'store']);
+Route::get('/destroy/{id}', [CategoriesController::class, 'destroy']);

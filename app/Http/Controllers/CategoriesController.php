@@ -10,9 +10,10 @@ class CategoriesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
+    public function category()
+    {   
+        $data=category::all();
+        return view('admin.category',compact('data'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +35,7 @@ class CategoriesController extends Controller
 
         $data->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('message','Category Added Successfully');
     }
 
     /**
@@ -64,8 +65,10 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $data=  category::find($id);
+        $data->delete();
+        return redirect()->back()->with('message','Category Deleted Successfully');
     }
 }
