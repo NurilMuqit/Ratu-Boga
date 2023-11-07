@@ -26,6 +26,7 @@ export default {
                 metalicSilver: "#9DB1AE",
                 slateGreen: "#2A635C",
                 gainsBoro: "#DADADA",
+                metalSaurus: "#627F7B"
             },
         },
     },

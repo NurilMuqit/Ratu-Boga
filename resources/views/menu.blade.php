@@ -19,4 +19,76 @@
             </div>
         </div>
     </section>
+    <section>
+        <div class="tab-menu mx-20 text-metalSaurus mt-28 mb-16 text-2xl flex justify-around">
+            <a href="#" class="font-bold text-junggleGreen border-b-4 border-junggleGreen pb-2">Semua</a>
+            <a href="#">Nasi Goreng</a>
+            <a href="#">Mie Pangsit</a>
+            <a href="#">Ayam</a>
+            <a href="#">Bakso</a>
+            <a href="#">Minuman</a>
+        </div>
+        <div class="menu-list mx-20 mb-20 flex justify-between">
+            <div class="max-w-xs bg-slateGreen rounded-lg shadow">
+                <a href="#">
+                    <img class="rounded-t-lg" src="{{ asset('images/nasgor-crt.png') }}" alt="" />
+                </a>
+                <div class="p-5 flex flex-col">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy
+                            technology acquisitions 2021</h5>
+                    </a>
+                    <h6 class="text-white font-medium">Rp 35.000</h6>
+                    <button type="button"
+                        class="text-white text-sm bg-flame font-medium py-2 px-8 text-center mt-8 rounded-md">
+                        Pesan Sekarang</button>
+                </div>
+            </div>
+            <div class="max-w-xs bg-slateGreen rounded-lg shadow">
+                <a href="#">
+                    <img class="rounded-t-lg" src="{{ asset('images/nasgor-crt.png') }}" alt="" />
+                </a>
+                <div class="p-5 flex flex-col">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy
+                            technology acquisitions 2021</h5>
+                    </a>
+                    <h6 class="text-white font-medium">Rp 35.000</h6>
+                    <button type="button"
+                        class="text-white text-sm bg-flame font-medium py-2 px-8 text-center mt-8 rounded-md">
+                        Pesan Sekarang</button>
+                </div>
+            </div>
+            <div class="max-w-xs bg-slateGreen rounded-lg shadow">
+                <a href="#">
+                    <img class="rounded-t-lg" src="{{ asset('images/nasgor-crt.png') }}" alt="" />
+                </a>
+                <div class="p-5 flex flex-col">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy
+                            technology acquisitions 2021</h5>
+                    </a>
+                    <h6 class="text-white font-medium">Rp 35.000</h6>
+                    <button type="button"
+                        class="text-white text-sm bg-flame font-medium py-2 px-8 text-center mt-8 rounded-md">
+                        Pesan Sekarang</button>
+                </div>
+            </div>
+            <div class="max-w-xs bg-slateGreen rounded-lg shadow">
+                <a href="#">
+                    <img class="rounded-t-lg" src="{{ asset('images/nasgor-crt.png') }}" alt="" />
+                </a>
+                <div class="p-5 flex flex-col">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy
+                            technology acquisitions 2021</h5>
+                    </a>
+                    <h6 class="text-white font-medium">Rp 35.000</h6>
+                    <button type="button"
+                        class="text-white text-sm bg-flame font-medium py-2 px-8 text-center mt-8 rounded-md">
+                        Pesan Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
