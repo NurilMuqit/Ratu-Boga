@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenusController;
 use App\Http\Middleware\AdminMiddleware;
 
 /*
@@ -71,3 +72,6 @@ Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
 Route::get('/category', [CategoriesController::class, 'category']);
 Route::post('/store', [CategoriesController::class, 'store']);
 Route::get('/destroy/{id}', [CategoriesController::class, 'destroy']);
+
+Route::get('/menus', [MenusController::class,'menus']);
+Route::post('', [MenusController::class,'']);

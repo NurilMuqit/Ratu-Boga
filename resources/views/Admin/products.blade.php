@@ -14,15 +14,26 @@
                                 Product
                             </h1>
                             <div class="route">
-                                <a class="product" href="">
+                                <span class="product">
                                     Products
-                                </a>
-                                <a class="product text-flame" href="{{url('/category')}}">
+                                </span>
+                                <span class="category">
                                     Category
-                                </a>
+                                </span>
 
                                 </div>
                             </div>
+                            <div class="create m-8 text-xl">
+                                <a class="product" href="{{ url('/menus') }}">
+                                    Create Product
+                                </a>
+                                <a class="product text-flame" href="{{url('/category')}}">
+                                    Create Category
+                                </a>
+                            </div>
+                        <div class="menus mt-5 ml-2">
+                            <h1>Hello World</h1>
+                        </div>
                         </div>
                     </div>
                 </div>
