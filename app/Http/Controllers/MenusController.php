@@ -28,9 +28,23 @@ class MenusController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function add_menu(Request $request)
     {
-        //
+        $menu=new Menu();
+        $menu->menu_name=$request->menu_name;
+        $menu->menu_description=$request->menu_description;
+        $menu->menu_quantity=$request->menu_quantity;
+        $menu->menu_price=$request->menu_price;
+        $menu->category_id=$request->category_id;
+
+        $image=$request->image;
+        $imagename=time().'.'.$image->getClientOriginalExtension();
+        $request->image->move('menu',$imagename);
+        $menu->image= $imagename;
+
+        $menu->save();
+
+        return redirect()->back()->with('success','Menu Added Successfully');
     }
 
     /**

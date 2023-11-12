@@ -20,61 +20,59 @@
                                 <a class="product text-flame" href="">
                                     Category
                                 </a>
-                                {{-- @if (session()->has('message'))
-                                <div class="alert alert-success">
 
-                                    {{ session()->get('message') }}
-                                </div>
+                                @if (session()->has('success'))
+                                    <div class="">
+                                        {{ session()->get('success') }}
+                                    </div>                                    
+                                @endif
+
+                                <form action="{{ url('/add_menu') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                <div>
+                                    <div class="add_menu mt-5">
+                                        <h1>add menu name</h1>
+                                            <input type="text" name="menu_name" placeholder="Write Menu Name" required="">                               
+                                    </div>
+    
+                                    <div class="add_desc mt-5">
+                                        <h1>add desc menu</h1>                                   
+                                            <input type="text" name="menu_description" placeholder="Write Menu desc">                                  
+                                    </div> 
                                     
-                                @endif --}}
-                                <div class="add_category mt-5">
-                                    <h1>add Category</h1>
-
-                                    <form action="{{ url('/store') }}" method="POST">
-
-                                        
-                                        <input type="text" name="category" placeholder="Write Category Name">
-                                        <button type="submit" class="px-4 py-2 bg-flame text-white rounded-full ml-3" value="Add">
-                                            Add
-                                        </button>
-                                    </form>
-
-                                </div>
-
-                                <table >
-                                    <tr class="grid gap-5 grid-cols-7 text-center">
-                                        <td>Menu Name</td>
-                                        <td>Description</td>
-                                        <td>price</td>
-                                        <td>category_id</td>
-                                        <td>quantity</td>
-                                        <td>Update</td>
-                                        <td>Delete</td>
-                                    </tr>
-
-                                   
-                                        
-                                    <tr class="grid gap-5 grid-cols-7 text-center">
-                                        <td>asemeleh</td>   
-                                        <td>ws</td>
-                                        <td>dsds</td>
-                                        <td>dssdds</td>
-                                        <td>dssdds</td>
-                                        <td >
-                                            <a class="px-2 py-0 rounded-md text-white bg-slateGreen" href="">
-                                                Update
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a onclick="return confirm('Are You Sure Want to Delete This?')" class="px-2 py-0 rounded-md bg-flame text-white"  href="">
-                                                Delete
-                                            </a>
-                                        </td>
-                                    </tr>
-
-
-                                </table>
-                            </div>
+                                    <div class="add_quantity mt-5">
+                                        <h1>add quantity menu</h1>                             
+                                            <input type="number" name="menu_quantity" placeholder="Write Menu quantity">                                   
+                                    </div>
+    
+                                    <div class="add_price mt-5">
+                                        <h1>add price menu</h1>                             
+                                            <input type="number" name="menu_price" placeholder="Write Menu price" required="">                                    
+                                    </div>
+    
+                                    <div class="add_category mt-5">
+                                        <h1>add category menu</h1>
+    
+                                        <select class="" name="category_id" id="">
+                                            @foreach ($data as $data)
+                                            <option value="{{ $data->id }}">
+                                                {{ $data->category }}</option>
+                                            @endforeach
+                                            
+                                        </select>
+                                    </div>
+    
+                                    <div class="add_image mt-5">
+                                        <h1>add image menu</h1>                                
+                                            <input type="file" name="image">                                                                                                              
+                                    </div>
+                                    <button type="submit" class="px-4 py-2 bg-flame text-white rounded-full ml-3" value="Add">
+                                        Add
+                                    </button>
+                                </div>                                
+                                </form>
+                                
+                            </div>            
                         </div>
                     </div>
                 </div>
