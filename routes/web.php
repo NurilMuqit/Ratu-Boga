@@ -38,9 +38,8 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/admin/products', function () {
-        return view('admin.products');
-    })->name('admin.products');
+    Route::get('/admin/products', [MenusController::class,'shows'])->name('admin.products');
+    
     Route::get('/admin/Orders', function () {
         return view('admin.Orders');
     })->name('admin.Orders');

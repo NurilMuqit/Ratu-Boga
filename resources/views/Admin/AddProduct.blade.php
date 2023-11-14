@@ -37,7 +37,7 @@
     
                                     <div class="add_desc mt-5">
                                         <h1>add desc menu</h1>                                   
-                                            <input type="text" name="menu_description" placeholder="Write Menu desc">                                  
+                                            <textarea type="text" name="menu_description" placeholder="Write Menu desc"></textarea>                                  
                                     </div> 
                                     
                                     <div class="add_quantity mt-5">
@@ -64,7 +64,12 @@
     
                                     <div class="add_image mt-5">
                                         <h1>add image menu</h1>                                
-                                            <input type="file" name="image">                                                                                                              
+                                            <input type="file" name="image" class="block w-full text-sm text-slate-500
+                                            file:mr-4 file:py-2 file:px-4
+                                            file:rounded-full file:border-0
+                                            file:text-sm file:font-semibold
+                                            file:bg-violet-50 file:text-black
+                                            hover:file:bg-violet-100">                                                                                                              
                                     </div>
                                     <button type="submit" class="px-4 py-2 bg-flame text-white rounded-full ml-3" value="Add">
                                         Add
