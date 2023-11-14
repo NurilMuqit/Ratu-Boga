@@ -1,5 +1,7 @@
 @extends('layouts.general')
 
+@section('title', 'Beranda')
+
 @section('content')
     <section>
         <div class="container min-w-full h-auto px-24 pt-16 pb-8 mx-auto flex justify-between items-center bg-slateGreen">
