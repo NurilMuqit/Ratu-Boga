@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenusController;
 use App\Http\Middleware\AdminMiddleware;
 
 /*
@@ -37,9 +38,8 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/admin/products', function () {
-        return view('admin.products');
-    })->name('admin.products');
+    Route::get('/admin/products', [MenusController::class,'shows'])->name('admin.products');
+    
     Route::get('/admin/Orders', function () {
         return view('admin.Orders');
     })->name('admin.Orders');
@@ -71,3 +71,6 @@ Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
 Route::get('/category', [CategoriesController::class, 'category']);
 Route::post('/store', [CategoriesController::class, 'store']);
 Route::get('/destroy/{id}', [CategoriesController::class, 'destroy']);
+
+Route::get('/menus', [MenusController::class,'menus']);
+Route::post('/add_menu', [MenusController::class,'add_menu']);
