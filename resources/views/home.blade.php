@@ -10,7 +10,7 @@
                 <p class="text-gainsBoro mt-5 text-xl">Kami menyajikan makanan dari bahan berkualitas yang memanjakan
                     dompet anda. Kami berkomitmen untuk menjaga harga yang bersaing tanpa mengorbankan kualitas makanan.
                 </p>
-                <a href="{{ route('menu') }}">
+                <a href="{{ route('daftar-menu') }}">
                     <button type="button"
                         class="text-white bg-flame font-medium rounded-lg text-sm px-6 py-4 text-center mt-16 flex items-center">
                         Pesan Sekarang <span><i
