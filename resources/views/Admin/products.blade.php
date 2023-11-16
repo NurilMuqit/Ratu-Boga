@@ -23,11 +23,11 @@
 
                             </div>
                         </div>
-                        <div class="create m-8 text-xl">
-                            <a class="product" href="{{ url('/menus') }}">
+                        <div class="create m-8 text-xl flex gap-3">
+                            <a class="product text-white px-3 py-1 bg-red-800 rounded-md text-sm" href="{{ url('/menus') }}">
                                 Create Product
                             </a>
-                            <a class="product text-flame" href="{{ url('/category') }}">
+                            <a class="product text-white px-3 py-1 bg-slate-800 rounded-md text-sm" href="{{ url('/category') }}">
                                 Create Category
                             </a>
                         </div>
@@ -52,7 +52,7 @@
                                                 Edit
                                             </a>
                                             <a class="px-5 py-1 rounded-md text-sm text-white bg-red-700"
-                                                href="">
+                                                href="{{ url('/delete',$menus->id) }}" onclick="return confirm('Are you sure you want to delete this?')">
                                                 Delete
                                             </a>
                                         </div>

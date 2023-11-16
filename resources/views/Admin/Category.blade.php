@@ -41,24 +41,18 @@
 
                                 <table class="table-auto">
                                     <thead>
-                                        <tr class="grid gap-5 grid-cols-4 text-center">
+                                        <tr class="grid gap-5 grid-cols-3 text-center">
                                             <td>Category id</td>
                                             <td>Category Name</td>
-                                            <td>Update</td>
                                             <td>Delete</td>
                                         </tr>
                                     </thead>
                                     
                                     @foreach ($data as $data)
                                      <tbody>
-                                        <tr class="grid gap-5 grid-cols-4 text-center">
+                                        <tr class="grid gap-5 grid-cols-3 text-center">
                                             <td>{{ $data->id }}</td>
                                             <td>{{ $data->category }}</td>
-                                            <td >
-                                                <a class="px-2 py-0 rounded-md text-white bg-slateGreen" href="">
-                                                    Update
-                                                </a>
-                                            </td>
                                             <td>
                                                 <a onclick="return confirm('Are You Sure Want to Delete This?')" class="px-2 py-0 rounded-md bg-flame text-white"  href="{{ url('/destroy',$data->id) }}">
                                                     Delete

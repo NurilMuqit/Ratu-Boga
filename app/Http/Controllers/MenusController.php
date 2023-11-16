@@ -79,8 +79,10 @@ class MenusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete($id)
     {
-        //
+        $menu=Menu::find($id);
+        $menu->delete();
+        return redirect()->back()->with('success','Menu Deleted Successfully');
     }
 }

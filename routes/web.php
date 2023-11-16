@@ -73,3 +73,4 @@ Route::get('/destroy/{id}', [CategoriesController::class, 'destroy']);
 
 Route::get('/menus', [MenusController::class,'menus']);
 Route::post('/add_menu', [MenusController::class,'add_menu']);
+Route::get('/delete/{id}', [MenusController::class,'delete']);
