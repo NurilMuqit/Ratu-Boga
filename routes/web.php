@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenuDisplayController;
 use App\Http\Controllers\MenusController;
 use App\Http\Middleware\AdminMiddleware;
 
@@ -62,9 +63,7 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
-Route::get('/menu', function () {
-    return view('menu');
-})->name('menu');
+Route::get('/daftar-menu', [MenuDisplayController::class, 'menuDisplay'])->name('daftar-menu');
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
 

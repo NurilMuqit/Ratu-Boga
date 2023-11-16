@@ -11,8 +11,8 @@
                 <a href="{{ route('home') }}"
                     class="font-medium text-white text-base mr-0 md:mr-0 {{ request()->routeIs('home') ? 'border-b-4 border-flame mx-1.5 py-2' : '' }}"
                     style="margin-right: 2rem">Beranda</a>
-                <a href="{{ route('menu') }}"
-                    class="font-medium text-white text-base mr-3 md:mr-0 {{ request()->routeIs('menu') ? 'border-b-4 border-flame mx-1.5 py-2' : '' }}"
+                <a href="{{ route('daftar-menu') }}"
+                    class="font-medium text-white text-base mr-3 md:mr-0 {{ request()->routeIs('daftar-menu') ? 'border-b-4 border-flame mx-1.5 py-2' : '' }}"
                     style="margin-right: 2rem">Menu</a>
             </div>
             @if (Route::has('login'))

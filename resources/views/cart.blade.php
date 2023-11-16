@@ -1,5 +1,7 @@
 @extends('layouts.general')
 
+@section('title', 'Keranjang')
+
 @section('content')
     <div class="flex flex-col">
         <section class="mt-16 mb-20 mx-32">

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
     @vite('resources/css/app.css')
-    <title>Menu - Ratu Boga</title>
+    <title>@yield('title') - Ratu Boga</title>
 
     {{-- Menyembunyikan Scrollbar --}}
     <style>
