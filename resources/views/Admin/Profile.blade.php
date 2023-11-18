@@ -4,11 +4,10 @@
             <div class="h-full overflow-hidden shadow-xl sm:rounded-lg">
                 <!-- resources/views/components/AdminLayout.blade.php -->
                 <div class="flex h-full w-full">
-                    <div class="w-2/12 h-full ">
+                    <div class="hidden sm:flex w-2/12 h-full ">
                         <x-AdminNavbar />
-
                     </div>
-                    <div class="w-10/12 overflow-auto ml-2 bg-white rounded-lg text-junggleGreen">
+                    <div class=" overflow-auto ml-2 sm:w-10/12 w-full bg-white rounded-lg text-junggleGreen">
                         <div class=" font-PlayfairDisplay pl-8 bg-white  rounded-lg">
                             <h1 class=" mt-8 text-4xl text-gray-900">
                                 Profile

@@ -45,5 +45,6 @@
 
     @livewireScripts
 </body>
+<script src="{{ asset('js/datepicker.js') }}"></script>
 
 </html>
