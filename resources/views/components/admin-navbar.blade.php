@@ -1,40 +1,41 @@
-<div class="flex flex-col items-center w-full h-full overflow-hidden text-white bg-slateGreen rounded-2xl">
+<div
+    class="flex   flex-col items-center w-full h-full overflow-hidden text-white bg-slateGreen rounded-xl md:rounded-2xl">
     {{-- navbar-header --}}
     <div class="flex flex-col items-center w-full py-3">
-        <a class="flex items-center w-full py-5" href="{{ route('admin.Profile') }}">
+        <a class="flex items-center w-14 md:w-full py-5" href="{{ route('admin.Profile') }}">
             {!! Auth::user()->profile_photo_url
                 ? '<img src="' .
                     Auth::user()->profile_photo_url .
                     '" alt="' .
                     Auth::user()->name .
-                    '" alt="Profil Picture" class="mx-auto rounded-full bg-white w-24 h-24 object-cover">'
+                    '" alt="Profil Picture" class="mx-auto rounded-full bg-white md:w-24 md:h-24 h-12 w-12 object-cover">'
                 : '<div class="mx-auto rounded-full bg-white w-24 h-24 flex items-center justify-center text-2xl text-gray-500">{{ substr(Auth::user()->name, 0, 1) }}</div>' !!}
         </a>
 
-        <h3 class="mb-2 text-2xl text-center font-bold ">{{ Auth::user()->name }}</h3>
-        <h4 class=" text-sm ">Admin restaurant</h4>
+        <h3 class="mb-2 md:text-2xl text-sm text-center font-bold ">{{ Auth::user()->name }}</h3>
+        <h4 class=" md:text-sm text-xs text-center">Admin restaurant</h4>
 
     </div>
     {{-- navbar-menu --}}
     <div class="w-full px-2">
         <div class="flex flex-col items-center w-full mt-3 ">
             {{-- Dasboard --}}
-            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame {{ request()->routeIs('admin.dashboard') || !str_contains(request()->route()->uri, 'admin') ? 'bg-flame' : '' }}"
+            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame transition duration-500 ease-in-out transform {{ request()->routeIs('admin.dashboard') || !str_contains(request()->route()->uri, 'admin') ? 'bg-flame' : '' }}"
                 href="{{ route('admin.dashboard') }}">
-                <svg class="w-6 mt-1 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
+                <svg class="w-6 md:mt-1 mt-2 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
                     <path
                         d="M0.168091 1.80001C0.168091 1.48175 0.294519 1.17652 0.519563 0.951478C0.744606 0.726434 1.04983 0.600006 1.36809 0.600006H15.7681C16.0863 0.600006 16.3916 0.726434 16.6166 0.951478C16.8417 1.17652 16.9681 1.48175 16.9681 1.80001V4.20001C16.9681 4.51827 16.8417 4.82349 16.6166 5.04853C16.3916 5.27358 16.0863 5.40001 15.7681 5.40001H1.36809C1.04983 5.40001 0.744606 5.27358 0.519563 5.04853C0.294519 4.82349 0.168091 4.51827 0.168091 4.20001V1.80001ZM0.168091 9.00001C0.168091 8.68175 0.294519 8.37652 0.519563 8.15148C0.744606 7.92643 1.04983 7.80001 1.36809 7.80001H8.56809C8.88635 7.80001 9.19157 7.92643 9.41662 8.15148C9.64166 8.37652 9.76809 8.68175 9.76809 9.00001V16.2C9.76809 16.5183 9.64166 16.8235 9.41662 17.0485C9.19157 17.2736 8.88635 17.4 8.56809 17.4H1.36809C1.04983 17.4 0.744606 17.2736 0.519563 17.0485C0.294519 16.8235 0.168091 16.5183 0.168091 16.2V9.00001ZM13.3681 7.80001C13.0498 7.80001 12.7446 7.92643 12.5196 8.15148C12.2945 8.37652 12.1681 8.68175 12.1681 9.00001V16.2C12.1681 16.5183 12.2945 16.8235 12.5196 17.0485C12.7446 17.2736 13.0498 17.4 13.3681 17.4H15.7681C16.0863 17.4 16.3916 17.2736 16.6166 17.0485C16.8417 16.8235 16.9681 16.5183 16.9681 16.2V9.00001C16.9681 8.68175 16.8417 8.37652 16.6166 8.15148C16.3916 7.92643 16.0863 7.80001 15.7681 7.80001H13.3681Z"
                         fill="white" />
                 </svg>
-                <span class="ml-2 w-5/6 text-sm font-medium">Dasboard</span>
+                <span class="ml-2 md:flex hidden w-5/6 text-sm font-medium">Dasboard</span>
 
                 <span
-                    class="text-md font-bold {{ request()->routeIs('admin.dashboard') || !str_contains(request()->route()->uri, 'admin') ? 'visible' : 'hidden' }}">|</span>
+                    class="text-md  font-bold {{ request()->routeIs('admin.dashboard') || !str_contains(request()->route()->uri, 'admin') ? 'visible' : 'hidden' }}">|</span>
 
             </a>
             {{-- Products --}}
-            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame {{ request()->routeIs('admin.products') ? 'bg-flame' : '' }} "
+            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame transition duration-500 ease-in-out transform {{ request()->routeIs('admin.products') || str_contains(request()->route()->uri, 'category') ? 'bg-flame' : '' }} "
                 href="{{ route('admin.products') }}">
                 <svg class="w-6 h-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -50,12 +51,12 @@
                             fill="white" />
                     </g>
                 </svg>
-                <span class="ml-2 w-5/6  text-sm font-medium">Products</span>
+                <span class="ml-2 md:flex hidden w-5/6  text-sm font-medium">Products</span>
                 <span
-                    class=" text-md font-bold {{ request()->routeIs('admin.products') ? 'visible' : 'hidden' }}">|</span>
+                    class=" text-md  font-bold {{ request()->routeIs('admin.products') || str_contains(request()->route()->uri, 'category') ? 'visible' : 'hidden' }}">|</span>
             </a>
             {{-- Orders --}}
-            <a class="flex items-center w-full h-12 px-3 mt-2 text-gray-200 hover:bg-flame  rounded-md {{ request()->routeIs('admin.Orders') ? 'bg-flame' : '' }} "
+            <a class="flex items-center w-full h-12 px-3 mt-2 text-gray-200 hover:bg-flame transition duration-500 ease-in-out transform rounded-md {{ request()->routeIs('admin.Orders') ? 'bg-flame' : '' }} "
                 href="{{ route('admin.Orders') }}">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -72,12 +73,12 @@
                     </defs>
 
                 </svg>
-                <span class="ml-2 w-5/6  text-sm font-medium">Orders</span>
+                <span class="ml-2 md:flex hidden w-5/6  text-sm font-medium">Orders</span>
                 <span
-                    class=" text-md font-bold {{ request()->routeIs('admin.Orders') ? 'visible' : 'hidden' }}">|</span>
+                    class=" text-md  font-bold {{ request()->routeIs('admin.Orders') ? 'visible' : 'hidden' }}">|</span>
             </a>
             {{-- Customers --}}
-            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame  {{ request()->routeIs('admin.Customers') ? 'bg-flame' : '' }} "
+            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame transition duration-500 ease-in-out transform  {{ request()->routeIs('admin.Customers') ? 'bg-flame' : '' }} "
                 href="{{ route('admin.Customers') }}">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -97,13 +98,13 @@
                         d="M11.2873 15.341C12.708 16.4438 13.1541 18.1861 13.1541 18.1861C13.239 18.5179 13.5381 18.75 13.8806 18.75L13.8957 18.7499C13.9534 18.7487 14.0107 18.7409 14.0666 18.7266C14.3985 18.6416 14.6306 18.3426 14.6306 18.0001L14.6305 17.985C14.6293 17.9273 14.6215 17.8699 14.6072 17.814C14.0336 15.574 12.207 14.1561 12.207 14.1561C10.3804 12.7383 8.06812 12.7383 8.06812 12.7383C5.75581 12.7383 3.9292 14.1561 3.9292 14.1561C2.1026 15.574 1.52905 17.814 1.52905 17.814C1.51349 17.8748 1.50562 17.9373 1.50562 18C1.50562 18.0107 1.50584 18.0214 1.5063 18.032C1.51157 18.1556 1.5473 18.2759 1.61032 18.3823C1.71168 18.5534 1.87689 18.6773 2.06959 18.7266C2.13037 18.7422 2.19287 18.75 2.25562 18.75C2.26628 18.75 2.27695 18.7498 2.28761 18.7494C2.41114 18.7441 2.53145 18.7084 2.63783 18.6453C2.80897 18.544 2.93284 18.3788 2.98218 18.1861C3.42827 16.4438 4.84896 15.341 4.84896 15.341C6.26965 14.2383 8.06812 14.2383 8.06812 14.2383C9.86658 14.2383 11.2873 15.341 11.2873 15.341Z"
                         fill="white" />
                 </svg>
-                <span class="ml-2 w-5/6  text-sm font-medium">Customers</span>
+                <span class="ml-2 w-5/6 md:flex hidden text-sm font-medium">Customers</span>
                 <span
-                    class="text-md font-bold {{ request()->routeIs('admin.Customers') ? 'visible' : 'hidden' }}">|</span>
+                    class="text-md  font-bold {{ request()->routeIs('admin.Customers') ? 'visible' : 'hidden' }}">|</span>
 
             </a>
             {{-- Finance --}}
-            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame {{ request()->routeIs('admin.Finance') ? 'bg-flame' : '' }} "
+            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame transition duration-500 ease-in-out transform  {{ request()->routeIs('admin.Finance') ? 'bg-flame' : '' }} "
                 href="{{ route('admin.Finance') }}">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -111,12 +112,12 @@
                         d="M3.56812 10H21.5681M7.56812 15H8.56812M12.5681 15H13.5681M6.56812 19H18.5681C19.3638 19 20.1268 18.6839 20.6894 18.1213C21.252 17.5587 21.5681 16.7956 21.5681 16V8C21.5681 7.20435 21.252 6.44129 20.6894 5.87868C20.1268 5.31607 19.3638 5 18.5681 5H6.56812C5.77247 5 5.0094 5.31607 4.44679 5.87868C3.88419 6.44129 3.56812 7.20435 3.56812 8V16C3.56812 16.7956 3.88419 17.5587 4.44679 18.1213C5.0094 18.6839 5.77247 19 6.56812 19Z"
                         stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                <span class="ml-2 w-5/6  text-sm font-medium">Finance</span>
+                <span class="md:flex hidden ml-2 w-5/6  text-sm font-medium">Finance</span>
                 <span
-                    class="text-md font-bold {{ request()->routeIs('admin.Finance') ? 'visible' : 'hidden' }}">|</span>
+                    class=" text-md font-bold {{ request()->routeIs('admin.Finance') ? 'visible' : 'hidden' }}">|</span>
             </a>
             {{-- Settings --}}
-            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame {{ request()->routeIs('admin.Settings') ? 'bg-flame' : '' }} "
+            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame transition duration-500 ease-in-out transform {{ request()->routeIs('admin.Settings') ? 'bg-flame' : '' }} "
                 href="{{ route('admin.Settings') }}">
                 <svg class="w-6 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -131,14 +132,15 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <span class="ml-2  text-sm font-medium">Settings</span>
+                <span class="ml-2 md:flex hidden  text-sm font-medium">Settings</span>
                 <span
-                    class="ml-24 text-md font-bold {{ request()->routeIs('admin.Settings') ? 'visible' : 'hidden' }}">|</span>
+                    class="  text-md font-bold {{ request()->routeIs('admin.Settings') ? 'visible' : 'hidden' }}">|</span>
             </a>
         </div>
     </div>
     <!-- log out -->
-    <form class="cursor-pointer flex items-center w-full px-6 h-16 hover:text-white   text-flame mt-auto "
+    <form
+        class="cursor-pointer flex items-center w-full px-6 h-16 hover:text-white transition duration-500 ease-in-out transform  text-flame mt-auto "
         method="POST" action="{{ route('logout') }}" x-data>
         @csrf
         <svg class="w-6 h-6 stroke-current hover:stroke-white" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -147,7 +149,8 @@
                 d="M16.5681 20L17.5681 20C18.3638 20 19.1268 19.6839 19.6894 19.1213C20.252 18.5587 20.5681 17.7956 20.5681 17L20.5681 7C20.5681 6.20435 20.252 5.44129 19.6894 4.87868C19.1268 4.31607 18.3638 4 17.5681 4L16.5681 4M8.56812 8L4.56812 12M4.56812 12L8.56812 16M4.56812 12L16.5681 12"
                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
-        <span class="ml-2 text-sm font-medium" href="{{ route('logout') }}" @click.prevent="$root.submit();">
+        <span class="ml-2 text-sm md:flex hidden font-medium" href="{{ route('logout') }}"
+            @click.prevent="$root.submit();">
             {{ __('Log Out') }}
         </span>
     </form>

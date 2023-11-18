@@ -39,8 +39,8 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
         return view('admin.dashboard');
     })->name('admin.dashboard');
 
-    Route::get('/admin/products', [MenusController::class,'shows'])->name('admin.products');
-    
+    Route::get('/admin/products', [MenusController::class, 'shows'])->name('admin.products');
+
     Route::get('/admin/Orders', function () {
         return view('admin.Orders');
     })->name('admin.Orders');
@@ -56,6 +56,13 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
     Route::get('/admin/Profile', function () {
         return view('admin.Profile');
     })->name('admin.Profile');
+    Route::get('admin/products/category', [CategoriesController::class, 'category']);
+    Route::post('/store', [CategoriesController::class, 'store']);
+    Route::get('/destroy/{id}', [CategoriesController::class, 'destroy']);
+
+    Route::get('/menus', [MenusController::class, 'menus']);
+    Route::post('/add_menu', [MenusController::class, 'add_menu']);
+    Route::get('/delete/{id}', [MenusController::class, 'delete']);
 });
 
 // route for AllUser
@@ -66,11 +73,3 @@ Route::get('/cart', function () {
 Route::get('/daftar-menu', [MenuDisplayController::class, 'menuDisplay'])->name('daftar-menu');
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
-
-Route::get('/category', [CategoriesController::class, 'category']);
-Route::post('/store', [CategoriesController::class, 'store']);
-Route::get('/destroy/{id}', [CategoriesController::class, 'destroy']);
-
-Route::get('/menus', [MenusController::class,'menus']);
-Route::post('/add_menu', [MenusController::class,'add_menu']);
-Route::get('/delete/{id}', [MenusController::class,'delete']);

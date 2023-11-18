@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,4 +7,47 @@
 
 [x-cloak] {
     display: none;
+}
+
+/* card animation */
+.c-card img {
+    -webkit-transition: transform 0.3s ease-out;
+    transform: scale(1);
+}
+.c-card:hover img {
+    transform: scale(1.05);
+    -webkit-transition: transform 0.3s ease-in;
+}
+.c-card {
+    -webkit-transition: box-shadow 0.6s ease-out;
+    box-shadow: 0.8px 0.9px 3px grey;
+}
+.c-card:hover {
+    box-shadow: 1px 8px 20px grey;
+    -webkit-transition: box-shadow 0.6s ease-in;
+}
+
+/* button animation */
+
+.button-delete:hover svg path {
+    fill: white;
+    -webkit-transition: fill 0.2s ease-in;
+}
+
+.input {
+    /* Reset. */
+
+    border: unset;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+
+    /* Style */
+    background: rgba(42, 99, 92, 0.15);
+
+    /* Arrow */
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2213%22%20viewBox%3D%220%200%2012%2013%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M5.99995%200.5C6.17676%200.5%206.34633%200.570238%206.47135%200.695262C6.59638%200.820286%206.66661%200.989856%206.66661%201.16667V10.224L10.1946%206.69467C10.2566%206.63268%2010.3302%206.58351%2010.4112%206.54997C10.4922%206.51642%2010.579%206.49916%2010.6666%206.49916C10.7543%206.49916%2010.8411%206.51642%2010.9221%206.54997C11.003%206.58351%2011.0766%206.63268%2011.1386%206.69467C11.2006%206.75665%2011.2498%206.83024%2011.2833%206.91122C11.3169%206.99221%2011.3341%207.07901%2011.3341%207.16667C11.3341%207.25433%2011.3169%207.34113%2011.2833%207.42211C11.2498%207.5031%2011.2006%207.57668%2011.1386%207.63867L6.47195%2012.3053C6.41002%2012.3674%206.33645%2012.4167%206.25546%2012.4503C6.17447%2012.4839%206.08764%2012.5012%205.99995%2012.5012C5.91226%2012.5012%205.82543%2012.4839%205.74444%2012.4503C5.66344%2012.4167%205.58987%2012.3674%205.52795%2012.3053L0.86128%207.63867C0.799296%207.57668%200.750128%207.5031%200.716583%207.42211C0.683037%207.34113%200.665771%207.25433%200.665771%207.16667C0.665771%207.07901%200.683037%206.99221%200.716583%206.91122C0.750128%206.83024%200.799296%206.75665%200.86128%206.69467C0.923264%206.63268%200.99685%206.58351%201.07784%206.54997C1.15882%206.51642%201.24562%206.49916%201.33328%206.49916C1.42094%206.49916%201.50774%206.51642%201.58872%206.54997C1.66971%206.58351%201.7433%206.63268%201.80528%206.69467L5.33328%2010.224V1.16667C5.33328%200.989856%205.40352%200.820286%205.52854%200.695262C5.65357%200.570238%205.82314%200.5%205.99995%200.5Z%22%20fill%3D%22%23798C89%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    background-size: 0.6rem auto;
 }

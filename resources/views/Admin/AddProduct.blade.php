@@ -24,60 +24,65 @@
                                 @if (session()->has('success'))
                                     <div class="">
                                         {{ session()->get('success') }}
-                                    </div>                                    
+                                    </div>
                                 @endif
 
                                 <form action="{{ url('/add_menu') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                <div>
-                                    <div class="add_menu mt-5">
-                                        <h1>add menu name</h1>
-                                            <input type="text" name="menu_name" placeholder="Write Menu Name" required="">                               
-                                    </div>
-    
-                                    <div class="add_desc mt-5">
-                                        <h1>add desc menu</h1>                                   
-                                            <textarea type="text" name="menu_description" placeholder="Write Menu desc"></textarea>                                  
-                                    </div> 
-                                    
-                                    <div class="add_quantity mt-5">
-                                        <h1>add quantity menu</h1>                             
-                                            <input type="number" name="menu_quantity" placeholder="Write Menu quantity">                                   
-                                    </div>
-    
-                                    <div class="add_price mt-5">
-                                        <h1>add price menu</h1>                             
-                                            <input type="number" name="menu_price" placeholder="Write Menu price" required="">                                    
-                                    </div>
-    
-                                    <div class="add_category mt-5">
-                                        <h1>add category menu</h1>
-    
-                                        <select class="" name="category_id" id="">
-                                            @foreach ($data as $data)
-                                            <option value="{{ $data->id }}">
-                                                {{ $data->category }}</option>
-                                            @endforeach
-                                            
-                                        </select>
-                                    </div>
-    
-                                    <div class="add_image mt-5">
-                                        <h1>add image menu</h1>                                
-                                            <input type="file" name="image" class="block w-full text-sm text-slate-500
+                                    <div>
+                                        <div class="add_menu mt-5">
+                                            <h1>add menu name</h1>
+                                            <input type="text" name="menu_name" placeholder="Write Menu Name"
+                                                required="">
+                                        </div>
+
+                                        <div class="add_desc mt-5">
+                                            <h1>add desc menu</h1>
+                                            <textarea type="text" name="menu_description" placeholder="Write Menu desc"></textarea>
+                                        </div>
+
+                                        <div class="add_quantity mt-5">
+                                            <h1>add quantity menu</h1>
+                                            <input type="number" name="menu_quantity"
+                                                placeholder="Write Menu quantity">
+                                        </div>
+
+                                        <div class="add_price mt-5">
+                                            <h1>add price menu</h1>
+                                            <input type="number" name="menu_price" placeholder="Write Menu price"
+                                                required="">
+                                        </div>
+
+                                        <div class="add_category mt-5">
+                                            <h1>add category menu</h1>
+
+                                            <select class="" name="category_id" id="">
+                                                @foreach ($data as $data)
+                                                    <option value="{{ $data->id }}">
+                                                        {{ $data->category }}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+
+                                        <div class="add_image mt-5">
+                                            <h1>add image menu</h1>
+                                            <input type="file" name="image"
+                                                class="block w-full text-sm text-slate-500
                                             file:mr-4 file:py-2 file:px-4
                                             file:rounded-full file:border-0
                                             file:text-sm file:font-semibold
                                             file:bg-violet-50 file:text-black
-                                            hover:file:bg-violet-100">                                                                                                              
+                                            hover:file:bg-violet-100">
+                                        </div>
+                                        <button type="submit" class="px-4 py-2 bg-flame text-white rounded-full ml-3"
+                                            value="Add">
+                                            Add
+                                        </button>
                                     </div>
-                                    <button type="submit" class="px-4 py-2 bg-flame text-white rounded-full ml-3" value="Add">
-                                        Add
-                                    </button>
-                                </div>                                
                                 </form>
-                                
-                            </div>            
+
+                            </div>
                         </div>
                     </div>
                 </div>
