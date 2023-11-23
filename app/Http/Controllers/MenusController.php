@@ -81,10 +81,25 @@ class MenusController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    // public function delete($id)
+    // {
+    //     $menu = Menu::find($id);
+    //     $menu->delete();
+    //     return redirect()->back()->with('success', 'Menu Deleted Successfully');
+    // }
     public function delete($id)
     {
         $menu = Menu::find($id);
-        $menu->delete();
-        return redirect()->back()->with('success', 'Menu Deleted Successfully');
+
+        if (!$menu) {
+            return redirect()->back()->with('failure', 'Menu not found or already deleted');
+        }
+
+        try {
+            $menu->delete();
+            return redirect()->back()->with('success', 'Menu deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('failure', 'Failed to delete menu. Error: ' . $e->getMessage());
+        }
     }
 }
