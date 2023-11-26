@@ -98,7 +98,7 @@
                                         class=" lg:px-6 lg:py-0 py-8 overflow-x-hidden lg:overflow-hidden  w-full h-full item-center bg-white  grid-flow-row auto-rows-auto  flex flex-wrap lg:grid lg:grid-cols-6 gap-4  ">
                                         @foreach ($menus as $menus)
                                             <div
-                                                class="c-card m-auto lg:m-0  block  overflow-hidden  sm:h-80 lg:h-56 w-5/12 sm:w-5/12 lg:w-auto h-64 bg-slateGreen  pb-3 cursor-pointer rounded-xl overflow-hidden">
+                                                class="c-card m-auto lg:m-0  block  overflow-hidden  sm:h-80 lg:h-56 w-5/12 sm:w-5/12 lg:w-auto h-64 bg-slateGreen  pb-3 cursor-pointer rounded-xl">
                                                 <div class="relative overflow-hidden  h-4/6">
                                                     <div class="relative w-full h-full overflow-hidden group">
                                                         <img class="object-cover object-center"
@@ -117,8 +117,8 @@
                                                 </div>
                                                 <div
                                                     class="sm:py-2 py-4 px-2 place-items-center grid grid-cols-2 gap-2 h-2/12  text-xs">
-                                                    <button
-                                                        class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform sm:w-24 w-18   lg:w-20 px-3 py-0.5 sm:py-1.5 lg:py-0.5 flex  border-solid border border-flame rounded-md  flex ">
+                                                    <a href="{{ url('edit_menu',$menus->id) }}"
+                                                        class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform sm:w-24 w-18   lg:w-20 px-3 py-0.5 sm:py-1.5 lg:py-0.5 flex  border-solid border border-flame rounded-md">
                                                         <svg width="10" height="9" class="m-auto mt-1 mx-0.5"
                                                             viewBox="0 0 10 9" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +129,7 @@
                                                         <p style="font-size: 0.9em;"
                                                             class=" m-auto text-xs font-semibold ">
                                                             Edit</p>
-                                                    </button>
+                                                    </a>
 
                                                     <a href="{{ url('/delete', $menus->id) }}"
                                                         onclick="showConfirmationModal(event)" x-data

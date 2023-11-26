@@ -17,13 +17,13 @@
            <label class="text-sm font-bold  tracking-wide">Quantity
            </label>
            <input class="text-sm p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-               type="number" name="menu_quantity" placeholder="Write Menu quantity">
+               type="number" name="menu_quantity" placeholder="Write Menu quantity" min="0">
        </div>
        <div class="grid add_price grid-cols-1 space-y-1">
            <label class="text-sm font-bold  tracking-wide">Price</label>
            <input type="number"
                class="text-sm p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-               name="menu_price" placeholder="Write Menu price" required="">
+               name="menu_price" placeholder="Write Menu price" required="" min="0">
        </div>
        <div class="grid grid-cols-1 add_category space-y-2">
            <label class="text-sm font-bold  tracking-wide">Category
