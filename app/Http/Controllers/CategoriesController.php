@@ -49,17 +49,24 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit_category($id)
     {
-        //
+        $data = Category::find($id);
+        return view('admin.UpdateCategory',compact('data'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function edit_category_confirm(Request $request,$id)
     {
-        //
+        $data =Category::find($id);
+        $data->category=$request->category;
+
+        $data->save();
+
+        return redirect()->back()->with('success', 'Category Updated Successfully');
     }
 
     /**

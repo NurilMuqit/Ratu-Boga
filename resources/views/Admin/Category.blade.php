@@ -109,8 +109,8 @@
 
                                                     <div
                                                         class="py-4 place-items-center grid grid-cols-2 gap-2 h-2/12  text-xs">
-                                                        <button
-                                                            class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform  w-20 lg:w-24 px-3 py-1 flex  border-solid border border-flame rounded-md  flex ">
+                                                        <a  href="{{ url('/edit_category', $data->id) }}"
+                                                            class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform  w-20 lg:w-24 px-3 py-1 border-solid border border-flame rounded-md  flex ">
                                                             <svg width="10" height="9"
                                                                 class="m-auto mt-1 mx-0.5" viewBox="0 0 10 9"
                                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,7 +121,7 @@
                                                             <p style="font-size: 0.9em;"
                                                                 class=" m-auto text-xs font-semibold ">
                                                                 Edit</p>
-                                                        </button>
+                                                        </a>
 
                                                         <a href="{{ url('/destroy', $data->id) }}"
                                                             onclick="showConfirmationModal(event)" x-data

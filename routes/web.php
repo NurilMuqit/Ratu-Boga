@@ -76,3 +76,6 @@ Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
 
 Route::get('/edit_menu/{id}', [MenusController::class,'edit_menu']);
 Route::post('edit_menu_confirm/{id}',[MenusController::class,'edit_menu_confirm']);
+
+Route::get('/edit_category/{id}',[CategoriesController::class,'edit_category']);
+Route::post('/edit_category_confirm/{id}',[CategoriesController::class,'edit_category_confirm']);
