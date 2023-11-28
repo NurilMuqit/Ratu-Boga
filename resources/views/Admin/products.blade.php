@@ -98,11 +98,7 @@
                                         class=" lg:px-6 lg:py-0 py-8 overflow-x-hidden lg:overflow-hidden  w-full h-full item-center bg-white  grid-flow-row auto-rows-auto  flex flex-wrap lg:grid lg:grid-cols-6 gap-4  ">
                                         @foreach ($menus as $menus)
                                             <div
-<<<<<<< HEAD
-                                                class="c-card m-auto lg:m-0 block sm:h-80 lg:h-56 w-5/12 sm:w-5/12 lg:w-auto h-64 bg-slateGreen  pb-3 cursor-pointer rounded-xl overflow-hidden">
-=======
                                                 class="c-card m-auto lg:m-0  block  overflow-hidden  sm:h-80 lg:h-56 w-5/12 sm:w-5/12 lg:w-auto h-64 bg-slateGreen  pb-3 cursor-pointer rounded-xl">
->>>>>>> c3d1e431397a870fbbfdfc49c477d3099f5415cc
                                                 <div class="relative overflow-hidden  h-4/6">
                                                     <div class="relative w-full h-full overflow-hidden group">
                                                         <img class="object-cover object-center"

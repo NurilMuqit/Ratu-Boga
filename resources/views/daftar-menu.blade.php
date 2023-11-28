@@ -47,11 +47,7 @@
                         </a>
                         <h6 class="text-white font-medium">Rp {{ number_format($menuDisplay->menu_price, 0, ',', '.') }}
                         </h6>
-<<<<<<< HEAD
                         <a href="menu-detail/{{ $menuDisplay->id }}"
-=======
-                        <button type="button"
->>>>>>> c3d1e431397a870fbbfdfc49c477d3099f5415cc
                             class="text-white text-sm bg-flame font-medium py-2 px-8 text-center mt-12 rounded-md">
                             Lihat Detail</a>
                     </div>
