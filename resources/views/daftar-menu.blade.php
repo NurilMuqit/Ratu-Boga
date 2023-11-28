@@ -41,13 +41,17 @@
                     </a>
                     <div class="p-5 flex flex-col">
                         <a href="#">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">
                                 {{ $menuDisplay->menu_name }}
                             </h5>
                         </a>
                         <h6 class="text-white font-medium">Rp {{ number_format($menuDisplay->menu_price, 0, ',', '.') }}
                         </h6>
+<<<<<<< HEAD
                         <a href="menu-detail/{{ $menuDisplay->id }}"
+=======
+                        <button type="button"
+>>>>>>> c3d1e431397a870fbbfdfc49c477d3099f5415cc
                             class="text-white text-sm bg-flame font-medium py-2 px-8 text-center mt-12 rounded-md">
                             Lihat Detail</a>
                     </div>

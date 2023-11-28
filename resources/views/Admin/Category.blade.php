@@ -77,7 +77,7 @@
                                                     <option value="Makanan">Makanan</option>
                                                 </select>
                                                 {{-- ///add menu --}}
-                                                <div onclick="toggleModal()"
+                                                <div x-data x-on:click="$dispatch('open-modal',{name : 'AddCategory'})"
                                                     class="button-add md:m-0 m-auto mx-2  md:mx-2 cursor-pointer   justify-center  opacity-100 hover:opacity-75 transition duration-300 ease-in-out transform bg-slateGreen text-white   w-24  py-0.5   rounded-md  flex ">
                                                     <h2 class=" font-bold my-1 md:my-0. mx-1">+</h2>
                                                     <p style="font-size: 0.9em;" class="font-bold my-auto text-xs  ">
@@ -109,8 +109,8 @@
 
                                                     <div
                                                         class="py-4 place-items-center grid grid-cols-2 gap-2 h-2/12  text-xs">
-                                                        <button
-                                                            class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform  w-20 lg:w-24 px-3 py-1 flex  border-solid border border-flame rounded-md  flex ">
+                                                        <a  href="{{ url('/edit_category', $data->id) }}"
+                                                            class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform  w-20 lg:w-24 px-3 py-1 border-solid border border-flame rounded-md  flex ">
                                                             <svg width="10" height="9"
                                                                 class="m-auto mt-1 mx-0.5" viewBox="0 0 10 9"
                                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -121,10 +121,11 @@
                                                             <p style="font-size: 0.9em;"
                                                                 class=" m-auto text-xs font-semibold ">
                                                                 Edit</p>
-                                                        </button>
+                                                        </a>
 
                                                         <a href="{{ url('/destroy', $data->id) }}"
-                                                            onclick="return confirm('Are you sure you want to delete this?')"
+                                                            onclick="showConfirmationModal(event)" x-data
+                                                            x-on:click="$dispatch('open-modal',{name : 'delete'})"
                                                             class="button-delete opacity-100 hover:opacity-75 bg-transparent hover:bg-flame transition duration-300 ease-in-out transform text-flame hover:text-white w-20 lg:w-24 mr-2 lg:mr-0 px-5 py-1 flex  border-solid border border-flame rounded-md  ">
 
                                                             <svg width="12" height="11" class="my-auto  mx-0.5"
@@ -235,55 +236,50 @@
 
                     </div>
                     <!-- modal-add-category -->
-                    <div id="myModal"
-                        class=" absolute  hidden w-full h-full right-0 z-50 flex items-center  justify-center bg-black   bg-opacity-50  overflow-hidden   bg-no-repeat bg-cover">
+                    {{-- //modal add --}}
+                    <x-modal-ratu-boga name="AddCategory" title="AddCategory">
+                        @slot('colorAlertModal')
+                            bg-slateGreen
+                        @endslot
+                        @slot('modalConten')
+                            <x-add-category :data="$data"></x-add-category>
+                        @endslot
 
-                        <div class="sm:max-w-sm route w-4/6  md:w-full z-100 py-2 px-5 bg-white rounded-xl">
-                            <div class="flex justify-end mt-2">
-                                <button onclick="toggleModal()"
-                                    class="text-gray-600 hover:text-gray-800 focus:outline-none">
-                                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="add_category text-center">
-                                <h2 class="mt-2 text-xl font-bold text-gray-900">
-                                    Add Category
-                                </h2>
-                                <p class="mt-2 text-sm text-gray-400">Create new Category</p>
-                            </div>
-                            @if (session()->has('message'))
-                                <div class="">
-                                    {{ session()->get('message') }}
-                                </div>
-                            @endif
-                            <form class="mt-2 space-y-1" action="{{ url('/store') }}" method="POST">
-                                @csrf
-                                <div class="grid add_category grid-cols-1 space-y-1">
-                                    <label class="text-sm font-bold text-gray-500 tracking-wide">Name</label>
-                                    <input
-                                        class="text-sm p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                                        type="text" name="category" placeholder="Write Category Name"
-                                        required="">
-                                </div>
-
-                                <p class="text-xs text-gray-300">
-                                    <span>File type: jpg,png,jpeg,gif types of images | max:2048 </span>
-                                </p>
-                                <div>
-                                    <button type="submit" value="Add"
-                                        class="my-2 w-full flex justify-center bg-flame text-white p-2 rounded-full tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-transparent hover:text-junggleGreen shadow-lg cursor-pointer transition ease-in duration-300">
-                                        Add
-                                    </button>
-                                </div>
-                            </form>
-
-
-                        </div>
-                    </div>
+                    </x-modal-ratu-boga>
+                    {{-- ////delete modal --}}
+                    <x-modal-ratu-boga id="confirmationModal" name="delete" title="Warning">
+                        @slot('colorAlertModal')
+                            bg-warning
+                        @endslot
+                        @slot('modalConten')
+                            <x-delete-modal>
+                                @slot('item')
+                                @endslot
+                            </x-delete-modal>
+                        @endslot
+                    </x-modal-ratu-boga>
+                    @if (session()->has('success'))
+                        <x-alert>
+                            @slot('colorAlert')
+                                bg-success
+                            @endslot
+                            @slot('AlertConten')
+                                <h3 class="font-bold -mt-8 text-2xl">Nice!</h3>
+                                {{ session()->get('success') }}
+                            @endslot
+                        </x-alert>
+                    @endif
+                    @if (session()->has('failure'))
+                        <x-alert>
+                            @slot('colorAlert')
+                                bg-flame
+                            @endslot
+                            @slot('AlertConten')
+                                <h3 class="font-bold -mt-8 text-xl">Oops! An Error Occurred</h3>
+                                {{ session()->get('failure') }}
+                            @endslot
+                        </x-alert>
+                    @endif
                 </div>
             </div>
         </div>

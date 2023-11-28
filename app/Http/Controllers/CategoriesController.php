@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Database\QueryException;
 
 class CategoriesController extends Controller
 {
@@ -11,9 +12,9 @@ class CategoriesController extends Controller
      * Display a listing of the resource.
      */
     public function category()
-    {   
-        $data=category::all();
-        return view('admin.category',compact('data'));
+    {
+        $data = category::all();
+        return view('admin.category', compact('data'));
     }
 
     /**
@@ -21,7 +22,6 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -29,13 +29,13 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $data= new category;
+        $data = new category;
 
-        $data->category= $request->category;
+        $data->category = $request->category;
 
         $data->save();
 
-        return redirect()->back()->with('message','Category Added Successfully');
+        return redirect()->back()->with('success', 'Category Added Successfully');
     }
 
     /**
@@ -49,26 +49,52 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit_category($id)
     {
-        //
+        $data = Category::find($id);
+        return view('admin.UpdateCategory',compact('data'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function edit_category_confirm(Request $request,$id)
     {
-        //
+        $data =Category::find($id);
+        $data->category=$request->category;
+
+        $data->save();
+
+        return redirect()->back()->with('success', 'Category Updated Successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy($id)
     {
-        $data=  category::find($id);
-        $data->delete();
-        return redirect()->back()->with('message','Category Deleted Successfully');
+        $data = category::find($id);
+
+        if (!$data) {
+            return redirect()->back()->with('failure', 'category not found or already deleted');
+        }
+
+        try {
+            $data->delete();
+            return redirect()->back()->with('success', 'category deleted successfully');
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+
+            if ($errorCode == 1451) {
+                // Constraint violation (foreign key constraint fails)
+                return redirect()->back()->with('failure', 'This category is associated with other records.');
+            } else {
+                return redirect()->back()->with('failure', 'Failed to delete category. Error: ' . $e->getMessage());
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('failure', 'Failed to delete category. Error: ' . $e->getMessage());
+        }
     }
 }

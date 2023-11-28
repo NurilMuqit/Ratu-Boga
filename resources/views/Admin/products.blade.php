@@ -83,7 +83,7 @@
                                                     </select>
                                                 </form>
                                                 {{-- ///add menu --}}
-                                                <div onclick="toggleModal()"
+                                                <div x-data x-on:click="$dispatch('open-modal',{name : 'AddProduct'})"
                                                     class="button-edit md:m-0 m-auto mx-2  md:mx-2 cursor-pointer   justify-center  opacity-100 hover:opacity-75 transition duration-300 ease-in-out transform bg-slateGreen text-white   w-24  py-0.5   rounded-md  flex ">
                                                     <h2 class=" font-bold my-1 md:my-0.5 mx-1">+</h2>
                                                     <p style="font-size: 0.9em;" class="font-bold my-auto text-xs  ">
@@ -98,7 +98,11 @@
                                         class=" lg:px-6 lg:py-0 py-8 overflow-x-hidden lg:overflow-hidden  w-full h-full item-center bg-white  grid-flow-row auto-rows-auto  flex flex-wrap lg:grid lg:grid-cols-6 gap-4  ">
                                         @foreach ($menus as $menus)
                                             <div
+<<<<<<< HEAD
                                                 class="c-card m-auto lg:m-0 block sm:h-80 lg:h-56 w-5/12 sm:w-5/12 lg:w-auto h-64 bg-slateGreen  pb-3 cursor-pointer rounded-xl overflow-hidden">
+=======
+                                                class="c-card m-auto lg:m-0  block  overflow-hidden  sm:h-80 lg:h-56 w-5/12 sm:w-5/12 lg:w-auto h-64 bg-slateGreen  pb-3 cursor-pointer rounded-xl">
+>>>>>>> c3d1e431397a870fbbfdfc49c477d3099f5415cc
                                                 <div class="relative overflow-hidden  h-4/6">
                                                     <div class="relative w-full h-full overflow-hidden group">
                                                         <img class="object-cover object-center"
@@ -117,8 +121,8 @@
                                                 </div>
                                                 <div
                                                     class="sm:py-2 py-4 px-2 place-items-center grid grid-cols-2 gap-2 h-2/12  text-xs">
-                                                    <button
-                                                        class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform sm:w-24 w-18   lg:w-20 px-3 py-0.5 sm:py-1.5 lg:py-0.5 flex  border-solid border border-flame rounded-md  flex ">
+                                                    <a href="{{ url('edit_menu',$menus->id) }}"
+                                                        class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform sm:w-24 w-18   lg:w-20 px-3 py-0.5 sm:py-1.5 lg:py-0.5 flex  border-solid border border-flame rounded-md">
                                                         <svg width="10" height="9" class="m-auto mt-1 mx-0.5"
                                                             viewBox="0 0 10 9" fill="none"
                                                             xmlns="http://www.w3.org/2000/svg">
@@ -129,10 +133,11 @@
                                                         <p style="font-size: 0.9em;"
                                                             class=" m-auto text-xs font-semibold ">
                                                             Edit</p>
-                                                    </button>
+                                                    </a>
 
                                                     <a href="{{ url('/delete', $menus->id) }}"
-                                                        onclick="return confirm('Are you sure you want to delete this?')"
+                                                        onclick="showConfirmationModal(event)" x-data
+                                                        x-on:click="$dispatch('open-modal',{name : 'delete'})"
                                                         class="button-delete opacity-100 hover:opacity-75 bg-transparent hover:bg-flame transition duration-300 ease-in-out transform text-flame hover:text-white  w-18  sm:w-24  lg:w-20 px-3 py-0.5 sm:py-1.5 lg:py-0.5 flex  border-solid border border-flame rounded-md  ">
 
                                                         <svg width="12" height="11" class="my-auto  sm:mx-0.5"
@@ -243,103 +248,53 @@
 
                     </div>
                     <!-- modal-add-product -->
-                    <div id="myModal"
-                        class=" absolute  hidden w-full h-full right-0 z-50 flex items-center  justify-center bg-black   bg-opacity-50  overflow-hidden   bg-no-repeat bg-cover">
+                    {{-- //modal add --}}
+                    <x-modal-ratu-boga name="AddProduct" title="Add product">
+                        @slot('colorAlertModal')
+                            bg-slateGreen
+                        @endslot
+                        @slot('modalConten')
+                            <x-add-product :data="$data"></x-add-product>
+                        @endslot
 
-                        <div class="sm:max-w-sm route w-4/6 md:w-full z-100 py-2 px-5 bg-white rounded-xl">
-                            <div class="flex justify-end mt-2">
-                                <button onclick="toggleModal()"
-                                    class="text-gray-600 hover:text-gray-800 focus:outline-none">
-                                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="text-center">
-                                <h2 class="mt-2 text-xl font-bold text-gray-900">
-                                    Add Product
-                                </h2>
-                                <p class="mt-2 text-sm text-gray-400">Create new Product</p>
-                            </div>
-                            @if (session()->has('success'))
-                                <div class="">
-                                    {{ session()->get('success') }}
-                                </div>
-                            @endif
-                            <form class="mt-2 space-y-1" action="{{ url('/add_menu') }}"
-                                enctype="multipart/form-data" method="POST">
-                                @csrf
-                                <div class="grid add_menu grid-cols-1 space-y-1">
-                                    <label class="text-sm font-bold text-gray-500 tracking-wide">Name</label>
-                                    <input
-                                        class="text-sm p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                                        type="text" name="menu_name" placeholder="Write Menu Name"
-                                        required="">
-                                </div>
-                                <div class="grid add_desc grid-cols-1 space-y-1">
-                                    <label class="text-sm font-bold text-gray-500 tracking-wide">Description</label>
-                                    <textarea class="text-sm p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                                        type="text" name="menu_description" placeholder="Write Menu desc"></textarea>
-                                </div>
-                                <div class="grid add_quantity grid-cols-1 space-y-1">
-                                    <label class="text-sm font-bold text-gray-500 tracking-wide">Quantity
-                                    </label>
-                                    <input
-                                        class="text-sm p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                                        type="number" name="menu_quantity" placeholder="Write Menu quantity">
-                                </div>
-                                <div class="grid add_price grid-cols-1 space-y-1">
-                                    <label class="text-sm font-bold text-gray-500 tracking-wide">Price</label>
-                                    <input type="number"
-                                        class="text-sm p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                                        name="menu_price" placeholder="Write Menu price" required="">
-                                </div>
-                                <div class="grid grid-cols-1 add_category space-y-2">
-                                    <label class="text-sm font-bold text-gray-500 tracking-wide">Category
-                                    </label>
-                                    <select
-                                        class="text-sm p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
-                                        name="category_id" id="">
-                                        @foreach ($data as $data)
-                                            <option value="{{ $data->id }}">
-                                                {{ $data->category }}</option>
-                                        @endforeach
+                    </x-modal-ratu-boga>
 
-                                    </select>
-                                </div>
-                                <div class="space-y-2">
-                                    <label class="text-sm font-bold text-gray-500 tracking-wide">Upload Image
-                                    </label>
-                                    <div class="flex items-center justify-center cursor-pointer  h-14  w-full">
-                                        <label
-                                            class="add_image flex flex-col cursor-pointer  rounded-lg border-2 border-dashed w-full  text-center">
-                                            <input type="file" name="image"
-                                                class="block w-full cursor-pointer  h-full text-sm text-slate-500
-                                             file:py-3 file:px-2
-                                             file:border-0
-                                            file:text-sm file:font-sm
-                                            file:bg-violet-50
-                                            hover:file:bg-violet-100">
-                                        </label>
-
-                                    </div>
-                                </div>
-                                <p class="text-xs text-gray-300">
-                                    <span>File type: jpg,png,jpeg,gif types of images | max:2048 </span>
-                                </p>
-                                <div>
-                                    <button type="submit" value="Add"
-                                        class="my-2 w-full flex justify-center bg-flame text-white p-2 rounded-full tracking-wide font-semibold focus:outline-none focus:shadow-outline hover:bg-transparent hover:text-junggleGreen shadow-lg cursor-pointer transition ease-in duration-300">
-                                        Add
-                                    </button>
-                                </div>
-                            </form>
+                    {{-- ////delete modal --}}
+                    <x-modal-ratu-boga id="confirmationModal" name="delete" title="Warning">
+                        @slot('colorAlertModal')
+                            bg-warning
+                        @endslot
+                        @slot('modalConten')
+                            <x-delete-modal>
+                                @slot('item')
+                                @endslot
+                            </x-delete-modal>
+                        @endslot
+                    </x-modal-ratu-boga>
+                    @if (session()->has('success'))
+                        <x-alert>
+                            @slot('colorAlert')
+                                bg-success
+                            @endslot
+                            @slot('AlertConten')
+                                <h3 class="font-bold -mt-6 text-2xl">Nice!</h3>
+                                {{ session()->get('success') }}
+                            @endslot
+                        </x-alert>
+                    @endif
+                    @if (session()->has('failure'))
+                        <x-alert>
+                            @slot('colorAlert')
+                                bg-flame
+                            @endslot
+                            @slot('AlertConten')
+                                <h3 class="font-bold-mt-6 text-2xl">Oops! An Error Occurred</h3>
+                                {{ session()->get('failure') }}
+                            @endslot
+                        </x-alert>
+                    @endif
 
 
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
