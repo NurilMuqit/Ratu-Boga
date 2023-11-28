@@ -14,9 +14,9 @@
                         tempor <br>incididunt ut
                         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud <br>exercitation ullamco
                         laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    <button type="button"
-                        class="text-white text-sm bg-flame font-medium py-4 px-8 text-center mt-16 rounded-tl-xl rounded-br-xl">
-                        Pesan Sekarang</button>
+                    <a href="#"
+                        class="text-white text-sm bg-flame font-medium py-4 px-8 text-center mt-16 rounded-tl-xl rounded-br-xl">Pesan
+                        Sekarang</a>
                 </div>
             </div>
         </div>
@@ -33,9 +33,9 @@
 
         <div class="menu-list mx-20 mb-20 flex flex-wrap justify-between">
             @foreach ($menuDisplay as $menuDisplay)
-                <div class="max-w-xs bg-slateGreen border-gray-400 rounded-lg shadow my-2">
-                    <a href="#">
-                        <div class="h-52 overflow-hidden">
+                <div class="max-w-xs bg-slateGreen border-gray-600  rounded-lg shadow my-2">
+                    <a href="menu-detail/{{ $menuDisplay->id }}">
+                        <div class="h-48 overflow-hidden">
                             <img class="rounded-t-lg object-cover" src="menu/{{ $menuDisplay->image }}" alt="" />
                         </div>
                     </a>
@@ -47,9 +47,9 @@
                         </a>
                         <h6 class="text-white font-medium">Rp {{ number_format($menuDisplay->menu_price, 0, ',', '.') }}
                         </h6>
-                        <button type="button"
+                        <a href="menu-detail/{{ $menuDisplay->id }}"
                             class="text-white text-sm bg-flame font-medium py-2 px-8 text-center mt-12 rounded-md">
-                            Pesan Sekarang</button>
+                            Lihat Detail</a>
                     </div>
                 </div>
             @endforeach

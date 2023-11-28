@@ -70,7 +70,10 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
+// Menu Display
 Route::get('/daftar-menu', [MenuDisplayController::class, 'menuDisplay'])->name('daftar-menu');
+Route::get('/menu-detail/{id}', [MenuDisplayController::class, 'menuDetail'])->name('menuDetail');
+
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
 
