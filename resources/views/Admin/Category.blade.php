@@ -94,7 +94,7 @@
                                         {{-- ///view --}}
                                         @foreach ($data as $data)
                                             <div
-                                                class=" lg:m-0 overflow-hidden  sm:h-40  w-70 sm:w-80 xl:w-96 h-36 bg-slateGreen  cursor-pointer rounded-xl overflow-hidden   m-auto   flex text-almond c-card   scale-90">
+                                                class=" lg:m-0 overflow-hidden  sm:h-40  w-70 sm:w-80 xl:w-96 h-36 bg-slateGreen  cursor-pointer rounded-xl m-auto   flex text-almond c-card   scale-90">
                                                 <img class="rounded-full w-28 h-28 sm:w-32 sm:h-32 bg-white my-4 mx-1 sm:m-4"
                                                     src="{{ asset('images/nasgor01.png') }}" alt="gambar">
                                                 <div class="text ml-1 mt-3 ">

@@ -434,7 +434,7 @@
                                 </div>
                                 {{-- inventory list status --}}
                                 <div
-                                    class="my-4 md:my-0  col-span-3 h-full rounded-2xl p-4 bg-white drop-shadow-md transition duration-300 ease-in-out transform hover:drop-shadow transition duration-300 ease-in-out transform">
+                                    class="my-4 md:my-0  col-span-3 h-full rounded-2xl p-4 bg-white drop-shadow-md transition duration-300 ease-in-out transform hover:drop-shadow">
 
                                     <div class="gird flex  grid-cols-2 w-full">
                                         <h1 class="w-3/4 text-md font-semibold">Inventory Status</h1>
