@@ -83,7 +83,7 @@ class MenusController extends Controller
 
         $menu->menu_name = $request->menu_name;
         $menu->menu_description = $request->menu_description;
-        $menu->menu_name = $request->menu_price;
+        $menu->menu_price = $request->menu_price;
         $menu->category_id = $request->category_id;
         $menu->menu_quantity = $request->menu_quantity;
 
