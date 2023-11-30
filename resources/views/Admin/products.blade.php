@@ -83,7 +83,8 @@
                                                     </select>
                                                 </form>
                                                 {{-- ///add menu --}}
-                                                <div x-data x-on:click="$dispatch('open-modal',{name : 'AddProduct'})"
+                                                <div x-data
+                                                    x-on:click="$dispatch('open-modal',{name : '{{ $data->count() > 0 ? 'AddProduct' : '' }}'})"
                                                     class="button-edit md:m-0 m-auto mx-2  md:mx-2 cursor-pointer   justify-center  opacity-100 hover:opacity-75 transition duration-300 ease-in-out transform bg-slateGreen text-white   w-24  py-0.5   rounded-md  flex ">
                                                     <h2 class=" font-bold my-1 md:my-0.5 mx-1">+</h2>
                                                     <p style="font-size: 0.9em;" class="font-bold my-auto text-xs  ">
@@ -95,13 +96,13 @@
                                 </div>
                                 <div style="height: 30rem  " class="pb-6 sm:pb-0">
                                     <div
-                                        class=" lg:px-6 lg:py-0 py-8 overflow-x-hidden lg:overflow-hidden  w-full h-full item-center bg-white  grid-flow-row auto-rows-auto  flex flex-wrap lg:grid lg:grid-cols-6 gap-4  ">
+                                        class=" overflow-x-hidden lg:overflow-hidden  w-full h-full item-center bg-white    flex flex-wrap   {{ $menus->count() > 0 ? 'lg:px-6 lg:py-0 py-8  lg:grid lg:grid-cols-6 gap-4 grid-flow-row auto-rows-auto' : '' }}  ">
                                         @foreach ($menus as $menus)
                                             <div
                                                 class="c-card m-auto lg:m-0  block  overflow-hidden  sm:h-80 lg:h-56 w-5/12 sm:w-5/12 lg:w-auto h-64 bg-slateGreen  pb-3 cursor-pointer rounded-xl">
                                                 <div class="relative overflow-hidden  h-4/6">
-                                                    <div class="relative w-full h-full overflow-hidden group">
-                                                        <img class="object-cover object-center"
+                                                    <div class="relative w-full bg-white h-full overflow-hidden group">
+                                                        <img class="object-cover w-full h-full object-center"
                                                             src="/menu/{{ $menus->image }}" alt="">
                                                     </div>
 
@@ -117,7 +118,7 @@
                                                 </div>
                                                 <div
                                                     class="sm:py-2 py-4 px-2 place-items-center grid grid-cols-2 gap-2 h-2/12  text-xs">
-                                                    <a href="{{ url('edit_menu',$menus->id) }}"
+                                                    <a href="{{ url('edit_menu', $menus->id) }}"
                                                         class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform sm:w-24 w-18   lg:w-20 px-3 py-0.5 sm:py-1.5 lg:py-0.5 flex  border-solid border border-flame rounded-md">
                                                         <svg width="10" height="9" class="m-auto mt-1 mx-0.5"
                                                             viewBox="0 0 10 9" fill="none"
@@ -152,7 +153,17 @@
 
                                             </div>
                                         @endforeach
+                                        @if ($menus->count() < 1)
+                                            <div class="w-full  m-auto">
+                                                <img src="{{ asset('images/NoProduct.svg') }}" alt=""
+                                                    class="w-64  m-auto">
+                                                <h1 class="w-full text-xl font-bold text-center -mt-8">No Product</h1>
+                                                <p class="text-sm text-center">Your product list is empty.
+                                                    Please start adding products.</p>
+                                            </div>
+                                        @endif
                                     </div>
+
 
                                 </div>
 
@@ -267,6 +278,27 @@
                             </x-delete-modal>
                         @endslot
                     </x-modal-ratu-boga>
+                    {{-- Edit Category --}}
+                    <x-modal-ratu-boga name="EditProduct" title="EditProduct">
+                        @slot('colorAlertModal')
+                            bg-slateGreen
+                        @endslot
+                        @slot('modalConten')
+                            @if ($menu)
+                                <x-edit-product :data="$data" :menu="$menu"> </x-edit-product>
+                            @endif
+                        @endslot
+                    </x-modal-ratu-boga>
+                    @php
+                        $openModal = $menu ? true : false;
+                    @endphp
+                    @if ($menus->count() > 0)
+                        {{-- buka modal --}}
+                        <a x-data="{ openModal: {{ $openModal ? 'true' : 'false' }} }" x-init="() => { if (openModal) $dispatch('open-modal', { name: 'EditProduct' }) }"
+                            href="{{ url('/edit_menu', $menus->id) }}">
+                        </a>
+                    @endif
+                    {{-- cek for success --}}
                     @if (session()->has('success'))
                         <x-alert>
                             @slot('colorAlert')
