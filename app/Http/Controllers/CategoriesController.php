@@ -12,15 +12,25 @@ class CategoriesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function category($id = null)
+    public function category(Request $request, $id = null)
     {
-        $categories = category::all();
+        $categories = Category::paginate(9);;
         $menus = Menu::all();
         $data = null;
-        if ($id) {
-            $data = Category::find($id);
+
+
+        $searchKeyword = $request->query('search', ''); // Kata kunci pencarian
+        if ($searchKeyword) {
+            // $categories = Category::where('category', 'like', '%' . $searchKeyword . '%')->get();
+            $categories = Category::where(function ($query) use ($searchKeyword) {
+                $query->where('category', 'like', '%' . $searchKeyword . '%')
+                    // ->orWhere('created_at', 'like', '%' . $searchKeyword . '%')
+                ;
+            })->paginate(6);
+        } elseif ($id) {
             $data = Category::with('menus')->find($id);
         }
+
         return view('admin.category', compact('data', 'categories', 'menus'));
     }
 
@@ -39,6 +49,7 @@ class CategoriesController extends Controller
         $data = new category;
 
         $data->category = $request->category;
+
 
         $data->save();
 
