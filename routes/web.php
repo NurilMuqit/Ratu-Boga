@@ -56,13 +56,19 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
     Route::get('/admin/Profile', function () {
         return view('admin.Profile');
     })->name('admin.Profile');
-    Route::get('admin/products/category', [CategoriesController::class, 'category']);
+    Route::get('admin/products/category', [CategoriesController::class, 'category'])->name('admin.category');
     Route::post('/store', [CategoriesController::class, 'store']);
     Route::get('/destroy/{id}', [CategoriesController::class, 'destroy']);
 
     Route::get('/menus', [MenusController::class, 'menus']);
     Route::post('/add_menu', [MenusController::class, 'add_menu']);
     Route::get('/delete/{id}', [MenusController::class, 'delete']);
+
+    Route::get('/edit_menu/{id}', [MenusController::class, 'edit_menu']);
+    Route::post('edit_menu_confirm/{id}', [MenusController::class, 'edit_menu_confirm']);
+
+    Route::get('/edit_category/{id}', [CategoriesController::class, 'edit_category']);
+    Route::post('/edit_category_confirm/{id}', [CategoriesController::class, 'edit_category_confirm']);
 });
 
 // route for AllUser
@@ -76,9 +82,3 @@ Route::get('/menu-detail/{id}', [MenuDisplayController::class, 'menuDetail'])->n
 
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
-
-Route::get('/edit_menu/{id}', [MenusController::class,'edit_menu']);
-Route::post('edit_menu_confirm/{id}',[MenusController::class,'edit_menu_confirm']);
-
-Route::get('/edit_category/{id}',[CategoriesController::class,'edit_category']);
-Route::post('/edit_category_confirm/{id}',[CategoriesController::class,'edit_category_confirm']);
