@@ -5,16 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Database\QueryException;
+use App\Models\Menu;
 
 class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function category()
+    public function category($id = null)
     {
-        $data = category::all();
-        return view('admin.category', compact('data'));
+        $categories = category::all();
+        $menus = Menu::all();
+        $data = null;
+        if ($id) {
+            $data = Category::find($id);
+            $data = Category::with('menus')->find($id);
+        }
+        return view('admin.category', compact('data', 'categories', 'menus'));
     }
 
     /**
@@ -51,22 +58,22 @@ class CategoriesController extends Controller
      */
     public function edit_category($id)
     {
+        $categories = Category::all();
         $data = Category::find($id);
-        return view('admin.UpdateCategory',compact('data'));
-
+        return view('admin.category', compact('data', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function edit_category_confirm(Request $request,$id)
+    public function edit_category_confirm(Request $request, $id)
     {
-        $data =Category::find($id);
-        $data->category=$request->category;
+        $data = Category::find($id);
+        $data->category = $request->category;
 
         $data->save();
 
-        return redirect()->back()->with('success', 'Category Updated Successfully');
+        return redirect()->route('admin.category')->with('success', 'Category Updated Successfully');
     }
 
     /**

@@ -20,7 +20,7 @@
     <div class="w-full px-2">
         <div class="flex flex-col items-center w-full mt-3 ">
             {{-- Dasboard --}}
-            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame transition duration-500 ease-in-out transform {{ request()->routeIs('admin.dashboard') || !str_contains(request()->route()->uri, 'admin') ? 'bg-flame' : '' }}"
+            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame transition duration-500 ease-in-out transform {{ request()->routeIs('admin.dashboard') || (!str_contains(request()->route()->uri, 'admin') && !str_contains(request()->route()->uri, 'edit')) ? 'bg-flame' : '' }}"
                 href="{{ route('admin.dashboard') }}">
                 <svg class="w-6 md:mt-1 mt-2 h-6 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -35,7 +35,7 @@
 
             </a>
             {{-- Products --}}
-            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame transition duration-500 ease-in-out transform {{ request()->routeIs('admin.products') || str_contains(request()->route()->uri, 'category') ? 'bg-flame' : '' }} "
+            <a class="flex items-center w-full h-12 px-3 mt-2 rounded-md hover:bg-flame transition duration-500 ease-in-out transform {{ request()->routeIs('admin.products') || str_contains(request()->route()->uri, 'edit_menu') || str_contains(request()->route()->uri, 'category') ? 'bg-flame' : '' }} "
                 href="{{ route('admin.products') }}">
                 <svg class="w-6 h-6 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -53,7 +53,7 @@
                 </svg>
                 <span class="ml-2 md:flex hidden w-5/6  text-sm font-medium">Products</span>
                 <span
-                    class=" text-md  font-bold {{ request()->routeIs('admin.products') || str_contains(request()->route()->uri, 'category') ? 'visible' : 'hidden' }}">|</span>
+                    class=" text-md  font-bold {{ request()->routeIs('admin.products') || str_contains(request()->route()->uri, 'category') || str_contains(request()->route()->uri, 'edit_menu') ? 'visible' : 'hidden' }}">|</span>
             </a>
             {{-- Orders --}}
             <a class="flex items-center w-full h-12 px-3 mt-2 text-gray-200 hover:bg-flame transition duration-500 ease-in-out transform rounded-md {{ request()->routeIs('admin.Orders') ? 'bg-flame' : '' }} "

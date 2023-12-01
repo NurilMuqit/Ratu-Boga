@@ -90,26 +90,26 @@
                                 <div style="height: 32rem  " class="pb-0">
 
                                     <div
-                                        class="  lg:py-0 py-8 overflow-x-hidden lg:overflow-hidden  w-full h-full md:h-auto item-center bg-white  grid-flow-row auto-rows-auto  flex flex-wrap lg:grid lg:grid-cols-3 gap-2">
+                                        class="  overflow-x-hidden lg:overflow-hidden  w-full h-full  item-center bg-white flex flex-wrap  {{ $categories->count() > 0 ? 'md:h-auto lg:py-0 py-8 grid-flow-row auto-rows-auto  lg:grid lg:grid-cols-3 gap-2' : '' }} ">
                                         {{-- ///view --}}
-                                        @foreach ($data as $data)
+                                        @foreach ($categories as $category)
                                             <div
-                                                class=" lg:m-0 overflow-hidden  sm:h-40  w-70 sm:w-80 xl:w-96 h-36 bg-slateGreen  cursor-pointer rounded-xl m-auto   flex text-almond c-card   scale-90">
+                                                class=" lg:m-0 overflow-hidden  sm:h-40  w-70 sm:w-80 xl:w-96 h-36 bg-slateGreen  cursor-pointer rounded-xl overflow-hidden   m-auto   flex text-almond c-card   scale-90">
                                                 <img class="rounded-full w-28 h-28 sm:w-32 sm:h-32 bg-white my-4 mx-1 sm:m-4"
                                                     src="{{ asset('images/nasgor01.png') }}" alt="gambar">
                                                 <div class="text ml-1 mt-3 ">
-                                                    <span class="text-xl font-bold">{{ $data->category }}</span>
+                                                    <span class="text-xl font-bold">{{ $category->category }}</span>
                                                     <p class="break-all mt-2 text-xs">Category menu </p>
 
                                                     <div class="text-sm font-bold flex gap-2 mt-3">
                                                         <p>total product: </p>
-                                                        <p>{{ $data->id }}</p>
+                                                        <p> {{ $category->menus->count() }}</p>
                                                     </div>
 
 
                                                     <div
                                                         class="py-4 place-items-center grid grid-cols-2 gap-2 h-2/12  text-xs">
-                                                        <a  href="{{ url('/edit_category', $data->id) }}"
+                                                        <a href="{{ url('/edit_category', $category->id) }}"
                                                             class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform  w-20 lg:w-24 px-3 py-1 border-solid border border-flame rounded-md  flex ">
                                                             <svg width="10" height="9"
                                                                 class="m-auto mt-1 mx-0.5" viewBox="0 0 10 9"
@@ -123,7 +123,7 @@
                                                                 Edit</p>
                                                         </a>
 
-                                                        <a href="{{ url('/destroy', $data->id) }}"
+                                                        <a href="{{ url('/destroy', $category->id) }}"
                                                             onclick="showConfirmationModal(event)" x-data
                                                             x-on:click="$dispatch('open-modal',{name : 'delete'})"
                                                             class="button-delete opacity-100 hover:opacity-75 bg-transparent hover:bg-flame transition duration-300 ease-in-out transform text-flame hover:text-white w-20 lg:w-24 mr-2 lg:mr-0 px-5 py-1 flex  border-solid border border-flame rounded-md  ">
@@ -144,6 +144,15 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                        @if ($categories->count() < 1)
+                                            <div class="w-full  m-auto">
+                                                <img src="{{ asset('images/NoCategory.svg') }}" alt=""
+                                                    class="w-64  m-auto">
+                                                <h1 class="w-full text-xl font-bold text-center -mt-8">No category</h1>
+                                                <p class="text-sm text-center">Your category list is empty.
+                                                    Please start adding category.</p>
+                                            </div>
+                                        @endif
                                     </div>
 
                                 </div>
@@ -258,6 +267,26 @@
                             </x-delete-modal>
                         @endslot
                     </x-modal-ratu-boga>
+                    {{-- Edit Category --}}
+                    <x-modal-ratu-boga name="EditCategory" title="EditCategory">
+                        @slot('colorAlertModal')
+                            bg-slateGreen
+                        @endslot
+                        @slot('modalConten')
+                            @if ($data)
+                                <x-edit-category :data="$data"> </x-edit-category>
+                            @endif
+                        @endslot
+                    </x-modal-ratu-boga>
+                    @php
+                        $openModal = $data ? true : false;
+                    @endphp
+                    @if ($categories->count() > 0)
+                        {{-- open modal  --}}
+                        <a x-data="{ openModal: {{ $openModal ? 'true' : 'false' }} }" x-init="() => { if (openModal) $dispatch('open-modal', { name: 'EditCategory' }) }"
+                            href="{{ url('/edit_category', $category->id) }}"></a>
+                    @endif
+                    {{-- cek for success --}}
                     @if (session()->has('success'))
                         <x-alert>
                             @slot('colorAlert')
