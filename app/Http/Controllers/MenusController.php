@@ -10,36 +10,26 @@ use Illuminate\Database\QueryException;
 class MenusController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function menus($id = null)
-    {
-        $data = category::all();
-        $menus = Menu::all();
-        $menu = null;
-        if ($id) {
-            $menu = Menu::find($id);
-        }
-        return view("admin.product", compact("menu", "data", "menus"));
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
-    public function shows($id = null)
+    public function shows(Request $request, $id = null)
     {
-        $menus = Menu::all();
-        $data = Category::all();
+        $data = category::all();
+        $menus = Menu::paginate(12);
         $menu = null;
-        if ($id) {
+        $searchKeyword = $request->query('search', '');
+        if ($searchKeyword) {
+            $menus = Menu::where(function ($query) use ($searchKeyword) {
+                $query->where('menu_name', 'like', '%' . $searchKeyword . '%');
+                // ->orWhere('created_at', 'like', '%' . $searchKeyword . '%')
+                // ->orWhere('created_at', 'like', '%' . $searchKeyword . '%');
+            })->paginate(6);
+        } elseif ($id) {
             $menu = Menu::find($id);
         }
-        return view("admin.products", compact("menus", "data", "menu"));
+        return view("admin.products", compact("menu", "data", "menus"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function add_menu(Request $request)
     {
         $request->validate([

@@ -14,14 +14,13 @@ class CategoriesController extends Controller
      */
     public function category(Request $request, $id = null)
     {
-        $categories = Category::paginate(9);;
+        $categories = Category::paginate(9);
         $menus = Menu::all();
         $data = null;
 
 
-        $searchKeyword = $request->query('search', ''); // Kata kunci pencarian
+        $searchKeyword = $request->query('search', '');
         if ($searchKeyword) {
-            // $categories = Category::where('category', 'like', '%' . $searchKeyword . '%')->get();
             $categories = Category::where(function ($query) use ($searchKeyword) {
                 $query->where('category', 'like', '%' . $searchKeyword . '%')
                     // ->orWhere('created_at', 'like', '%' . $searchKeyword . '%')
