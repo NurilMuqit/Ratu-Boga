@@ -44,9 +44,13 @@ class MenusController extends Controller
         $menu->category_id = $request->category_id;
 
         $image = $request->image;
+
+        if($image){
         $imagename = time() . '.' . $image->getClientOriginalExtension();
         $request->image->move('menu', $imagename);
         $menu->image = $imagename;
+        }
+        
 
         try {
             $menu->save();
@@ -102,10 +106,10 @@ class MenusController extends Controller
 
         $image = $request->image;
 
-        if ($image) {
-            $imagename = time() . '.' . $image->getClientOriginalExtension();
-            $request->image->move('menu', $imagename);
-            $menu->image = $imagename;
+        if($image){
+            $imagename=time().'.'.$image->getClientOriginalExtension();
+        $request->image->move('menu',$imagename);
+        $menu->image = $imagename;
         }
 
         $menu->save();
