@@ -35,3 +35,28 @@ function showConfirmationModal(ev) {
     var confirmationModal = document.getElementById("confirmationModal");
     confirmationModal.style.display = "block";
 }
+function isTaskbarVisible() {
+    // Ketinggian area tampilan internal browser window
+    var innerHeight = window.innerHeight;
+
+    // Ketinggian keseluruhan browser window (termasuk taskbar)
+    var outerHeight = window.outerHeight;
+
+    // Perbedaan antara ketinggian inner dan outer
+    var heightDifference = outerHeight - innerHeight;
+
+    // Jika perbedaan tersebut signifikan, kita dapat mengasumsikan taskbar terlihat
+    // Tambahkan atau sesuaikan nilai batas sesuai kebutuhan Anda
+    var threshold = 100;
+
+    return heightDifference > threshold;
+}
+
+// Contoh penggunaan
+if (isTaskbarVisible()) {
+    // Lakukan sesuatu ketika taskbar terlihat
+    console.log("Taskbar terlihat");
+} else {
+    // Lakukan sesuatu ketika taskbar tidak terlihat
+    console.log("Taskbar tidak terlihat");
+}
