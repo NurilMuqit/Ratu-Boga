@@ -1,3 +1,9 @@
+{{-- Badge Cart --}}
+<?php 
+use App\Http\Controllers\MenuDisplayController;
+$total = MenuDisplayController::cartItem();
+?>
+
 <nav class="bg-slateGreen">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-6">
         <a href="{{ route('home') }}" class="flex items-center">
@@ -21,6 +27,9 @@
                         <a href="{{ route('cart') }}">
                             <i class="fa-solid fa-cart-shopping text-white text-xl"></i>
                         </a>
+                        <div class="bg-red-500 rounded-full w-4 h-4 -mt-6 -ms-2">
+                            <p class="text-xs text-white text-center">{{ $total }}</p>
+                        </div>
                         @livewire('navigation-menu')
 
                     </div>

@@ -7,6 +7,8 @@ use App\Models\Menu;
 use App\Models\Cart;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 
 class MenuDisplayController extends Controller
 {
@@ -15,19 +17,23 @@ class MenuDisplayController extends Controller
         return view('daftar-menu', compact('menuDisplay'));
     }
 
-    public function addToCart(Request $req){
-        if ($req->session()->has('user')) {
-            $cart = new Cart;
-            $cart->user_id=$req->session()->get('users')->id;
-            $cart->menu_id=$req->menu_id;
+    public function addToCart(Request $req) {
+        if (Auth::check()){
+            Cart::create([
+                'customer_id' => Auth::id(),
+                'menu_id' => $req->menu_id,
+                'order_date' => now(), 
+            ]);
 
-            $cart->save();
+            return redirect()->route('daftar-menu')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
+        } else {
+            return redirect()->route('login');
+        }
+    }
 
-            return view('daftar-menu', compact('menuDisplay'));
-        }
-        else {
-            return redirect('login');
-        }
+    public static function cartItem() {
+        $customerId = Auth::id();
+        return Cart::where('customer_id', $customerId)->count();
     }
 
     public function menuDetail($id) {
