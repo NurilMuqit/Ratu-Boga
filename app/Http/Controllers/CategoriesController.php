@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use Illuminate\Database\QueryException;
+
 use App\Models\Menu;
 
 class CategoriesController extends Controller
@@ -14,23 +15,22 @@ class CategoriesController extends Controller
      */
     public function category(Request $request, $id = null)
     {
-        $categories = Category::paginate(9);
-        $menus = Menu::all();
-        $data = null;
-
-
         $searchKeyword = $request->query('search', '');
-        if ($searchKeyword) {
-            $categories = Category::where(function ($query) use ($searchKeyword) {
-                $query->where('category', 'like', '%' . $searchKeyword . '%')
-                    // ->orWhere('created_at', 'like', '%' . $searchKeyword . '%')
-                ;
-            })->paginate(6);
-        } elseif ($id) {
-            $data = Category::with('menus')->find($id);
-        }
+        $segments = session('url_segments', []);
+        $currentUrl = $request->fullUrl();
+        $segments = explode('/', $currentUrl);
+        $request->session()->put('url_segments', $segments);
 
-        return view('admin.category', compact('data', 'categories', 'menus'));
+        $categoriesQuery = Category::query();
+        if ($searchKeyword) {
+            $categoriesQuery->where('category', 'like', '%' . $searchKeyword . '%');
+        }
+        $categories = $categoriesQuery->paginate(9);
+        $data = ($id) ? Category::with('menus')->find($id) : null;
+        $menus = Menu::all();
+        $currentPage = $request->input('page', 1);
+        $searchKeyword = $request->input('search', '');
+        return view('admin.category', compact('data', 'categories', 'menus', 'searchKeyword', 'currentPage'));
     }
 
     /**
@@ -66,11 +66,21 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit_category($id)
+    public function edit_category(Request $request, $id = null)
     {
-        $categories = Category::all();
+        $searchKeyword = $request->input('search', '');
+
         $data = Category::find($id);
-        return view('admin.category', compact('data', 'categories'));
+        $categoriesQuery = Category::query();
+        if ($searchKeyword) {
+            $categoriesQuery->where('category', 'like', '%' . $searchKeyword . '%');
+        }
+        $categories = $categoriesQuery->paginate(9);
+        $segments = $request->session()->get('url_segments', []);
+        $request->session()->put('url_segments', $segments);
+
+        $currentPage = $request->input('page', 1);
+        return view('admin.category', compact('data', 'categories', 'searchKeyword', 'currentPage'));
     }
 
     /**
@@ -83,7 +93,9 @@ class CategoriesController extends Controller
 
         $data->save();
 
-        return redirect()->route('admin.category')->with('success', 'Category Updated Successfully');
+        $segments = session('url_segments', []);
+        $url = url()->to(implode('/', $segments));
+        return redirect()->to($url)->with('success', 'Category Updated Successfully');
     }
 
     /**

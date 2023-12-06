@@ -109,7 +109,7 @@
 
                                                     <div
                                                         class="py-4 place-items-center grid grid-cols-2 gap-2 h-2/12  text-xs">
-                                                        <a href="{{ url('/edit_category', $category->id) }}"
+                                                        <a href="{{ url('edit_category/' . $category->id . '?search=' . $searchKeyword . '&page=' . $categories->currentPage()) }}"
                                                             class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform  w-20 lg:w-24 px-3 py-1 border-solid border border-flame rounded-md  flex ">
                                                             <svg width="10" height="9"
                                                                 class="m-auto mt-1 mx-0.5" viewBox="0 0 10 9"
@@ -159,9 +159,12 @@
 
                             </div>
                             {{-- //Pagination --}}
-
                             @if (!str_contains(request()->route()->uri, 'edit_category'))
-                                {{ $categories->links('vendor.pagination.default') }}
+                                <div class="pb-8">
+                                    {{ $categories->appends(['search' => $searchKeyword])->links('vendor.pagination.default') }}
+                                </div>
+                            @else
+                                {{ $categories->appends(['search' => $searchKeyword, 'page' => $categories->currentPage()])->links('vendor.pagination.default') }}
                             @endif
                         </main>
 

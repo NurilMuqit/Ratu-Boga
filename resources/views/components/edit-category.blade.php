@@ -1,4 +1,4 @@
-    @props(['data'])
+    @props(['data', 'searchKeyword', 'segments'])
     <div class="mt-2">
         <form action="{{ url('/edit_category_confirm', $data->id) }}" method="post">
             @csrf

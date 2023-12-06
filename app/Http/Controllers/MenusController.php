@@ -14,20 +14,21 @@ class MenusController extends Controller
      */
     public function shows(Request $request, $id = null)
     {
-        $data = category::all();
-        $menus = Menu::paginate(12);
-        $menu = null;
         $searchKeyword = $request->query('search', '');
+        $segments = session('url_segments', []);
+        $currentUrl = $request->fullUrl();
+        $segments = explode('/', $currentUrl);
+        $request->session()->put('url_segments', $segments);
+        $menusQuery = Menu::query();
         if ($searchKeyword) {
-            $menus = Menu::where(function ($query) use ($searchKeyword) {
-                $query->where('menu_name', 'like', '%' . $searchKeyword . '%');
-                // ->orWhere('created_at', 'like', '%' . $searchKeyword . '%')
-                // ->orWhere('created_at', 'like', '%' . $searchKeyword . '%');
-            })->paginate(6);
-        } elseif ($id) {
-            $menu = Menu::find($id);
+            $menusQuery->where('menu_name', 'like', '%' . $searchKeyword . '%');
         }
-        return view("admin.products", compact("menu", "data", "menus"));
+        $menus = $menusQuery->paginate(12);
+        $menu = Menu::find($id);
+        $data = category::all();
+        $currentPage = $request->input('page', 1);
+        $searchKeyword = $request->input('search', '');
+        return view("admin.products", compact("menu", "data", "menus", 'searchKeyword', 'currentPage'));
     }
 
     public function add_menu(Request $request)
@@ -45,12 +46,12 @@ class MenusController extends Controller
 
         $image = $request->image;
 
-        if($image){
-        $imagename = time() . '.' . $image->getClientOriginalExtension();
-        $request->image->move('menu', $imagename);
-        $menu->image = $imagename;
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('menu', $imagename);
+            $menu->image = $imagename;
         }
-        
+
 
         try {
             $menu->save();
@@ -79,12 +80,21 @@ class MenusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit_menu($id)
+    public function edit_menu(Request $request, $id = null)
     {
+        $searchKeyword = $request->input('search', '');
+
         $menu = Menu::find($id);
+        $menusQuery = Menu::query();
+        if ($searchKeyword) {
+            $menusQuery->where('menu_name', 'like', '%' . $searchKeyword . '%');
+        }
+        $menus = $menusQuery->paginate(12);
+        $segments = $request->session()->get('url_segments', []);
+        $request->session()->put('url_segments', $segments);
+        $currentPage = $request->input('page', 1);
         $data = Category::all();
-        $menus = Menu::all();
-        return view('admin.products', compact('menu', 'data', 'menus'));
+        return view('admin.products', compact('menu', 'data', 'menus', 'searchKeyword', 'currentPage'));
     }
 
     /**
@@ -106,15 +116,17 @@ class MenusController extends Controller
 
         $image = $request->image;
 
-        if($image){
-            $imagename=time().'.'.$image->getClientOriginalExtension();
-        $request->image->move('menu',$imagename);
-        $menu->image = $imagename;
+        if ($image) {
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $request->image->move('menu', $imagename);
+            $menu->image = $imagename;
         }
 
         $menu->save();
+        $segments = session('url_segments', []);
+        $url = url()->to(implode('/', $segments));
 
-        return redirect()->route('admin.products')->with('success', 'Menu Updated Successfully');
+        return redirect()->to($url)->with('success', 'Menu Updated Successfully');
     }
 
     public function delete($id)

@@ -114,7 +114,7 @@
 
                    <input id="imageInput2" type="file" name="image"
                        class="hover:absolute absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                       onchange="previewImage2()" required>
+                       onchange="previewImage2()">
                </div>
                <script>
                    function previewImage2() {
