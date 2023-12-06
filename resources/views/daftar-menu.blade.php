@@ -3,7 +3,7 @@
 @section('title', 'Menu')
 
 @section('content')
-    <section class="mt-16 mb-24 ms-20">
+    {{-- <section class="mt-16 mb-24 ms-20">
         <h1 class="text-junggleGreen font-bold text-4xl">Menu Favorit</h1>
         <div class="w-min-screen bg-slateGreen mt-12 rounded-l-full py-12">
             <div class="flex">
@@ -20,20 +20,23 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <section>
-        <div class="tab-menu mx-20 text-metalSaurus mt-28 mb-16 text-2xl flex justify-around">
+        <h1 class="text-3xl font-bold mt-12 mb-8 ms-20">Daftar Menu</h1>
+
+        {{-- <div class="tab-menu mx-20 text-metalSaurus mt-12 mb-16 text-xl flex justify-between">
             <a href="#" class="font-bold text-junggleGreen border-b-4 border-junggleGreen pb-2">Semua</a>
             <a href="#">Nasi Goreng</a>
             <a href="#">Mie Pangsit</a>
             <a href="#">Ayam</a>
             <a href="#">Bakso</a>
             <a href="#">Minuman</a>
-        </div>
 
-        <div class="menu-list mx-20 mb-20 flex flex-wrap justify-between">
+        </div> --}}
+
+        <div class="menu-list mx-20 mb-20 flex flex-wrap justify-start">
             @foreach ($menuDisplay as $menuDisplay)
-                <div class="max-w-xs bg-slateGreen border-gray-600  rounded-lg shadow my-2">
+                <div class="max-w-xs bg-slateGreen border-gray-600 me-5 rounded-lg shadow mb-8">
                     <a href="menu-detail/{{ $menuDisplay->id }}">
                         <div class="h-48 overflow-hidden">
                             <img class="rounded-t-lg object-cover" src="menu/{{ $menuDisplay->image }}" alt="" />

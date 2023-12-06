@@ -15,13 +15,11 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->timestamp('order_date')->nullable(false);
-            $table->unsignedBigInteger('total_price')->nullable(false);
-            $table->string('status')->nullable(false);
-            $table->string('payment_method')->nullable(false);
-            $table->timestamps();
+            $table->unsignedBigInteger('menu_id');
+            $table->timestamp('order_date')->useCurrent();
 
             $table->foreign('customer_id')->references('id')->on('users');
+            $table->foreign('menu_id')->references('id')->on('menus');
         });
     }
 

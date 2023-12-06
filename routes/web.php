@@ -78,6 +78,7 @@ Route::get('/cart', function () {
 // Menu Display
 Route::get('/daftar-menu', [MenuDisplayController::class, 'menuDisplay'])->name('daftar-menu');
 Route::get('/menu-detail/{id}', [MenuDisplayController::class, 'menuDetail'])->name('menuDetail');
+Route::post('/add-to-cart', [MenuDisplayController::class, 'addToCart'])->name('addToCart');
 
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');

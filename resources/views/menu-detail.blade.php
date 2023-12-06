@@ -23,14 +23,19 @@
                 </button>
             </div>
 
-            <div class="flex mt-12">
-                <a href=""
-                class="text-flame text-sm border-flame border-2 font-bold w-32 py-2 px-8 text-center me-4 hover:bg-flame hover:text-white rounded-md">
-                Tambah</a>
-            <a href="#"
-                class="text-white text-sm bg-flame font-medium w-44 py-2 px-8 text-center rounded-md">
-                Pesan Sekarang</a>
-            </div>
+            <form action="/add-to-cart" method="POST">
+                @csrf
+                <input type="hidden" name="menu_id" value="{{ $menuDisplay->id }}">
+                <div class="flex mt-8">
+                    {{-- <a href=""
+                    class="text-flame text-sm border-flame border-2 font-bold w-48 py-2 px-8 text-center me-4 hover:bg-flame hover:text-white rounded-md">
+                    Tambah keranjang</a> --}}
+                <button 
+                    class="text-white text-sm bg-flame font-medium w-48 py-4 px-8 text-center rounded-md">
+                    Tambah keranjang</button>
+                </div>
+            </form>
+
         </div>
     </div>
 @endsection
