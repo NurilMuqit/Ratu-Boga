@@ -10,7 +10,7 @@
                     </div>
 
                     <div
-                        class="sm:w-10/12 w-12/12  sm:px-8 px-1 sm:ml-2 bg-white overflow-hidden  rounded-lg text-junggleGreen">
+                        class="sm:w-10/12 w-12/12  sm:px-8 px-1 sm:ml-2 bg-white overflow-x-hidden  rounded-lg text-junggleGreen">
                         <header class="py-4 sm:py-4  place-items-center grid grid-cols-2  rounded-lg">
                             {{-- header-title --}}
                             <div class="h-full w-full   ">
