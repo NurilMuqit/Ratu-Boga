@@ -3,14 +3,14 @@
         <div class="h-full w-full  overflow-hidden">
             <div class="h-full overflow-hidden  shadow-xl">
                 <!-- resources/views/components/AdminLayout.blade.php -->
-                <div class="flex h-full w-full">
+                <div class="flex h-full w-full ">
                     <div class="hidden sm:flex w-2/12 h-full ">
                         <x-AdminNavbar />
 
                     </div>
 
                     <div
-                        class="sm:w-10/12 w-12/12 sm:px-8 px-1 sm:ml-2 bg-white overflow-hidden  rounded-lg text-junggleGreen">
+                        class="sm:w-10/12 w-12/12 sm:px-8 px-1 sm:ml-2 bg-white overflow-x-hidden   rounded-lg text-junggleGreen">
                         <header class="py-4 sm:py-4  place-items-center grid grid-cols-2  rounded-lg">
                             {{-- header-title --}}
                             <div class="h-full w-full   ">
@@ -38,7 +38,7 @@
                             </div>
                             {{-- content main --}}
                             <div style="height: 36rem "
-                                class="grid  md:overflow-hidden  mt-2 sm:mt-0 m-0 text-junggleGreen shadow-md border-t  h-full rounded-xl   ">
+                                class="grid   md:overflow-hidden  mt-2 sm:mt-0 m-0 text-junggleGreen shadow-md border-t  h-full rounded-xl   ">
                                 <div
                                     class="overflow-x-hidden border-b my-2 md:h-14 h-24 md:grid flex flex-wrap  grid-flow-col md:grid-cols-2 md:gap-4">
                                     <div class="w-full h-4/6 md:h-full">

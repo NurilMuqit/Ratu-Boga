@@ -1,7 +1,7 @@
 <x-HtmlPage>
     <div class="p-2 w-screen h-screen ">
         <div class="h-full w-full">
-            <div class="h-full md:overflow-hidden  shadow-xl">
+            <div class="h-full overflow-x-hidden  shadow-xl">
                 <!-- resources/views/components/AdminLayout.blade.php -->
                 <div class="flex h-full w-full">
                     <div class="hidden sm:flex w-2/12 h-full ">
@@ -9,7 +9,7 @@
                     </div>
 
                     <div
-                        class="md:overflow-hidden  overflow-y-scroll sm:w-10/12 w-full  sm:px-8 px-1 sm:ml-2 bg-white   rounded-lg text-junggleGreen">
+                        class="overflow-x-hidden  overflow-y-scroll sm:w-10/12 w-full  sm:px-8 px-1 sm:ml-2 bg-white   rounded-lg text-junggleGreen">
                         <header class=" py-9  place-items-center grid md:grid-cols-2 grid-cols-1 rounded-lg">
                             {{-- header-title --}}
                             <div class="h-full w-full   ">
@@ -347,7 +347,7 @@
                             {{-- reservetion list,inventory list and customer riview< --}}
                             {{-- reservetion list --}}
                             <div
-                                class="  md:grid md:items-center md:grid-cols-4 md:h-96 mt-8 pb-10 md:grid-flow-col md:gap-6">
+                                class=" md:grid md:items-center md:grid-cols-4 md:h-96 mt-8 md:mb-6 pb-10 md:grid-flow-col md:gap-6">
                                 <div class=" rounded-2xl p-4  md:h-full bg-almond ">
                                     <div class="gird flex  grid-cols-2 w-full">
                                         <h1 class="w-3/4 text-md font-semibold">Reservation List</h1>
@@ -433,6 +433,7 @@
                                     </ul>
                                 </div>
                                 {{-- inventory list status --}}
+
                                 <div
                                     class="my-4 md:my-0  col-span-3 h-full rounded-2xl p-4 bg-white drop-shadow-md transition duration-300 ease-in-out transform hover:drop-shadow">
 
@@ -452,54 +453,50 @@
                                         </div>
                                     </div>
                                     <ul role="list" class="mt-6 w-full ">
-                                        <li
-                                            class="flex my-3 cursor-pointer rounded-xl px-3 w-full justify-between bg-white drop-shadow-md hover:drop-shadow transition duration-300 ease-in-out transform bg-bg-almond py-3">
-                                            <div class="flex">
-                                                <div class="h-24 w-28">
-                                                    <img class="h-full w-full  rounded-md bg-gray-50"
-                                                        src="{{ asset('images/nasgor-crt.png') }}" alt="">
-
-                                                </div>
-                                                <div class="m-auto md:px-4 md:mx-4 px-1 mx-1">
-                                                    <p
-                                                        class="text-sm w-full font-semibold  md:text-md  text-junggleGreen">
-                                                        Nasi
-                                                        Goreng
-                                                        Prima</p>
-                                                    <p class=" text-xs md:text-sm   w-full text-tealGray">
-                                                        Nasi goreng + Telur ceplok</p>
-                                                    <div
-                                                        class=" w-28 mt-3 border-solid border-2 border-flame md:rounded-xl rounded-md  flex py-1 md:py-1.5">
-                                                        <p class="m-auto text-xs font-bold text-flame">Out of stock</p>
-                                                    </div>
-                                                </div>
+                                        @if ($lowestStockMenus->count() < 1)
+                                            <div class="w-full  m-auto">
+                                                <img src="{{ asset('images/NoProduct.svg') }}" alt=""
+                                                    class="w-48  m-auto">
+                                                <h1 class="w-full text-md font-bold text-center -mt-8">No Product</h1>
+                                                <p class="text-xs text-center">Your product list is empty.
+                                                    Please go to the product page to start adding products.</p>
                                             </div>
+                                        @endif
+                                        @foreach ($lowestStockMenus as $menu)
+                                            <a href="{{ route('admin.products', ['search' => $menu->menu_name]) }}">
+                                                <li
+                                                    class="flex my-3 cursor-pointer rounded-xl px-3 w-full justify-between bg-white drop-shadow-md hover:drop-shadow transition duration-300 ease-in-out transform bg-bg-almond py-3">
+                                                    <div class="flex   ">
+                                                        <div class="h-24 w-28">
+                                                            <img class="h-full w-full  rounded-md bg-gray-50"
+                                                                src="{{ asset('images/nasgor-crt.png') }}"
+                                                                alt="">
 
-                                        </li>
-                                        <li
-                                            class="flex my-3 cursor-pointer rounded-xl px-3 w-full justify-between bg-white drop-shadow-md hover:drop-shadow transition duration-300 ease-in-out transform bg-bg-almond py-3">
-                                            <div class="flex   ">
-                                                <div class="h-24 w-28">
-                                                    <img class="h-full w-full  rounded-md bg-gray-50"
-                                                        src="{{ asset('images/nasgor-crt.png') }}" alt="">
+                                                        </div>
+                                                        <div class="m-auto md:px-4 md:mx-4 px-1 mx-1"">
+                                                            <p
+                                                                class="text-sm w-full font-semibold md:text-md  text-junggleGreen">
+                                                                {{ $menu->menu_name }}</p>
+                                                            <p class=" text-xs md:text-sm  w-full text-tealGray">
+                                                                {{ strlen($menu->menu_description) > 15 ? substr($menu->menu_description, 0, 15) . '............' : $menu->menu_description }}
+                                                            </p>
 
-                                                </div>
-                                                <div class="m-auto md:px-4 md:mx-4 px-1 mx-1"">
-                                                    <p
-                                                        class="text-sm w-full font-semibold md:text-md  text-junggleGreen">
-                                                        Nasi
-                                                        Goreng
-                                                        Prima</p>
-                                                    <p class=" text-xs md:text-sm  w-full text-tealGray">
-                                                        Nasi goreng + Telur ceplok</p>
-                                                    <div
-                                                        class=" w-28 mt-3 border-solid border-2 border-flame md:rounded-xl rounded-md  flex py-1 md:py-1.5">
-                                                        <p class="m-auto text-xs font-bold text-flame">3 Porsi</p>
+                                                            <div
+                                                                class=" w-28 mt-3 border-solid border-2 border-flame md:rounded-xl rounded-md  flex py-1 md:py-1.5">
+                                                                <p class="m-auto text-xs font-bold text-flame">
+
+                                                                    @if ($menu->menu_quantity < 1)
+                                                                        Out of Stock
+                                                                    @else
+                                                                        {{ $menu->menu_quantity }} Porsi
+                                                                    @endif
+                                                                </p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-
-                                        </li>
+                                                </li>
+                                            </a>
+                                        @endforeach
 
                                     </ul>
                                 </div>

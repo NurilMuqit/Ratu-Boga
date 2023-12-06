@@ -7,6 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuDisplayController;
 use App\Http\Controllers\MenusController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\DashboardController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +38,7 @@ Route::middleware([
 
 // route only for Admin
 Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'show'])->name('admin.dashboard');
 
     Route::get('/admin/products', [MenusController::class, 'shows'])->name('admin.products');
 
