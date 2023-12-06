@@ -31,10 +31,10 @@
                         KAMI</a>
                 </div>
                 <div class="flex flex-col ms-12">
-                    <a href="#"
+                    <a href="{{ route('daftar-menu') }}"
                         class="border-l-4 rounded-sm text-white font-medium text-base px-5 mb-10 hover:border-flame hover:text-flame hover:ease-in hover:transition hover:duration-200">MENU
                         KAMI</a>
-                    <a href="#"
+                    <a href="{{ route('daftar-menu') }}"
                         class="border-l-4 rounded-sm text-white font-medium text-base px-5 hover:border-flame hover:text-flame hover:ease-in hover:transition hover:duration-200">HARGA</a>
                 </div>
             </div>
@@ -50,7 +50,8 @@
                 </div>
             </div>
         </div>
-        <h6 class="text-gainsBoro text-sm font-light self-end mt-12">Copyright © 2023 RM Ratu Boga. All right reserved
+        <h6 class="text-gainsBoro text-sm font-light self-end mt-12">Copyright &copy; {{ \Carbon\Carbon::now()->year }}
+            RM Ratu Boga. All right reserved
         </h6>
     </div>
 </footer>
