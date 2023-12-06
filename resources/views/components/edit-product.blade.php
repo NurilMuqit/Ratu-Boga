@@ -1,4 +1,4 @@
-@props(['menu', 'data'])
+@props(['menu', 'data', 'searchKeyword', 'segments'])
 <form action="{{ url('/edit_menu_confirm', $menu->id) }}" method="POST" class="w-full" enctype="multipart/form-data">
     @csrf
     <div class="w-full grid grid-cols-2 p-8">

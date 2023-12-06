@@ -140,7 +140,7 @@
     </div>
     <!-- log out -->
     <form
-        class="cursor-pointer flex items-center w-full px-6 h-16 hover:text-white transition duration-500 ease-in-out transform  text-flame mt-auto "
+        class="my-10 cursor-pointer flex items-center w-full px-6 h-16 hover:text-white transition duration-500 ease-in-out transform  text-flame mt-auto "
         method="POST" action="{{ route('logout') }}" x-data>
         @csrf
         <svg class="w-6 h-6 stroke-current hover:stroke-white" xmlns="http://www.w3.org/2000/svg" fill="none"

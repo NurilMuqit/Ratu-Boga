@@ -5,16 +5,16 @@
 
 
 
-    <a href="{{ url(str_contains(request()->route()->uri, 'edit_menu') ? '/admin/products' : (str_contains(request()->route()->uri, 'edit_category') ? 'admin/products/category' : '#')) }}"
-        x-show="show" class="fixed inset-0 transform transition-all" x-on:click="show = false"
+    <a href="{{ $title == 'EditCategory' || $title == 'EditProduct' ? url()->previous() : '' }}" x-show="show"
+        class="fixed inset-0 transform transition-all" x-on:click="show = false"
         x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
         <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
     </a>
-    @if ($title == 'EditProduct' || $title == 'Add product')
+    @if ($title == 'EditProduct' || $title == 'Add product' || $title == 'EditCategory' || $title == 'AddCategory')
         <div x-show="show"
-            class="m-auto w-1/2 md:w-1/2 z-100 bg-white rounded-xl overflow-hidden shadow-xl transform transition-all"
+            class="m-auto w-1/2 md:w-1/2 {{ $title == 'EditCategory' || $title == 'AddCategory' ? ' sm:max-w-sm  w-4/6 md:w-full' : '' }} z-100 bg-white rounded-xl overflow-hidden shadow-xl transform transition-all"
             x-trap.inert.noscroll="show" x-transition:enter="ease-out duration-300"
             x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" x-transition:leave="ease-in duration-200"
@@ -27,7 +27,7 @@
 
                 <!-- modal-add-product -->
                 <div class="flex justify-end h-full w-full">
-                    <a href="{{ url(str_contains(request()->route()->uri, 'edit_menu') ? '/admin/products' : (str_contains(request()->route()->uri, 'edit_category') ? 'admin/products/category' : '#')) }}"
+                    <a href="{{ $title == 'EditCategory' || $title == 'EditProduct' ? url()->previous() : '' }}"
                         x-on:click="show = false" class="my-auto mx-4  hover:text-gray-800 focus:outline-none">
                         <svg class="h-6 w-6" fill="none" stroke="white" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +54,7 @@
                             {{ $title }}</h3>
                     </div>
                 @endif
-                <div class="w-full">
+                <div class=" {{ $title == 'EditCategory' || $title == 'AddCategory' ? 'px-5 py-2' : 'w-full' }}">
                     {{ $modalConten }}
                 </div>
             </div>
@@ -74,8 +74,8 @@
 
                 <!-- modal-add-product -->
                 <div class="flex justify-end h-full w-full">
-                    <a href="{{ url(str_contains(request()->route()->uri, 'edit_menu') ? '/admin/products' : (str_contains(request()->route()->uri, 'edit_category') ? 'admin/products/category' : '#')) }}"
-                        x-on:click="show = false" class="my-auto mx-4  hover:text-gray-800 focus:outline-none">
+                    <a href="{{ url()->previous() }}" x-on:click="show = false"
+                        class="my-auto mx-4  hover:text-gray-800 focus:outline-none">
                         <svg class="h-6 w-6" fill="none" stroke="white" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

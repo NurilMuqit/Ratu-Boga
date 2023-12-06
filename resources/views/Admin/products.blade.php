@@ -83,8 +83,7 @@
                                                     </select>
                                                 </form>
                                                 {{-- ///add menu --}}
-                                                <div x-data
-                                                    x-on:click="$dispatch('open-modal',{name : '{{ $data->count() > 0 ? 'AddProduct' : '' }}'})"
+                                                <div x-data x-on:click="$dispatch('open-modal',{name : 'AddProduct'})"
                                                     class="button-edit md:m-0 m-auto mx-2  md:mx-2 cursor-pointer   justify-center  opacity-100 hover:opacity-75 transition duration-300 ease-in-out transform bg-slateGreen text-white   w-24  py-0.5   rounded-md  flex ">
                                                     <h2 class=" font-bold my-1 md:my-0.5 mx-1">+</h2>
                                                     <p style="font-size: 0.9em;" class="font-bold my-auto text-xs  ">
@@ -118,7 +117,7 @@
                                                 </div>
                                                 <div
                                                     class="sm:py-2 py-4 px-2 place-items-center grid grid-cols-2 gap-2 h-2/12  text-xs">
-                                                    <a href="{{ url('edit_menu', $menuItem->id) }}"
+                                                    <a href="{{ url('edit_menu/' . $menuItem->id . '?search=' . $searchKeyword . '&page=' . $menus->currentPage()) }}"
                                                         class="button-edit opacity-100 hover:opacity-75 bg-flame text-white transition duration-300 ease-in-out transform sm:w-24 w-18   lg:w-20 px-3 py-0.5 sm:py-1.5 lg:py-0.5 flex  border-solid border border-flame rounded-md">
                                                         <svg width="10" height="9" class="m-auto mt-1 mx-0.5"
                                                             viewBox="0 0 10 9" fill="none"
@@ -170,7 +169,11 @@
                             </div>
                             {{-- //Pagination --}}
                             @if (!str_contains(request()->route()->uri, 'edit_menu'))
-                                {{ $menus->links('vendor.pagination.default') }}
+                                <div class="pb-8">
+                                    {{ $menus->appends(['search' => $searchKeyword])->links('vendor.pagination.default') }}
+                                </div>
+                            @else
+                                {{ $menus->appends(['search' => $searchKeyword, 'page' => $menus->currentPage()])->links('vendor.pagination.default') }}
                             @endif
                         </main>
 
