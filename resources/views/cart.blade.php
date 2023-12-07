@@ -16,9 +16,9 @@
                     <div class="flex flex-col ms-12">
                         <h2 class="">{{ $items->menu_name }}</h2>
                         <h3 class="text-xl font-bold mt-1">Rp {{ number_format($items->menu_price, 0, ',', '.')}}</h3>
-                        <div class="flex">
-                            <a href="#">
-                                <img src="{{ asset('images/del-ico.png') }}" alt="" class="w-5 mt-4">
+                        <div class="flex mt-2">
+                            <a href="/remove-cart/{{ $items->cart_id }}">
+                                <i class="fa-solid fa-trash text-flame"></i>
                             </a>
                         </div>
                     </div>

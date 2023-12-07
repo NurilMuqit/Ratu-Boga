@@ -6,7 +6,6 @@ use App\Models\Menu;
 use App\Models\Cart;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +14,12 @@ class MenuDisplayController extends Controller
     public function menuDisplay() {
         $menuDisplay = Menu::all();
         return view('daftar-menu', compact('menuDisplay'));
+    }
+
+    public function menuDetail($id) {
+        $menuDisplay = Menu::findOrFail($id);
+        // return $menuDisplay;
+        return view('menu-detail', compact('menuDisplay'));
     }
 
     public function addToCart(Request $req) {
@@ -42,15 +47,14 @@ class MenuDisplayController extends Controller
         ->join('menus', 'carts.menu_id', '=', 'menus.id')
         ->join('users', 'carts.customer_id', '=', 'users.id')
         ->where('carts.customer_id', '=', $customerId)
-        ->select('menus.*')
+        ->select('menus.*', 'carts.id as cart_id')
         ->get();
 
         return view('cart', ['menus' => $menuDisplay]);
     }
 
-    public function menuDetail($id) {
-        $menuDisplay = Menu::findOrFail($id);
-        // return $menuDisplay;
-        return view('menu-detail', compact('menuDisplay'));
+    public function removeCart($id) {
+        Cart::destroy($id);
+        return redirect('cart-list');
     }
 }

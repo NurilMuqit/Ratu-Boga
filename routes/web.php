@@ -70,16 +70,12 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
     Route::post('/edit_category_confirm/{id}', [CategoriesController::class, 'edit_category_confirm']);
 });
 
-// route for AllUser
-
-
-// Menu Display
+// General Routes
 Route::get('/daftar-menu', [MenuDisplayController::class, 'menuDisplay'])->name('daftar-menu');
 Route::get('/menu-detail/{id}', [MenuDisplayController::class, 'menuDetail'])->name('menuDetail');
 Route::post('/add-to-cart', [MenuDisplayController::class, 'addToCart'])->name('addToCart');
-Route::get('/cart-list', [MenuDisplayController::class, 'cartList'])
-->middleware('auth')
-->name('cart-list');
+Route::get('/cart-list', [MenuDisplayController::class, 'cartList'])->middleware('auth')->name('cart-list');
+Route::get('/remove-cart/{id}', [MenuDisplayController::class, 'removeCart'])->name('remove-cart');
 
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
