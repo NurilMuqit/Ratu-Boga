@@ -28,7 +28,7 @@
                         <h5 class="font-medium text-gray-400">x1</h5>
                         </div>
                         <div class="flex mt-4">
-                            <h4 class="font-bold text-junggleGreen text-base me-16">Total Harga</h4>
+                            <h4 class="font-bold text-junggleGreen text-base me-16">Subtotal</h4>
                             <h5 class="font-bold text-junggleGreen text-base">Rp 35.000</h5>
                         </div>
                     </div>

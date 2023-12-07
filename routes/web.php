@@ -73,6 +73,7 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
 // General Routes
 Route::get('/daftar-menu', [MenuDisplayController::class, 'menuDisplay'])->name('daftar-menu');
 Route::get('/menu-detail/{id}', [MenuDisplayController::class, 'menuDetail'])->name('menuDetail');
+Route::get('/search', [MenuDisplayController::class, 'search'])->name('search');
 Route::post('/add-to-cart', [MenuDisplayController::class, 'addToCart'])->name('addToCart');
 Route::get('/cart-list', [MenuDisplayController::class, 'cartList'])->middleware('auth')->name('cart-list');
 Route::get('/remove-cart/{id}', [MenuDisplayController::class, 'removeCart'])->name('remove-cart');
