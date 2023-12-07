@@ -77,7 +77,9 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
 Route::get('/daftar-menu', [MenuDisplayController::class, 'menuDisplay'])->name('daftar-menu');
 Route::get('/menu-detail/{id}', [MenuDisplayController::class, 'menuDetail'])->name('menuDetail');
 Route::post('/add-to-cart', [MenuDisplayController::class, 'addToCart'])->name('addToCart');
-Route::get('/cart-list', [MenuDisplayController::class, 'cartList'])->name('cart-list');
+Route::get('/cart-list', [MenuDisplayController::class, 'cartList'])
+->middleware('auth.redirect')
+->name('cart-list');
 
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
