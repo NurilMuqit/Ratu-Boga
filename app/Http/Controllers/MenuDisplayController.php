@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Menu;  
 use App\Models\Cart;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MenuDisplayController extends Controller
 {
@@ -34,6 +34,18 @@ class MenuDisplayController extends Controller
     public static function cartItem() {
         $customerId = Auth::id();
         return Cart::where('customer_id', $customerId)->count();
+    }
+
+    public function cartList() {
+        $customerId = Auth::id();
+        $menuDisplay = DB::table('carts')
+        ->join('menus', 'carts.menu_id', '=', 'menus.id')
+        ->join('users', 'carts.customer_id', '=', 'users.id')
+        ->where('carts.customer_id', '=', $customerId)
+        ->select('menus.*')
+        ->get();
+
+        return view('cart', ['menus' => $menuDisplay]);
     }
 
     public function menuDetail($id) {
