@@ -35,22 +35,22 @@
         </div> --}}
 
         <div class="menu-list mx-20 mb-20 flex flex-wrap justify-start">
-            @foreach ($menuDisplay as $menuDisplay)
+            @foreach ($menuDisplay as $items)
                 <div class="max-w-xs bg-slateGreen border-gray-600 me-5 rounded-lg shadow mb-8">
-                    <a href="menu-detail/{{ $menuDisplay->id }}">
+                    <a href="menu-detail/{{ $items->id }}">
                         <div class="h-48 overflow-hidden">
-                            <img class="rounded-t-lg object-cover" src="menu/{{ $menuDisplay->image }}" alt="" />
+                            <img class="rounded-t-lg object-cover" src="menu/{{ $items->image }}" alt="" />
                         </div>
                     </a>
                     <div class="p-5 flex flex-col">
                         <a href="#">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight  text-white">
-                                {{ $menuDisplay->menu_name }}
+                                {{ $items->menu_name }}
                             </h5>
                         </a>
-                        <h6 class="text-white font-medium">Rp {{ number_format($menuDisplay->menu_price, 0, ',', '.') }}
+                        <h6 class="text-white font-medium">Rp {{ number_format($items->menu_price, 0, ',', '.') }}
                         </h6>
-                        <a href="menu-detail/{{ $menuDisplay->id }}"
+                        <a href="menu-detail/{{ $items->id }}"
                             class="text-white text-sm bg-flame font-medium py-2 px-8 text-center mt-12 rounded-md">
                             Lihat Detail</a>
                     </div>

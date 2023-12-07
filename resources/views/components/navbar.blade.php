@@ -24,7 +24,7 @@ $total = MenuDisplayController::cartItem();
             @if (Route::has('login'))
                 @auth
                     <div class="flex items-center">
-                        <a href="{{ route('cart') }}">
+                        <a href="{{ route('cart-list') }}">
                             <i class="fa-solid fa-cart-shopping text-white text-xl"></i>
                         </a>
                         <div class="bg-red-500 rounded-full w-4 h-4 -mt-6 -ms-2">
