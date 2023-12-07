@@ -15,17 +15,17 @@
                     </div>
                     <div class="flex flex-col ms-12">
                         <h2 class="">{{ $items->menu_name }}</h2>
-                        <h3 class="text-xl font-bold mt-1">Rp. {{ $items->menu_price }}</h3>
-                        <div class="flex">
-                            <a href="#">
-                                <img src="{{ asset('images/del-ico.png') }}" alt="" class="w-5 mt-4">
+                        <h3 class="text-xl font-bold mt-1">Rp {{ number_format($items->menu_price, 0, ',', '.')}}</h3>
+                        <div class="flex mt-2">
+                            <a href="/remove-cart/{{ $items->cart_id }}">
+                                <i class="fa-solid fa-trash text-flame"></i>
                             </a>
                         </div>
                     </div>
                     <div class="flex flex-col ms-80 mt-3">
                         <div class="flex">
                             <h4 class="font-medium text-gray-400 me-16">Total barang</h4>
-                            <h5 class="font-medium text-gray-400">x1</h5>
+                        <h5 class="font-medium text-gray-400">x1</h5>
                         </div>
                         <div class="flex mt-4">
                             <h4 class="font-bold text-junggleGreen text-base me-16">Total Harga</h4>
