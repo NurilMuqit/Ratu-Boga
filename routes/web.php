@@ -78,7 +78,7 @@ Route::get('/daftar-menu', [MenuDisplayController::class, 'menuDisplay'])->name(
 Route::get('/menu-detail/{id}', [MenuDisplayController::class, 'menuDetail'])->name('menuDetail');
 Route::post('/add-to-cart', [MenuDisplayController::class, 'addToCart'])->name('addToCart');
 Route::get('/cart-list', [MenuDisplayController::class, 'cartList'])
-->middleware('auth.redirect')
+->middleware('auth')
 ->name('cart-list');
 
 
