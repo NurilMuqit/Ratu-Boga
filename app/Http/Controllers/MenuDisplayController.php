@@ -22,6 +22,11 @@ class MenuDisplayController extends Controller
         return view('menu-detail', compact('menuDisplay'));
     }
 
+    public function search(Request $req) {
+        $data = Menu::where('menu_name', 'like', '%'.$req->input('query').'%')->get();
+        return view('search', ['menuDisplay'=>$data]);
+    }
+
     public function addToCart(Request $req) {
         if (Auth::check()){
             Cart::create([
