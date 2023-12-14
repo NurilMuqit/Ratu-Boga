@@ -17,7 +17,7 @@ class HomeController extends Controller
         $usertype = Auth::user()->usertype;
 
         if ($usertype == '1') {
-            return view('admin.dashboard');
+            return redirect()->route('admin.dashboard');
         } else {
             return redirect('/');
         }
@@ -25,6 +25,5 @@ class HomeController extends Controller
 
     public function cart()
     {
-        
     }
 }

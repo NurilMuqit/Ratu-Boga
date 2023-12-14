@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuDisplayController;
 use App\Http\Controllers\MenusController;
@@ -45,9 +46,6 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
     Route::get('/admin/Orders', function () {
         return view('admin.Orders');
     })->name('admin.Orders');
-    Route::get('/admin/Customers', function () {
-        return view('admin.Customers');
-    })->name('admin.Customers');
     Route::get('/admin/Finance', function () {
         return view('admin.Finance');
     })->name('admin.Finance');
@@ -69,6 +67,8 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
 
     Route::get('/edit_category/{id}', [CategoriesController::class, 'edit_category']);
     Route::post('/edit_category_confirm/{id}', [CategoriesController::class, 'edit_category_confirm']);
+    Route::get('/admin/Customers', [UserController::class, 'index'])->name('admin.Customers');;
+    Route::get('/destroyuser/{id}', [UserController::class, 'destroyuser']);
 });
 
 // General Routes
