@@ -13,11 +13,13 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="icon" href="{{ URL('images/favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/ModalAlertStyles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/table.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @vite('resources/css/app.css')
     @vite('resources/css/ModalAlertStyles.css')
+    @vite('resources/css/table.css')
     {{-- Menyembunyikan Scrollbar --}}
     <style>
         .hide-scroll-y::-webkit-scrollbar {

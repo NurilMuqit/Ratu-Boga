@@ -1,0 +1,78 @@
+@media (min-width: 640px) {
+    table {
+        display: inline-table !important;
+    }
+
+    thead tr:not(:first-child) {
+        display: none;
+    }
+}
+
+th,
+tr,
+td {
+    padding: 0px;
+    text-align: left;
+}
+
+/* Apply border-radius to even rows */
+tr .middle {
+    border-right: 0;
+    border-left: 0;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+tr:hover td .middle {
+    background-color: #2a635c;
+}
+
+tr .endLeft {
+    border-right: 0;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
+}
+
+tr:hover td .endLeft {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    background-color: #2a635c;
+}
+
+tr .endRight {
+    border-left: 0;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+tr:hover td .endRight {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    background-color: #2a635c;
+}
+
+/*  */
+th .middle {
+    border-right: 0;
+    border-left: 0;
+    overflow: hidden;
+}
+
+th .endLeft {
+    border-right: 0;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    overflow: hidden;
+}
+
+th .endRight {
+    border-left: 0;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    overflow: hidden;
+}
