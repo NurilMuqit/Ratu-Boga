@@ -17,11 +17,17 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update(User $user, array $input): void
     {
-        Validator::make($input, [
+        $validator = Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
-        ])->validateWithBag('updateProfileInformation');
+        ]);
+
+        if ($validator->fails()) {
+            // If validation fails, store errors in the session and redirect back
+            session()->flash('error', $validator->errors()->first());
+            return;
+        }
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
@@ -38,6 +44,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'email' => $input['email'],
             ])->save();
         }
+
+        session()->flash('success', 'Profile changed successfully');
     }
 
     /**
@@ -54,5 +62,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         ])->save();
 
         $user->sendEmailVerificationNotification();
+        session()->flash('success', 'Verification email has been sent. Please check your email to complete the verification process.');
     }
 }
