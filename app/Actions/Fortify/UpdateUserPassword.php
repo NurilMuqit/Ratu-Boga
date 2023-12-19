@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
+
+
 class UpdateUserPassword implements UpdatesUserPasswords
 {
     use PasswordValidationRules;
@@ -28,5 +30,11 @@ class UpdateUserPassword implements UpdatesUserPasswords
         $user->forceFill([
             'password' => Hash::make($input['password']),
         ])->save();
+
+        session()->flash('success', 'Password changed successfully');
+        // logout
+        // sleep(3);
+        // auth()->guard('web')->logout();
+        // redirect()->route('login');
     }
 }

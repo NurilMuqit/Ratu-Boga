@@ -12,7 +12,8 @@
                 : '<div class="mx-auto rounded-full bg-white w-24 h-24 flex items-center justify-center text-2xl text-gray-500">{{ substr(Auth::user()->name, 0, 1) }}</div>' !!}
         </a>
 
-        <h3 class="mb-2 md:text-2xl text-sm text-center font-bold ">{{ Auth::user()->name }}</h3>
+        <h3 class="mb-2 md:text-2xl text-sm text-center font-bold ">
+            {{ implode(' ', array_slice(explode(' ', Auth::user()->name), 0, 2)) }}</h3>
         <h4 class=" md:text-sm text-xs text-center">Admin restaurant</h4>
 
     </div>

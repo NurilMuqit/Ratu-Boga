@@ -1,5 +1,5 @@
 {{-- Badge Cart --}}
-<?php 
+<?php
 use App\Http\Controllers\MenuDisplayController;
 $total = MenuDisplayController::cartItem();
 ?>
@@ -20,6 +20,11 @@ $total = MenuDisplayController::cartItem();
                 <a href="{{ route('daftar-menu') }}"
                     class="font-medium text-white text-base mr-3 md:mr-0 {{ request()->routeIs('daftar-menu') ? 'border-b-4 border-flame mx-1.5 py-2' : '' }}"
                     style="margin-right: 2rem">Menu</a>
+                @if (auth()->check() && auth()->user()->usertype === '1')
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="font-medium text-white text-base mr-3 md:mr-0 {{ request()->routeIs('admin.dashboard') ? 'border-b-4 border-flame mx-1.5 py-2' : '' }}"
+                        style="margin-right: 2rem">Dashboard</a>
+                @endif
             </div>
             @if (Route::has('login'))
                 @auth

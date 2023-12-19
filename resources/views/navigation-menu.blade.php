@@ -93,9 +93,17 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
-                            </x-dropdown-link>
+
+
+                            @if (auth()->check() && auth()->user()->usertype === '1')
+                                <x-dropdown-link href="{{ route('admin.Profile') }}">
+                                    {{ __('Profile') }}
+                                </x-dropdown-link>
+                            @else
+                                <x-dropdown-link href="{{ route('profile.show') }}">
+                                    {{ __('Profile') }}
+                                </x-dropdown-link>
+                            @endif
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-dropdown-link href="{{ route('api-tokens.index') }}">

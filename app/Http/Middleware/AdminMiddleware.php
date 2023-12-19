@@ -21,6 +21,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect()->route('dashboard'); // Arahkan ke dashboard jika bukan admin.
+        return redirect()->route('dashboard');
     }
 }
