@@ -37,9 +37,10 @@
                 </label>
                 <select class="text-sm p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-flame"
                     name="category_id" id="">
-                    @foreach ($data as $data)
-                        <option value="{{ $data->id }}">
-                            {{ $data->category }}</option>
+                    @foreach ($data as $category)
+                        <option value="{{ $category->id }}" {{ $menu->category_id == $category->id ? 'selected' : '' }}>
+                            {{ $category->category }}
+                        </option>
                     @endforeach
                 </select>
             </div>

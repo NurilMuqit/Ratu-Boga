@@ -70,18 +70,26 @@
                                         <div
                                             class=" md:m-0 m-auto md:justify-end justify-center flex w-full justify-end h-full">
                                             {{-- ///filter --}}
-                                            <div class=" flex text-xs md:my-auto my-0  h-3/6">
-                                                <form action="{{ url('/add_menu') }}" method="POST">
+                                            <div class=" flex text-black text-xs md:my-auto my-0  h-3/6">
+                                                <form action="{{ url()->current() }}" method="get">
                                                     @csrf
-                                                    <select name="category_id_2" id="categorySelect2"
-                                                        class="block px-3  input w-24  m-auto  flex cursor-pointer focus:ring-0 font-bold  text-xs   rounded-md hover:opacity-75 transition duration-300 ease-in-out transform    text-junggleGreen text-opacity-50">
-                                                        <option selected>Filter</option>
-                                                        @foreach ($data as $item)
-                                                            <option value="{{ $item->id }}">
-                                                                {{ $item->category }}</option>
+                                                    <select name="category_id" id="category"
+                                                        class="block px-3 input w-24 m-auto flex cursor-pointer focus:ring-0 font-bold text-xs rounded-md hover:opacity-75 transition duration-300 ease-in-out transform text-junggleGreen text-opacity-50"
+                                                        onchange="this.form.submit()">
+                                                        <option value=""
+                                                            {{ !request('category_id') ? 'selected' : '' }}>Filter
+                                                        </option>
+                                                        @foreach ($data as $category)
+                                                            <option value="{{ $category->id }}"
+                                                                {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                                                {{ $category->category }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </form>
+
+
+
                                                 {{-- ///add menu --}}
                                                 <div x-data x-on:click="$dispatch('open-modal',{name : 'AddProduct'})"
                                                     class="button-edit md:m-0 m-auto mx-2  md:mx-2 cursor-pointer   justify-center  opacity-100 hover:opacity-75 transition duration-300 ease-in-out transform bg-slateGreen text-white   w-24  py-0.5   rounded-md  flex ">
@@ -89,16 +97,35 @@
                                                     <p style="font-size: 0.9em;" class="font-bold my-auto text-xs  ">
                                                         Create new</p>
                                                 </div>
+                                                <div id="toggleButton"
+                                                    class="switchView  button-edit md:m-0 m-auto mx-2  md:mx-2 cursor-pointer   justify-center  opacity-100 hover:opacity-75 transition duration-300 ease-in-out transform  text-junggleGreen   w-8  py-0.5   rounded-md  flex ">
+                                                    <div id="tableView" style="display: none;">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24">
+                                                            <path fill="currentColor"
+                                                                d="M5.5 4h4c.83 0 1.5.67 1.5 1.5v4c0 .83-.67 1.5-1.5 1.5h-4A1.5 1.5 0 0 1 4 9.5v-4C4 4.67 4.67 4 5.5 4zm9 0h4c.83 0 1.5.67 1.5 1.5v4c0 .83-.67 1.5-1.5 1.5h-4A1.5 1.5 0 0 1 13 9.5v-4c0-.83.67-1.5 1.5-1.5zm0 9h4c.83 0 1.5.67 1.5 1.5v4c0 .83-.67 1.5-1.5 1.5h-4a1.5 1.5 0 0 1-1.5-1.5v-4c0-.83.67-1.5 1.5-1.5zm-9 0h4c.83 0 1.5.67 1.5 1.5v4c0 .83-.67 1.5-1.5 1.5h-4A1.5 1.5 0 0 1 4 18.5v-4c0-.83.67-1.5 1.5-1.5zm0-7.5v4h4v-4h-4zm9 0v4h4v-4h-4zm0 9v4h4v-4h-4zm-9 0v4h4v-4h-4z">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                    <div id="cardView">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24">
+                                                            <path fill="currentColor" fill-rule="evenodd"
+                                                                d="M11.75 5.25h7.5a.75.75 0 1 1 0 1.5h-7.5a.75.75 0 1 1 0-1.5zm0 6h7.5a.75.75 0 1 1 0 1.5h-7.5a.75.75 0 1 1 0-1.5zm0 6h7.5a.75.75 0 1 1 0 1.5h-7.5a.75.75 0 1 1 0-1.5zM6 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z">
+                                                            </path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div style="height: 30rem  " class="pb-6 sm:pb-0">
-                                    <div
-                                        class=" overflow-x-hidden lg:overflow-hidden  w-full h-full item-center bg-white    flex flex-wrap   {{ $menus->count() > 0 ? 'lg:px-6 lg:py-0 py-8  lg:grid lg:grid-cols-6 gap-4 grid-flow-row auto-rows-auto' : '' }}  ">
+                                <div style="height: 30rem  " class="pb-6 overflow-auto sm:pb-0">
+                                    <div id="switchcardview"
+                                        class=" overflow-x-hidden lg:overflow-hidden  w-full h-full item-center bg-white flex flex-wrap   {{ $menus->count() > 0 ? 'lg:px-1 lg:py-0 py-8  lg:grid lg:grid-cols-6 gap-4 grid-flow-row auto-rows-auto' : '' }}  ">
                                         @foreach ($menus as $menuItem)
                                             <div
-                                                class="c-card m-auto lg:m-0  block  overflow-hidden  sm:h-80 lg:h-56 w-5/12 sm:w-5/12 lg:w-auto h-64 bg-slateGreen  pb-3 cursor-pointer rounded-xl">
+                                                class="c-card  m-auto lg:m-0  block  overflow-hidden  sm:h-80 lg:h-56 w-5/12 sm:w-5/12 lg:w-auto h-64 bg-slateGreen  pb-3 cursor-pointer rounded-xl">
                                                 <div class="relative overflow-hidden  h-4/6">
                                                     <div class="relative w-full bg-white h-full overflow-hidden group">
                                                         <img class="object-cover w-full h-full object-center"
@@ -162,6 +189,283 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div id="switchtabelview" style="display: none"
+                                        class="flex overflow-auto justify-center px-6">
+                                        <table
+                                            class="  table-auto text-sm w-full flex flex-row flex-no-wrap overflow-hidden  md:my-2  my-5">
+                                            <thead class="text-junggleGreen text-normal">
+                                                <tr
+                                                    class=" flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+                                                    <th class="endLeft ">
+                                                        <div
+                                                            class="py-2 text-left md:text-center flex justify-center  bg-gray-100">
+                                                            @php
+                                                                $currentSortBy = request('sort_by');
+                                                                $currentSortOrder = request('sort_order', 'desc');
+                                                            @endphp
+
+
+                                                            <a class="flex m-auto text-junggleGreen"
+                                                                href="{{ route('admin.products', ['sort_by' => 'id', 'sort_order' => $currentSortBy === 'id' && $currentSortOrder === 'desc' ? 'asc' : 'desc']) }}">
+                                                                Id
+                                                                @if ($currentSortBy === 'id')
+                                                                    @if ($currentSortOrder === 'desc')
+                                                                        <svg class="my-auto " width="14"
+                                                                            height="8" viewBox="0 0 20 20"
+                                                                            fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            style="transform: rotate(180deg);">
+                                                                            <path
+                                                                                d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    @else
+                                                                        <svg class="my-auto mt-2" width="14"
+                                                                            height="8" viewBox="0 0 20 20"
+                                                                            fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    @endif
+                                                                @else
+                                                                    <svg class="my-auto mt-2" width="14"
+                                                                        height="8" viewBox="0 0 20 20"
+                                                                        fill="currentColor"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                            fill="currentColor" />
+                                                                    </svg>
+                                                                @endif
+                                                            </a>
+                                                        </div>
+
+                                                    </th>
+                                                    <th>
+                                                        <div class="p-3 md:p-2  md:pr-14  text-left  bg-gray-100 ">
+                                                            @php
+                                                                $currentSortBy = request('sort_by');
+                                                                $currentSortOrder = request('sort_order', 'desc');
+                                                            @endphp
+
+                                                            <a class="flex   text-junggleGreen"
+                                                                href="{{ route('admin.products', ['sort_by' => 'menu_name', 'sort_order' => $currentSortBy === 'menu_name' && $currentSortOrder === 'desc' ? 'asc' : 'desc']) }}">
+                                                                Name
+                                                                @if ($currentSortBy === 'menu_name')
+                                                                    @if ($currentSortOrder === 'desc')
+                                                                        <svg class="my-auto " width="14"
+                                                                            height="8" viewBox="0 0 20 20"
+                                                                            fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            style="transform: rotate(180deg);">
+                                                                            <path
+                                                                                d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    @else
+                                                                        <svg class="my-auto mt-2" width="14"
+                                                                            height="8" viewBox="0 0 20 20"
+                                                                            fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    @endif
+                                                                @else
+                                                                    <svg class="my-auto mt-2" width="14"
+                                                                        height="8" viewBox="0 0 20 20"
+                                                                        fill="currentColor"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                            fill="currentColor" />
+                                                                    </svg>
+                                                                @endif
+                                                            </a>
+                                                        </div>
+                                                    </th>
+                                                    <th>
+                                                        <div class=" md:py-2  md:pr-14  text-left  bg-gray-100 ">
+
+                                                            @php
+                                                                $currentSortBy = request('sort_by');
+                                                                $currentSortOrder = request('sort_order', 'desc');
+                                                            @endphp
+
+                                                            <a class="flex  text-junggleGreen"
+                                                                href="{{ route('admin.products', ['sort_by' => 'menu_price', 'sort_order' => $currentSortBy === 'menu_price' && $currentSortOrder === 'desc' ? 'asc' : 'desc']) }}">
+                                                                Price
+                                                                @if ($currentSortBy === 'menu_price')
+                                                                    @if ($currentSortOrder === 'desc')
+                                                                        <svg class="my-auto " width="14"
+                                                                            height="8" viewBox="0 0 20 20"
+                                                                            fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            style="transform: rotate(180deg);">
+                                                                            <path
+                                                                                d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    @else
+                                                                        <svg class="my-auto mt-2" width="14"
+                                                                            height="8" viewBox="0 0 20 20"
+                                                                            fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    @endif
+                                                                @else
+                                                                    <svg class="my-auto mt-2" width="14"
+                                                                        height="8" viewBox="0 0 20 20"
+                                                                        fill="currentColor"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                            fill="currentColor" />
+                                                                    </svg>
+                                                                @endif
+                                                            </a>
+                                                        </div>
+                                                    </th>
+                                                    <th>
+                                                        <div class="py-3 md:py-2 md:pr-14 text-left  bg-gray-100 ">
+
+                                                            @php
+                                                                $currentSortBy = request('sort_by');
+                                                                $currentSortOrder = request('sort_order', 'desc');
+                                                            @endphp
+
+                                                            <a class="flex  text-junggleGreen"
+                                                                href="{{ route('admin.products', ['sort_by' => 'menu_quantity', 'sort_order' => $currentSortBy === 'menu_quantity' && $currentSortOrder === 'desc' ? 'asc' : 'desc']) }}">
+                                                                Quantity
+                                                                @if ($currentSortBy === 'menu_quantity')
+                                                                    @if ($currentSortOrder === 'desc')
+                                                                        <svg class="my-auto " width="14"
+                                                                            height="8" viewBox="0 0 20 20"
+                                                                            fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            style="transform: rotate(180deg);">
+                                                                            <path
+                                                                                d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    @else
+                                                                        <svg class="my-auto mt-2" width="14"
+                                                                            height="8" viewBox="0 0 20 20"
+                                                                            fill="currentColor"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                                fill="currentColor" />
+                                                                        </svg>
+                                                                    @endif
+                                                                @else
+                                                                    <svg class="my-auto mt-2" width="14"
+                                                                        height="8" viewBox="0 0 20 20"
+                                                                        fill="currentColor"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path
+                                                                            d="M21.1761 2.48797L11.7361 12.952C11.3521 13.4 10.6481 13.4 10.2641 12.952L0.824149 2.48797C0.216149 1.81597 0.664149 0.727966 1.56015 0.727966L20.4401 0.727966C21.3361 0.727966 21.7841 1.81597 21.1761 2.48797Z"
+                                                                            fill="currentColor" />
+                                                                    </svg>
+                                                                @endif
+                                                            </a>
+                                                        </div>
+                                                    </th>
+                                                    <th class="endRight">
+                                                        <div class="py-3 md:py-2  bg-gray-100 Actions text-left  ">
+                                                            Actions
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="flex-1 sm:flex-none ">
+                                                @foreach ($menus as $menuItem)
+                                                    <tr class="md:grid hidden ">
+                                                        <td class="py-2"></td>
+                                                    </tr>
+
+                                                    <tr
+                                                        class="flex row py-0 border-grey-light border  hover:text-white  hover:bg-slateGreen transition duration-500 ease-in-out transform  flex-col  flex-no wrap sm:table-row  mb-0">
+                                                        <td>
+                                                            <div class="flex justify-center text-center  m-auto">
+                                                                {{ $menuItem->id }}
+                                                            </div>
+
+                                                        </td>
+                                                        <td x-data
+                                                            x-on:click="$dispatch('open-modal', { name: 'detailuser'})">
+                                                            <div
+                                                                class=" md:text-center w-full flex item-center text-center m-auto cursor-pointer">
+                                                                <div class="flex rounded-md p-2 items-center ">
+                                                                    <img class="object-cover m-auto rounded-md w-14 h-14 object-center"
+                                                                        src="/menu/{{ $menuItem->image }}"
+                                                                        alt="">
+                                                                </div>
+                                                                <div class="my-auto">
+                                                                    {{ $menuItem->menu_name }}
+                                                                </div>
+
+                                                            </div>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="py-3  md:text-left cursor-pointer">
+                                                                Rp.{{ $menuItem->menu_price }}
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="py-3 md:text-left cursor-pointer">
+                                                                {{ $menuItem->menu_quantity }} Porsi
+                                                            </div>
+                                                        </td>
+                                                        <td>
+
+                                                            <div
+                                                                class=" border-grey-light  grid grid-cols-2  cursor-pointer">
+                                                                <a href="{{ url('edit_menu/' . $menuItem->id . '?search=' . $searchKeyword . '&page=' . $menus->currentPage()) }}"
+                                                                    class="relative align-middle select-none font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-5 h-5  text-xs text-gray-900 hover:text-flame hover:bg-gray-900/10 active:bg-gray-900/20"
+                                                                    type="button">
+                                                                    <span
+                                                                        class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 24 24" fill="currentColor"
+                                                                            aria-hidden="true" class="h-4 w-4">
+                                                                            <path
+                                                                                d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </span>
+                                                                </a>
+                                                                <a href="{{ url('/delete', $menuItem->id) }}"
+                                                                    onclick="showConfirmationModal(event)" x-data
+                                                                    x-on:click="$dispatch('open-modal',{name : 'delete'})"
+                                                                    class="relative align-middle select-none hover:text-flame font-sans font-medium text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none w-5 h-5  text-xs text-gray-900 hover:bg-gray-900/10 active:bg-gray-900/20"
+                                                                    type="button">
+                                                                    <span
+                                                                        class="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 24 24" class="h-4 w-4"
+                                                                            fill="currentColor">
+                                                                            <path
+                                                                                d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </span>
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
 
 
                                 </div>
@@ -170,10 +474,10 @@
                             {{-- //Pagination --}}
                             @if (!str_contains(request()->route()->uri, 'edit_menu'))
                                 <div class="pb-8">
-                                    {{ $menus->appends(['search' => $searchKeyword])->links('vendor.pagination.default') }}
+                                    {{ $menus->appends(['search' => $searchKeyword, 'sort_by' => $currentSortBy, 'sort_order' => $currentSortOrder])->links('vendor.pagination.default') }}
                                 </div>
                             @else
-                                {{ $menus->appends(['search' => $searchKeyword, 'page' => $menus->currentPage()])->links('vendor.pagination.default') }}
+                                {{ $menus->appends(['search' => $searchKeyword, 'sort_by' => $currentSortBy, 'sort_order' => $currentSortOrder, 'category'])->links('vendor.pagination.default') }}
                             @endif
                         </main>
 
@@ -252,4 +556,5 @@
             </div>
         </div>
     </div>
+
 </x-HtmlPage>

@@ -20,16 +20,30 @@ class MenusController extends Controller
         $segments = explode('/', $currentUrl);
         $request->session()->put('url_segments', $segments);
         $menusQuery = Menu::query();
+
+        $sortColumn = $request->query('sort_by', 'id');
+        $sortOrder = $request->query('sort_order', 'desc');
+        $menusQuery->orderBy($sortColumn, $sortOrder);
+
         if ($searchKeyword) {
             $menusQuery->where('menu_name', 'like', '%' . $searchKeyword . '%');
         }
+
+        $selectedCategoryId = $request->query('category_id');
+        if ($selectedCategoryId) {
+            $menusQuery->where('category_id', $selectedCategoryId);
+        }
+
         $menus = $menusQuery->paginate(12);
         $menu = Menu::find($id);
-        $data = category::all();
+        $data = Category::all();
         $currentPage = $request->input('page', 1);
         $searchKeyword = $request->input('search', '');
+
         return view("admin.products", compact("menu", "data", "menus", 'searchKeyword', 'currentPage'));
     }
+
+
 
     public function add_menu(Request $request)
     {
@@ -60,7 +74,6 @@ class MenusController extends Controller
             $errorCode = $e->errorInfo[1];
 
             if ($errorCode == 1451) {
-                // Constraint violation (foreign key constraint fails)
                 return redirect()->back()->with('failure', 'Your category is empty. Please add a category before adding a product.');
             } else {
                 return redirect()->back()->with('failure', 'Failed to delete category. Error: ' . $e->getMessage());
@@ -84,6 +97,7 @@ class MenusController extends Controller
     {
         $searchKeyword = $request->input('search', '');
 
+
         $menu = Menu::find($id);
         $menusQuery = Menu::query();
         if ($searchKeyword) {
@@ -94,6 +108,12 @@ class MenusController extends Controller
         $request->session()->put('url_segments', $segments);
         $currentPage = $request->input('page', 1);
         $data = Category::all();
+
+        $selectedCategoryId = $request->query('category_id');
+        if ($selectedCategoryId) {
+            $menusQuery->where('category_id', $selectedCategoryId);
+        }
+
         return view('admin.products', compact('menu', 'data', 'menus', 'searchKeyword', 'currentPage'));
     }
 

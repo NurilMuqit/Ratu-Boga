@@ -50,5 +50,8 @@
     @livewireScripts
 </body>
 <script src="{{ asset('js/datepicker.js') }}"></script>
+<script src="{{ asset('js/switchview.js') }}"></script>
+<script src="{{ asset('js/menuquantity.js') }}"></script>
+
 
 </html>
