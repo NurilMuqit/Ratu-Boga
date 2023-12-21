@@ -3,14 +3,15 @@
 use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\MenusDisplayController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuDisplayController;
 use App\Http\Controllers\MenusController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\DashboardController;
-
-
+use App\Http\Controllers\OrderController;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,8 +77,14 @@ Route::get('/daftar-menu', [MenuDisplayController::class, 'menuDisplay'])->name(
 Route::get('/menu-detail/{id}', [MenuDisplayController::class, 'menuDetail'])->name('menuDetail');
 Route::get('/search', [MenuDisplayController::class, 'search'])->name('search');
 Route::post('/add-to-cart', [MenuDisplayController::class, 'addToCart'])->name('addToCart');
+
+// Route::post('/add-to-cart/{menuId}', [MenuDisplayController::class, 'addToCart'])->name('add.to.cart');
+
 Route::get('/cart-list', [MenuDisplayController::class, 'cartList'])->middleware('auth')->name('cart-list');
 Route::get('/remove-cart/{id}', [MenuDisplayController::class, 'removeCart'])->name('remove-cart');
 
 
 Route::get('/redirect', [HomeController::class, 'redirect'])->name('redirect');
+Route::get('/Order', [OrderController::class, 'index']);
+Route::post('/checkout', [OrderController::class, 'checkout']);
+Route::get('/invoice/{id}', [OrderController::class, 'invoice']);
