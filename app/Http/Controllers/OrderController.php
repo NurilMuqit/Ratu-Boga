@@ -2,28 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Order;
+
+use App\Models\Menu;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    //
     public function index()
     {
-        return view('order');
+
+
+        // Assuming you also have other logic here for fetching cart items or other data
+        $menus = Menu::all(); // Replace Menu with your actual model name and logic
+        return view('cart', compact('menus'));
     }
     public function checkout(Request $request)
     {
-        $request->request->add(['total_price' => $request->qty * 100000, 'status' => 'Unpaid']);
-        // dd($request->all());
+        $request->request->add(['total_price' => $request->total_price, 'status' => 'Unpaid']);
+        // $request->request->add(['name' => $request->name, 'total_price' => $request->total_price, 'status' => 'Unpaid']);
         $order = Order::create($request->all());
-
-        //SAMPLE REQUEST START HERE
 
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
+        \Midtrans\Config::$isProduction = config('midtrans.is_production');
         // Set sanitization on (default)
         \Midtrans\Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true
@@ -43,6 +48,28 @@ class OrderController extends Controller
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
+        // Ambil data item dari formulir
+        $menuIds = $request->input('menu_ids');
+        $quantities = $request->input('quantities');
+        $menus = Menu::all();
+        $carts = Cart::all();
+
+        foreach ($menus as $menu) {
+            // Cari item cart yang sesuai dengan menu
+            $cartItem = $carts->where('menu_id', $menu->id)->first();
+
+            // Jika item cart ditemukan
+            if ($cartItem) {
+                OrderDetail::create([
+                    'order_id' => $order->id,
+                    'product_name' => $menu->menu_name,
+                    'quantity' => $cartItem->quantity, // Gunakan quantity dari cart
+                    'total_price' => $cartItem->quantity * $menu->menu_price,
+                    // Tambahkan field lain sesuai kebutuhan
+                ]);
+            }
+        }
+
         return view('checkout', compact('snapToken', 'order'));
     }
     public function callback(Request $request)
@@ -56,7 +83,6 @@ class OrderController extends Controller
             }
         }
     }
-
     public function invoice($id)
     {
         $order = Order::find($id);

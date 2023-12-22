@@ -33,15 +33,39 @@ class MenuDisplayController extends Controller
     public function addToCart(Request $req)
     {
         if (Auth::check()) {
-            Cart::create([
-                'customer_id' => Auth::id(),
-                'menu_id' => $req->menu_id,
-                'quantity' => $req->quantity,
-                'order_date' => now(),
+            // Ambil data menu
+            $menu = Menu::find($req->menu_id);
 
-            ]);
+            // Pastikan menu ada dan stok cukup
+            if ($menu && $menu->menu_quantity >= $req->quantity) {
+                // Mulai transaksi
+                DB::beginTransaction();
 
-            return redirect()->route('daftar-menu')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
+                try {
+                    // Kurangi stok di tabel menus
+                    $menu->menu_quantity -= $req->quantity;
+                    $menu->save();
+
+                    // Tambahkan ke tabel carts
+                    Cart::create([
+                        'customer_id' => Auth::id(),
+                        'menu_id' => $req->menu_id,
+                        'quantity' => $req->quantity,
+                        'order_date' => now(),
+                    ]);
+
+                    // Commit transaksi jika semuanya berhasil
+                    DB::commit();
+
+                    return redirect()->route('daftar-menu')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
+                } catch (\Exception $e) {
+                    // Rollback transaksi jika terjadi kesalahan
+                    DB::rollback();
+                    return redirect()->route('daftar-menu')->with('error', 'Error adding product to cart.');
+                }
+            } else {
+                return redirect()->route('daftar-menu')->with('error', 'Product not available or insufficient stock.');
+            }
         } else {
             return redirect()->route('login');
         }

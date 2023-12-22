@@ -11,6 +11,7 @@ use App\Http\Controllers\MenusController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\AdminControllerOrder;
 use App\Models\Order;
 
 /*
@@ -43,16 +44,10 @@ Route::middleware(['auth:sanctum', 'verified', AdminMiddleware::class])->group(f
     Route::get('/admin/dashboard', [DashboardController::class, 'show'])->name('admin.dashboard');
 
     Route::get('/admin/products', [MenusController::class, 'shows'])->name('admin.products');
-
-    Route::get('/admin/Orders', function () {
-        return view('admin.Orders');
-    })->name('admin.Orders');
-    Route::get('/admin/Finance', function () {
-        return view('admin.Finance');
-    })->name('admin.Finance');
-    Route::get('/admin/Settings', function () {
-        return view('admin.Settings');
-    })->name('admin.Settings');
+    Route::get('/admin/orders', [AdminControllerOrder::class, 'index'])
+        ->name('admin.Orders');
+    Route::get('/order-details/{orderId}', [AdminControllerOrder::class, 'showOrderDetails'])
+        ->name('order.details');
     Route::get('/admin/Profile', function () {
         return view('admin.Profile');
     })->name('admin.Profile');

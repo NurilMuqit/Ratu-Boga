@@ -20,12 +20,13 @@
                                     </h1>
                                 </div>
 
-                                <div class="md:flex hidden justify-end items-center h-full w-full ">
+                                <a href="{{ route('home') }}"
+                                    class="md:flex hidden justify-end items-center h-full w-full ">
                                     <img src="{{ asset('images/logo-white.png') }}" alt="" class="w-10 ">
                                     <span
                                         class="self-center ml-2 PlayfairDisplay text-xl font-semibold whitespace-nowrap text-white font-PlayfairDisplay">Ratu
                                         Boga</span>
-                                </div>
+                                </a>
                             </div>
 
                         </header>

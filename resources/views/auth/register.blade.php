@@ -33,6 +33,14 @@
                     placeholder="Masukkan email disini" />
             </div>
 
+            <div class="mt-4">
+                {{-- <x-label for="email" value="{{ __('Email') }}" /> --}}
+                <x-input id="phone"
+                    class="block mt-1 w-full placeholder-metalicSilver focus:placeholder-junggleGreen" type="text"
+                    name="phone" :value="old('phone')" required autocomplete="phone"
+                    placeholder="Masukkan nomor Hp disini" />
+            </div>
+
             <div class="mt-4 relative">
                 {{-- <x-label for="password" value="{{ __('Password') }}" /> --}}
                 <x-input id="password"

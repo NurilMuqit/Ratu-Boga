@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Menu extends Model
 {
@@ -14,8 +15,10 @@ class Menu extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
-    // public function carts()
-    // {
-    //     return $this->hasMany(Cart::class, 'menu_id');
-    // }
+
+    // Relasi dengan Cart, satu menu dapat memiliki banyak keranjang
+    public function carts(): HasMany
+    {
+        return $this->hasMany(Cart::class, 'menu_id');
+    }
 }

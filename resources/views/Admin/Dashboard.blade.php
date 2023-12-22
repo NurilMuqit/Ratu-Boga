@@ -21,12 +21,13 @@
                                     Boga Admin!</p>
                             </div>
 
-                            <div class="md:flex hidden  justify-end items-center h-full w-full ">
+                            <a href="{{ route('home') }}"
+                                class="md:flex hidden  justify-end items-center h-full w-full ">
                                 <img src="{{ asset('images/logo.png') }}" alt="" class="w-10 ">
                                 <span
                                     class="self-center ml-2 PlayfairDisplay text-xl font-semibold whitespace-nowrap text-jungglegreen font-PlayfairDisplay">Ratu
                                     Boga</span>
-                            </div>
+                            </a>
 
 
                         </header>
@@ -86,32 +87,13 @@
                                             </svg>
                                         </div>
                                         <div class="h-full text-black  item-center py-5 rounded-2xl">
-                                            <h1 class="my-1 font-bold  opacity-75 xl:text-4xl md:text-2xl text-4xl">
-                                                75</h1>
+                                            <h1 class="mt-6  font-bold  opacity-75 xl:text-4xl md:text-2xl text-4xl">
+                                                {{ $totalOrders }}</h1>
                                             <h4
                                                 class="my-1 font-normal opacity-75 xl:text-base  md:text-md sm:text-sm  text-light">
                                                 Total Orders
                                             </h4>
-                                            <div
-                                                class="text-tealGray grid text-xs font-extralight my-1 items-center w-full grid-cols-6 ">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                    width="16" height="16" viewBox="0 0 256 256"
-                                                    xml:space="preserve">
-                                                    <defs></defs>
-                                                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-                                                        transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                                                        <circle cx="45" cy="45" r="45"
-                                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgba(45,202,154,0.15); fill-rule: nonzero; opacity: 1;"
-                                                            transform="matrix(1 0 0 1 0 0)" />
-                                                        <path
-                                                            d="M 46.112 21.338 c -0.027 -0.018 -0.057 -0.029 -0.084 -0.046 c -0.084 -0.051 -0.168 -0.1 -0.259 -0.138 c -0.038 -0.016 -0.079 -0.023 -0.118 -0.037 c -0.084 -0.029 -0.166 -0.06 -0.255 -0.077 C 45.266 21.014 45.134 21 45 21 s -0.266 0.014 -0.395 0.04 c -0.088 0.018 -0.171 0.049 -0.255 0.077 c -0.039 0.014 -0.08 0.021 -0.118 0.037 c -0.091 0.038 -0.176 0.088 -0.259 0.138 c -0.027 0.016 -0.058 0.028 -0.084 0.046 c -0.109 0.073 -0.211 0.156 -0.303 0.249 L 28.481 36.691 c -0.781 0.781 -0.781 2.047 0 2.828 c 0.781 0.781 2.047 0.781 2.828 0 L 43 27.828 L 43 67 c 0 1.104 0.896 2 2 2 s 2 -0.896 2 -2 l 0 -39.172 L 58.691 39.52 c 0.781 0.781 2.047 0.781 2.828 0 c 0.391 -0.391 0.586 -0.902 0.586 -1.414 s -0.195 -1.023 -0.586 -1.414 L 46.415 21.587 C 46.323 21.495 46.221 21.411 46.112 21.338 z"
-                                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,163,137); fill-rule: nonzero; opacity: 1;"
-                                                            transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
-                                                    </g>
-                                                </svg>
-                                                <h6 class="col-span-5">4% (30 days)</h6>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -153,38 +135,17 @@
                                             </svg>
                                         </div>
                                         <div class="h-full text-black  item-center py-5 rounded-2xl">
-                                            <h1 class="my-1 font-bold  opacity-75 text-4xl">75</h1>
-                                            <h4 class="my-1 font-normal opacity-75 text-light">Total Delivered</h4>
-                                            <div
-                                                class="text-tealGray grid text-xs font-extralight my-1 items-center w-full grid-cols-5 ">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                    width="16" height="16" viewBox="0 0 256 256"
-                                                    xml:space="preserve">
-                                                    <defs></defs>
-                                                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-                                                        transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                                                        <circle cx="45" cy="45" r="45"
-                                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgba(45,202,154,0.15); fill-rule: nonzero; opacity: 1;"
-                                                            transform="matrix(1 0 0 1 0 0)" />
-                                                        <path
-                                                            d="M 46.112 21.338 c -0.027 -0.018 -0.057 -0.029 -0.084 -0.046 c -0.084 -0.051 -0.168 -0.1 -0.259 -0.138 c -0.038 -0.016 -0.079 -0.023 -0.118 -0.037 c -0.084 -0.029 -0.166 -0.06 -0.255 -0.077 C 45.266 21.014 45.134 21 45 21 s -0.266 0.014 -0.395 0.04 c -0.088 0.018 -0.171 0.049 -0.255 0.077 c -0.039 0.014 -0.08 0.021 -0.118 0.037 c -0.091 0.038 -0.176 0.088 -0.259 0.138 c -0.027 0.016 -0.058 0.028 -0.084 0.046 c -0.109 0.073 -0.211 0.156 -0.303 0.249 L 28.481 36.691 c -0.781 0.781 -0.781 2.047 0 2.828 c 0.781 0.781 2.047 0.781 2.828 0 L 43 27.828 L 43 67 c 0 1.104 0.896 2 2 2 s 2 -0.896 2 -2 l 0 -39.172 L 58.691 39.52 c 0.781 0.781 2.047 0.781 2.828 0 c 0.391 -0.391 0.586 -0.902 0.586 -1.414 s -0.195 -1.023 -0.586 -1.414 L 46.415 21.587 C 46.323 21.495 46.221 21.411 46.112 21.338 z"
-                                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,163,137); fill-rule: nonzero; opacity: 1;"
-                                                            transform=" matrix(1 0 0 1 0 0) "
-                                                            stroke-linecap="round" />
-                                                    </g>
-                                                </svg>
-                                                <h6 class="col-span-4">4% (30 days)</h6>
-                                            </div>
+                                            <h1 class="my-1 mt-6 font-bold  opacity-75 text-4xl">{{ $totalUsers }}
+                                            </h1>
+                                            <h4 class="my-1 font-normal opacity-75 text-light">Total Customer</h4>
                                         </div>
                                     </div>
 
                                 </div>
-                                {{-- Total Canceled --}}
+                                {{-- Total Complited --}}
                                 <div
                                     class=" my-4 md:my-0 flex justify-end rounded-2xl h-full bg-white drop-shadow-md hover:drop-shadow transition duration-300 ease-in-out transform cursor-pointer">
-                                    <div
-                                        class="grid items-center rounded-2xl  grid-cols-2 grid-flow-col h-full w-full">
+                                    <div class="grid items-center rounded-2xl  grid-cols-2 grid-flow-col h-full w-full">
                                         <div class="flex items-center  justify-center rounded-2xl  h-full  ">
                                             <svg width="84" height="84" viewBox="0 0 73 73" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -227,30 +188,10 @@
                                             </svg>
                                         </div>
                                         <div class="h-full text-black  item-center py-5 rounded-2xl">
-                                            <h1 class="my-1 font-bold  opacity-75 text-4xl">75</h1>
-                                            <h4 class="my-1 font-normal opacity-75 text-light">Total Canceled</h4>
-                                            <div
-                                                class="text-tealGray grid text-xs font-extralight my-1 items-center w-full grid-cols-5 ">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                    width="16" height="16" viewBox="0 0 256 256"
-                                                    xml:space="preserve">
-                                                    <defs></defs>
-                                                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-                                                        transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                                                        <circle cx="45" cy="45" r="45"
-                                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: #FF5B5B; fill-rule: nonzero; opacity: 0.15;"
-                                                            transform="matrix(1 0 0 1 0 0)" />
-                                                        <path
-                                                            d="M 46.112 21.338 c -0.027 -0.018 -0.057 -0.029 -0.084 -0.046 c -0.084 -0.051 -0.168 -0.1 -0.259 -0.138 c -0.038 -0.016 -0.079 -0.023 -0.118 -0.037 c -0.084 -0.029 -0.166 -0.06 -0.255 -0.077 C 45.266 21.014 45.134 21 45 21 s -0.266 0.014 -0.395 0.04 c -0.088 0.018 -0.171 0.049 -0.255 0.077 c -0.039 0.014 -0.08 0.021 -0.118 0.037 c -0.091 0.038 -0.176 0.088 -0.259 0.138 c -0.027 0.016 -0.058 0.028 -0.084 0.046 c -0.109 0.073 -0.211 0.156 -0.303 0.249 L 28.481 36.691 c -0.781 0.781 -0.781 2.047 0 2.828 c 0.781 0.781 2.047 0.781 2.828 0 L 43 27.828 L 43 67 c 0 1.104 0.896 2 2 2 s 2 -0.896 2 -2 l 0 -39.172 L 58.691 39.52 c 0.781 0.781 2.047 0.781 2.828 0 c 0.391 -0.391 0.586 -0.902 0.586 -1.414 s -0.195 -1.023 -0.586 -1.414 L 46.415 21.587 C 46.323 21.495 46.221 21.411 46.112 21.338 z"
-                                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: #FF5B5B; fill-rule: nonzero; opacity: 1;"
-                                                            transform="matrix(1 0 0 1 0 0) rotate(180, 45, 45)"
-                                                            stroke-linecap="round" />
+                                            <h1 class="mt-6 font-bold  opacity-75 text-4xl">
+                                                {{ $totalPaidOrders }}</h1>
+                                            <h4 class="my-1 font-normal opacity-75 text-light">Total Paid</h4>
 
-                                                    </g>
-                                                </svg>
-                                                <h6 class="col-span-4">4% (30 days)</h6>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -289,34 +230,17 @@
                                             </svg>
                                         </div>
                                         <div class="h-full text-black  item-center py-5 rounded-2xl">
-                                            <h1 class="my-1 font-bold  opacity-75 text-4xl">750K</h1>
+                                            <h1 class="mt-6 font-bold  opacity-75 text-4xl">
+                                                {{ $totalPaidAmount / 1000 }} K</h1>
                                             <h4 class="my-1 font-normal opacity-75 text-light">Total Revenue</h4>
-                                            <div
-                                                class="text-tealGray grid text-xs font-extralight my-1 items-center w-full grid-cols-5 ">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
-                                                    width="16" height="16" viewBox="0 0 256 256"
-                                                    xml:space="preserve">
-                                                    <defs></defs>
-                                                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
-                                                        transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-                                                        <circle cx="45" cy="45" r="45"
-                                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgba(45,202,154,0.15); fill-rule: nonzero; opacity: 1;"
-                                                            transform="matrix(1 0 0 1 0 0)" />
-                                                        <path
-                                                            d="M 46.112 21.338 c -0.027 -0.018 -0.057 -0.029 -0.084 -0.046 c -0.084 -0.051 -0.168 -0.1 -0.259 -0.138 c -0.038 -0.016 -0.079 -0.023 -0.118 -0.037 c -0.084 -0.029 -0.166 -0.06 -0.255 -0.077 C 45.266 21.014 45.134 21 45 21 s -0.266 0.014 -0.395 0.04 c -0.088 0.018 -0.171 0.049 -0.255 0.077 c -0.039 0.014 -0.08 0.021 -0.118 0.037 c -0.091 0.038 -0.176 0.088 -0.259 0.138 c -0.027 0.016 -0.058 0.028 -0.084 0.046 c -0.109 0.073 -0.211 0.156 -0.303 0.249 L 28.481 36.691 c -0.781 0.781 -0.781 2.047 0 2.828 c 0.781 0.781 2.047 0.781 2.828 0 L 43 27.828 L 43 67 c 0 1.104 0.896 2 2 2 s 2 -0.896 2 -2 l 0 -39.172 L 58.691 39.52 c 0.781 0.781 2.047 0.781 2.828 0 c 0.391 -0.391 0.586 -0.902 0.586 -1.414 s -0.195 -1.023 -0.586 -1.414 L 46.415 21.587 C 46.323 21.495 46.221 21.411 46.112 21.338 z"
-                                                            style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(0,163,137); fill-rule: nonzero; opacity: 1;"
-                                                            transform=" matrix(1 0 0 1 0 0) "
-                                                            stroke-linecap="round" />
-                                                    </g>
-                                                </svg>
-                                                <h6 class="col-span-4">4% (30 days)</h6>
-                                            </div>
                                         </div>
                                     </div>
 
                                 </div>
                             </div>
+
+
+
                             {{-- reservetion list,inventory list and customer riview< --}}
                             {{-- reservetion list --}}
                             <div
@@ -337,72 +261,26 @@
                                         </div>
                                     </div>
                                     <ul role="list" class="md:mt-6  w-full ">
-                                        <li
-                                            class="hidden justify-between border-b border-white 2xl:flex bg-bg-almond py-3">
-                                            <div class="flex m-auto  ">
-                                                <img class="h-10 w-10  m-auto rounded-full bg-gray-50"
-                                                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                    alt="">
-                                                <div class="m-auto mx-4">
-                                                    <p class="text-sm font-semibold  text-gray-900">Leslie</p>
-                                                    <p class=" text-xs text-gray-500">
-                                                        Nasi Goreng </p>
+                                        @foreach ($orderDetails as $orderDetail)
+                                            <li
+                                                class="hidden justify-between border-b border-white 2xl:flex bg-bg-almond py-3">
+                                                <div class="flex m-auto  ">
+                                                    <img class="h-10 w-10  m-auto rounded-full bg-gray-50"
+                                                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                        alt="">
+                                                    <div class="m-auto mx-4">
+                                                        <p class="text-sm font-semibold  text-gray-900">
+                                                            {{ $orderDetail->order->name }}</p>
+                                                        <p class=" text-xs text-gray-500">
+                                                            {{ $orderDetail->product_name }} </p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="m-auto  bg-flame rounded-2xl opacity-50 px-4 py-0.5">
-                                                <p class="my-auto text-xs font-semibold text-white"> <time
-                                                        datetime="2023-01-23T13:23Z">3 hours ago</time></p>
-                                            </div>
-                                        </li>
-
-                                        <li class="flex justify-between border-b border-white bg-bg-almond py-3">
-                                            <div class="flex m-auto  ">
-                                                <img class="h-10 w-10  m-auto rounded-full bg-gray-50"
-                                                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                    alt="">
-                                                <div class="m-auto mx-4">
-                                                    <p class="text-sm font-semibold  text-gray-900">Leslie</p>
-                                                    <p class=" text-xs text-gray-500">
-                                                        Nasi Goreng </p>
+                                                <div class="m-auto  bg-flame rounded-2xl opacity-50 px-4 py-0.5">
+                                                    <p class="my-auto text-xs font-semibold text-white"> <time
+                                                            datetime="2023-01-23T13:23Z">3 hours ago</time></p>
                                                 </div>
-                                            </div>
-                                            <div class="m-auto  bg-flame rounded-2xl opacity-50 px-4 py-0.5">
-                                                <p class="my-auto text-xs font-semibold text-white"> <time
-                                                        datetime="2023-01-23T13:23Z">3 hours ago</time></p>
-                                            </div>
-                                        </li>
-                                        <li class="flex justify-between border-b border-white bg-bg-almond py-3">
-                                            <div class="flex m-auto  ">
-                                                <img class="h-10 w-10  m-auto rounded-full bg-gray-50"
-                                                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                    alt="">
-                                                <div class="m-auto mx-4">
-                                                    <p class="text-sm font-semibold  text-gray-900">Leslie</p>
-                                                    <p class=" text-xs text-gray-500">
-                                                        Nasi Goreng </p>
-                                                </div>
-                                            </div>
-                                            <div class="m-auto  bg-flame rounded-2xl opacity-50 px-4 py-0.5">
-                                                <p class="my-auto text-xs font-semibold text-white"> <time
-                                                        datetime="2023-01-23T13:23Z">3 hours ago</time></p>
-                                            </div>
-                                        </li>
-                                        <li class="flex justify-between border-b border-white bg-bg-almond py-3">
-                                            <div class="flex m-auto  ">
-                                                <img class="h-10 w-10  m-auto rounded-full bg-gray-50"
-                                                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                    alt="">
-                                                <div class="m-auto mx-4">
-                                                    <p class="text-sm font-semibold  text-gray-900">Leslie</p>
-                                                    <p class=" text-xs text-gray-500">
-                                                        Nasi Goreng </p>
-                                                </div>
-                                            </div>
-                                            <div class="m-auto  bg-flame rounded-2xl opacity-50 px-4 py-0.5">
-                                                <p class="my-auto text-xs font-semibold text-white"> <time
-                                                        datetime="2023-01-23T13:23Z">3 hours ago</time></p>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                                 {{-- inventory list status --}}
