@@ -12,6 +12,8 @@
 
                 <x-section-border />
             @endif
+            <!-- Show.blade.php -->
+
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">

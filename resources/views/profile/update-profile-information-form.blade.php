@@ -69,6 +69,10 @@
                         <x-inputadmin id="email" type="email" class="mt-1  w-full" wire:model="state.email"
                             required autocomplete="username" />
                         <x-input-error for="email" class="mt-2" />
+                        <x-label for="phone" class="mt-4" value="{{ __('Phone') }}" />
+                        <x-inputadmin id="phone" type="text" class="mt-2 w-full" wire:model="state.phone"
+                            required autocomplete="phone" />
+
                     </div>
 
                     @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) &&

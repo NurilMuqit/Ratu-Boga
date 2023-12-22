@@ -64,12 +64,13 @@
                                 </h1>
                             </div>
 
-                            <div class="md:flex hidden justify-end items-center h-full w-full ">
+                            <a href="{{ route('home') }}"
+                                class="md:flex hidden justify-end items-center h-full w-full ">
                                 <img src="{{ asset('images/logo.png') }}" alt="" class="w-10 ">
                                 <span
                                     class="self-center ml-2 PlayfairDisplay text-xl font-semibold whitespace-nowrap text-jungglegreen font-PlayfairDisplay">Ratu
                                     Boga</span>
-                            </div>
+                            </a>
 
 
                         </header>
@@ -222,11 +223,7 @@
                                                         Email
                                                     </div>
                                                 </th>
-                                                <th>
-                                                    <div class="p-3 md:p-2 text-left  bg-gray-100 ">
-                                                        Adderess
-                                                    </div>
-                                                </th>
+
                                                 <th>
                                                     <div class="p-3 md:p-2 text-left  bg-gray-100 ">
 
@@ -326,11 +323,7 @@
                                                                 {{ $user->email }}
                                                             </div>
                                                         </td>
-                                                        <td>
-                                                            <div class="p-3  cursor-pointer">
-                                                                Kompleks Perumahan Citra Indah Blok A No. 45
-                                                            </div>
-                                                        </td>
+
                                                         <td>
                                                             <div class="p-3  cursor-pointer">
                                                                 {{ $user->created_at->format('Y-m-d') }}
@@ -338,7 +331,7 @@
                                                         </td>
                                                         <td>
                                                             <div class=" p-3 cursor-pointer">
-                                                                081342575803
+                                                                {{ $user->phone }}
                                                             </div>
                                                         </td>
 
